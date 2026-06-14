@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import { type Album, COLLECTION_LABELS } from "@/lib/records";
+import { assetPath } from "@/lib/asset";
 
 export default function AlbumDetail({
   album,
@@ -37,7 +38,7 @@ export default function AlbumDetail({
         <div className="mx-auto mb-5 h-1.5 w-12 rounded-full bg-white/15 sm:hidden" />
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={album.cover}
+          src={assetPath(album.cover)}
           alt={`${album.title} by ${album.artist}`}
           className="mx-auto aspect-square w-56 rounded-xl object-cover shadow-xl"
         />
@@ -52,7 +53,7 @@ export default function AlbumDetail({
           </p>
         </div>
 
-        {(album.genres.length > 0 || album.vibes.length > 0) && (
+        {album.genres.length > 0 && (
           <div className="mt-5 flex flex-wrap justify-center gap-2">
             {album.genres.map((g) => (
               <span
@@ -60,14 +61,6 @@ export default function AlbumDetail({
                 className="rounded-full bg-white/10 px-3 py-1 text-sm"
               >
                 {g}
-              </span>
-            ))}
-            {album.vibes.map((v) => (
-              <span
-                key={`v-${v}`}
-                className="rounded-full border border-accent/50 px-3 py-1 text-sm text-accent"
-              >
-                {v}
               </span>
             ))}
           </div>

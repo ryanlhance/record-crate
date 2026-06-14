@@ -60,21 +60,11 @@ export function getGenres(): string[] {
   return [...set].sort((a, b) => a.localeCompare(b));
 }
 
-export function getVibes(): string[] {
-  const set = new Set<string>();
-  albums.forEach((a) => a.vibes.forEach((v) => set.add(v)));
-  return [...set].sort((a, b) => a.localeCompare(b));
-}
-
-/** Match a genre OR vibe tag (case-insensitive exact match). */
-export function getByTag(tag: string): Album[] {
-  const lower = tag.toLowerCase();
+/** Match a genre tag (case-insensitive exact match). */
+export function getByGenre(genre: string): Album[] {
+  const lower = genre.toLowerCase();
   return sortByArtistFirstName(
-    albums.filter(
-      (a) =>
-        a.genres.some((g) => g.toLowerCase() === lower) ||
-        a.vibes.some((v) => v.toLowerCase() === lower)
-    )
+    albums.filter((a) => a.genres.some((g) => g.toLowerCase() === lower))
   );
 }
 
@@ -86,8 +76,7 @@ export function search(query: string): Album[] {
       (a) =>
         a.artist.toLowerCase().includes(q) ||
         a.title.toLowerCase().includes(q) ||
-        a.genres.some((g) => g.toLowerCase().includes(q)) ||
-        a.vibes.some((v) => v.toLowerCase().includes(q))
+        a.genres.some((g) => g.toLowerCase().includes(q))
     )
   );
 }

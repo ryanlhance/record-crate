@@ -120,6 +120,28 @@ async function lookupItunes(artist, title, retries = 4) {
   return null;
 }
 
+// Fallback art source: Deezer's public API (no key). Often has albums that
+// aren't on the US iTunes catalog. Returns a ~1000px cover URL or null.
+async function lookupDeezerCover(artist, title, retries = 3) {
+  const q = encodeURIComponent(`${artist} ${title}`);
+  const url = `https://api.deezer.com/search/album?q=${q}&limit=1`;
+  for (let attempt = 0; attempt < retries; attempt++) {
+    try {
+      const res = await fetch(url);
+      if (!res.ok) {
+        await sleep(1500 * (attempt + 1));
+        continue;
+      }
+      const data = await res.json();
+      const hit = data?.data?.[0];
+      return hit?.cover_xl || hit?.cover_big || null;
+    } catch {
+      await sleep(1500 * (attempt + 1));
+    }
+  }
+  return null;
+}
+
 async function downloadCover(url, dest) {
   try {
     const res = await fetch(url);
@@ -182,8 +204,18 @@ async function main() {
         const parsed = Number(hit.releaseDate.slice(0, 4));
         year = Number.isFinite(parsed) ? parsed : null;
       }
-      status = cover === PLACEHOLDER ? "✗" : "✓";
-      await sleep(1200); // stay under the iTunes rate limit
+
+      // iTunes missed — try Deezer before giving up.
+      if (cover === PLACEHOLDER) {
+        const deezerUrl = await lookupDeezerCover(artist, title);
+        if (deezerUrl && (await downloadCover(deezerUrl, dest))) {
+          cover = `/covers/${id}.jpg`;
+          status = "✓ (deezer)";
+        }
+      }
+
+      if (status === "·") status = cover === PLACEHOLDER ? "✗" : "✓";
+      await sleep(1200); // stay under the rate limits
     }
 
     if (cover === PLACEHOLDER) misses.push(`${artist} — ${title}`);

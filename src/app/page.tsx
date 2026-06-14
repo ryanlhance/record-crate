@@ -53,15 +53,13 @@ export default function Home() {
 
       <section className="mt-8">
         <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-muted">
-          Browse by genre or vibe
+          Browse by genre
         </h2>
         <Link
           href="/browse"
           className="flex items-center justify-between rounded-2xl border border-accent/40 px-5 py-4 transition active:scale-[0.98]"
         >
-          <span className="text-lg font-medium text-accent">
-            Pick a genre or a vibe
-          </span>
+          <span className="text-lg font-medium text-accent">Pick a genre</span>
           <span className="text-sm text-muted">→</span>
         </Link>
       </section>

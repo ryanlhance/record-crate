@@ -1,29 +1,27 @@
 import { notFound } from "next/navigation";
 import CoverFlow from "@/components/CoverFlow";
 import CrateHeader from "@/components/CrateHeader";
-import { getByTag, getGenres, getVibes } from "@/lib/records";
+import { getByGenre, getGenres } from "@/lib/records";
 
 export function generateStaticParams() {
-  const tags = [...getGenres(), ...getVibes()];
-  return tags.map((tag) => ({ tag: encodeURIComponent(tag.toLowerCase()) }));
+  return getGenres().map((g) => ({ tag: encodeURIComponent(g.toLowerCase()) }));
 }
 
-export default async function TagPage({
+export default async function GenrePage({
   params,
 }: {
   params: Promise<{ tag: string }>;
 }) {
   const { tag } = await params;
   const decoded = decodeURIComponent(tag);
-  const albums = getByTag(decoded);
+  const albums = getByGenre(decoded);
 
   if (albums.length === 0) notFound();
 
-  // Show the tag with its original casing if we can find it.
+  // Show the genre with its original casing.
   const display =
-    [...getGenres(), ...getVibes()].find(
-      (t) => t.toLowerCase() === decoded.toLowerCase()
-    ) ?? decoded;
+    getGenres().find((g) => g.toLowerCase() === decoded.toLowerCase()) ??
+    decoded;
 
   return (
     <main className="flex flex-1 flex-col">

@@ -5,6 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCoverflow } from "swiper/modules";
 import type { Swiper as SwiperClass } from "swiper";
 import { type Album } from "@/lib/records";
+import { assetPath } from "@/lib/asset";
 import AlbumDetail from "./AlbumDetail";
 
 import "swiper/css";
@@ -55,7 +56,7 @@ export default function CoverFlow({ albums }: { albums: Album[] }) {
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={album.cover}
+              src={assetPath(album.cover)}
               alt={`${album.title} by ${album.artist}`}
               loading="lazy"
               draggable={false}

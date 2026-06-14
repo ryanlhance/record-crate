@@ -11,7 +11,7 @@ and everything is sorted **by artist first name**. Tap the centered cover for de
 - **No database** — the collection is a static `src/data/records.json` baked into the
   build. (Decision: read-only for friends, ~70 records, so a static site is simplest
   and free to host.)
-- **Vercel** for hosting (gives a public link you can text to friends).
+- **GitHub Pages** for hosting (static export; gives a public link to text to friends).
 
 ## Run it locally
 ```bash
@@ -39,10 +39,14 @@ The collection lives in Notion. To refresh the app's data:
    shown in the log), or correct the title/artist in the CSV and re-run.
 4. `npm run dev` to check, then commit and push (Vercel auto-deploys).
 
-## Deploying (GitHub + Vercel)
-- **GitHub** stores the code. **Vercel** connects to the GitHub repo and gives you a
-  public URL (e.g. `record-crate.vercel.app`); every push to `main` auto-rebuilds the
-  live site. One repo + one Vercel project = one shareable link. Both are free.
+## Deploying (GitHub Pages)
+- Live at **https://ryanlhance.github.io/record-crate/**.
+- Pushing to `main` runs `.github/workflows/deploy.yml`, which builds the static export
+  (`output: 'export'` → `out/`) and publishes it to GitHub Pages. No servers, free.
+- Because Pages serves from the `/record-crate/` subpath, `next.config.ts` sets a
+  production `basePath`; raw `<img>` cover URLs are prefixed via `src/lib/asset.ts`.
+- First-time setup (already done): repo is public, and Pages source is set to
+  "GitHub Actions" (Settings → Pages).
 
 ## Project structure
 - `src/data/records.json` — the collection (generated; the app's source of truth).
