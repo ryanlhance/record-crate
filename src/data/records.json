@@ -1,0 +1,214 @@
+[
+  {
+    "id": "khruangbin-con-todo-el-mundo",
+    "artist": "Khruangbin",
+    "title": "Con Todo El Mundo",
+    "collection": "main",
+    "genres": [
+      "Psychedelic",
+      "Funk"
+    ],
+    "vibes": [
+      "late night",
+      "dinner party"
+    ],
+    "year": 2018,
+    "cover": "/covers/khruangbin-con-todo-el-mundo.jpg"
+  },
+  {
+    "id": "fleetwood-mac-rumours",
+    "artist": "Fleetwood Mac",
+    "title": "Rumours",
+    "collection": "main",
+    "genres": [
+      "Rock",
+      "Pop"
+    ],
+    "vibes": [
+      "Sunday morning"
+    ],
+    "year": 1977,
+    "cover": "/covers/fleetwood-mac-rumours.jpg"
+  },
+  {
+    "id": "kendrick-lamar-to-pimp-a-butterfly",
+    "artist": "Kendrick Lamar",
+    "title": "To Pimp a Butterfly",
+    "collection": "main",
+    "genres": [
+      "Hip-Hop"
+    ],
+    "vibes": [
+      "high energy"
+    ],
+    "year": 2015,
+    "cover": "/covers/kendrick-lamar-to-pimp-a-butterfly.jpg"
+  },
+  {
+    "id": "miles-davis-kind-of-blue",
+    "artist": "Miles Davis",
+    "title": "Kind of Blue",
+    "collection": "main",
+    "genres": [
+      "Jazz"
+    ],
+    "vibes": [
+      "late night",
+      "dinner party"
+    ],
+    "year": 1959,
+    "cover": "/covers/miles-davis-kind-of-blue.jpg"
+  },
+  {
+    "id": "tame-impala-currents",
+    "artist": "Tame Impala",
+    "title": "Currents",
+    "collection": "main",
+    "genres": [
+      "Psychedelic",
+      "Electronic"
+    ],
+    "vibes": [
+      "high energy"
+    ],
+    "year": 2015,
+    "cover": "/covers/tame-impala-currents.jpg"
+  },
+  {
+    "id": "norah-jones-come-away-with-me",
+    "artist": "Norah Jones",
+    "title": "Come Away with Me",
+    "collection": "main",
+    "genres": [
+      "Jazz",
+      "Pop"
+    ],
+    "vibes": [
+      "Sunday morning",
+      "dinner party"
+    ],
+    "year": 2002,
+    "cover": "/covers/norah-jones-come-away-with-me.jpg"
+  },
+  {
+    "id": "daft-punk-random-access-memories",
+    "artist": "Daft Punk",
+    "title": "Random Access Memories",
+    "collection": "main",
+    "genres": [
+      "Electronic",
+      "Disco"
+    ],
+    "vibes": [
+      "party"
+    ],
+    "year": 2013,
+    "cover": "/covers/daft-punk-random-access-memories.jpg"
+  },
+  {
+    "id": "bon-iver-for-emma-forever-ago",
+    "artist": "Bon Iver",
+    "title": "For Emma, Forever Ago",
+    "collection": "main",
+    "genres": [
+      "Folk",
+      "Indie"
+    ],
+    "vibes": [
+      "late night"
+    ],
+    "year": 2007,
+    "cover": "/placeholder.svg"
+  },
+  {
+    "id": "pink-floyd-the-dark-side-of-the-moon",
+    "artist": "Pink Floyd",
+    "title": "The Dark Side of the Moon",
+    "collection": "special",
+    "genres": [
+      "Rock",
+      "Progressive"
+    ],
+    "vibes": [
+      "late night"
+    ],
+    "year": 1973,
+    "cover": "/covers/pink-floyd-the-dark-side-of-the-moon.jpg"
+  },
+  {
+    "id": "radiohead-ok-computer",
+    "artist": "Radiohead",
+    "title": "OK Computer",
+    "collection": "special",
+    "genres": [
+      "Rock",
+      "Alternative"
+    ],
+    "vibes": [
+      "late night"
+    ],
+    "year": 1997,
+    "cover": "/covers/radiohead-ok-computer.jpg"
+  },
+  {
+    "id": "the-beatles-abbey-road",
+    "artist": "The Beatles",
+    "title": "Abbey Road",
+    "collection": "special",
+    "genres": [
+      "Rock",
+      "Pop"
+    ],
+    "vibes": [
+      "Sunday morning"
+    ],
+    "year": 1969,
+    "cover": "/covers/the-beatles-abbey-road.jpg"
+  },
+  {
+    "id": "bob-marley-the-wailers-legend",
+    "artist": "Bob Marley & The Wailers",
+    "title": "Legend",
+    "collection": "compilation",
+    "genres": [
+      "Reggae"
+    ],
+    "vibes": [
+      "Sunday morning",
+      "dinner party"
+    ],
+    "year": 1984,
+    "cover": "/covers/bob-marley-the-wailers-legend.jpg"
+  },
+  {
+    "id": "various-artists-saturday-night-fever",
+    "artist": "Various Artists",
+    "title": "Saturday Night Fever",
+    "collection": "compilation",
+    "genres": [
+      "Disco",
+      "Soundtrack"
+    ],
+    "vibes": [
+      "party"
+    ],
+    "year": 1977,
+    "cover": "/covers/various-artists-saturday-night-fever.jpg"
+  },
+  {
+    "id": "various-artists-guardians-of-the-galaxy-awesome-mix-vol-1",
+    "artist": "Various Artists",
+    "title": "Guardians of the Galaxy Awesome Mix Vol. 1",
+    "collection": "compilation",
+    "genres": [
+      "Rock",
+      "Pop"
+    ],
+    "vibes": [
+      "high energy",
+      "party"
+    ],
+    "year": 2014,
+    "cover": "/covers/various-artists-guardians-of-the-galaxy-awesome-mix-vol-1.jpg"
+  }
+]
