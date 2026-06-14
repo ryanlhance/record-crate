@@ -1,184 +1,807 @@
 [
   {
-    "id": "khruangbin-con-todo-el-mundo",
-    "artist": "Khruangbin",
-    "title": "Con Todo El Mundo",
+    "id": "33hz-whatever-happened-to-the-party",
+    "artist": "33Hz",
+    "title": "Whatever Happened to the Party?",
     "collection": "main",
     "genres": [
-      "Psychedelic",
       "Funk"
     ],
-    "vibes": [
-      "late night",
-      "dinner party"
-    ],
-    "year": 2018,
-    "cover": "/covers/khruangbin-con-todo-el-mundo.jpg"
+    "vibes": [],
+    "year": 2005,
+    "cover": "/placeholder.svg"
   },
   {
-    "id": "fleetwood-mac-rumours",
-    "artist": "Fleetwood Mac",
-    "title": "Rumours",
+    "id": "abram-shook-the-neon-machine",
+    "artist": "Abram Shook",
+    "title": "The Neon Machine",
     "collection": "main",
     "genres": [
-      "Rock",
+      "Rock"
+    ],
+    "vibes": [],
+    "year": 2019,
+    "cover": "/covers/abram-shook-the-neon-machine.jpg"
+  },
+  {
+    "id": "alabama-shakes-sound-and-color",
+    "artist": "Alabama Shakes",
+    "title": "Sound and Color",
+    "collection": "special",
+    "genres": [
+      "Rock"
+    ],
+    "vibes": [],
+    "year": 2015,
+    "cover": "/covers/alabama-shakes-sound-and-color.jpg"
+  },
+  {
+    "id": "alan-parsons-project-i-robot",
+    "artist": "Alan Parsons Project",
+    "title": "I Robot",
+    "collection": "main",
+    "genres": [
+      "Rock"
+    ],
+    "vibes": [],
+    "year": 1977,
+    "cover": "/covers/alan-parsons-project-i-robot.jpg"
+  },
+  {
+    "id": "alan-parsons-project-tales-of-mystery-and-imagination",
+    "artist": "Alan Parsons Project",
+    "title": "Tales of Mystery and Imagination",
+    "collection": "main",
+    "genres": [
+      "Experimental"
+    ],
+    "vibes": [],
+    "year": 1976,
+    "cover": "/covers/alan-parsons-project-tales-of-mystery-and-imagination.jpg"
+  },
+  {
+    "id": "anderson-paak-malibu",
+    "artist": "Anderson .Paak",
+    "title": "Malibu",
+    "collection": "main",
+    "genres": [
+      "Soul"
+    ],
+    "vibes": [],
+    "year": 2016,
+    "cover": "/covers/anderson-paak-malibu.jpg"
+  },
+  {
+    "id": "anderson-paak-malibu-2",
+    "artist": "Anderson .Paak",
+    "title": "Malibu",
+    "collection": "special",
+    "genres": [
+      "Soul"
+    ],
+    "vibes": [],
+    "year": 2016,
+    "cover": "/covers/anderson-paak-malibu-2.jpg"
+  },
+  {
+    "id": "anderson-paak-tiny-desk-concert",
+    "artist": "Anderson .Paak",
+    "title": "Tiny Desk Concert",
+    "collection": "special",
+    "genres": [
+      "Soul"
+    ],
+    "vibes": [],
+    "year": 2016,
+    "cover": "/covers/anderson-paak-tiny-desk-concert.jpg"
+  },
+  {
+    "id": "anderson-paak-venice",
+    "artist": "Anderson .Paak",
+    "title": "Venice",
+    "collection": "special",
+    "genres": [
+      "Soul"
+    ],
+    "vibes": [],
+    "year": 2014,
+    "cover": "/covers/anderson-paak-venice.jpg"
+  },
+  {
+    "id": "andreas-vollenweider-caverna-magica",
+    "artist": "Andreas Vollenweider",
+    "title": "Caverna Magica",
+    "collection": "main",
+    "genres": [
+      "Experimental"
+    ],
+    "vibes": [],
+    "year": 1983,
+    "cover": "/covers/andreas-vollenweider-caverna-magica.jpg"
+  },
+  {
+    "id": "andreas-vollenweider-white-winds",
+    "artist": "Andreas Vollenweider",
+    "title": "White Winds",
+    "collection": "main",
+    "genres": [
+      "Experimental"
+    ],
+    "vibes": [],
+    "year": 1984,
+    "cover": "/covers/andreas-vollenweider-white-winds.jpg"
+  },
+  {
+    "id": "barbarella-soundtrack",
+    "artist": "Barbarella",
+    "title": "Soundtrack",
+    "collection": "special",
+    "genres": [
+      "Lounge"
+    ],
+    "vibes": [],
+    "year": 1968,
+    "cover": "/covers/barbarella-soundtrack.jpg"
+  },
+  {
+    "id": "beach-boys-with-the-royal-philharmonic-orchestra",
+    "artist": "Beach Boys",
+    "title": "with the Royal Philharmonic Orchestra",
+    "collection": "special",
+    "genres": [
       "Pop"
     ],
-    "vibes": [
-      "Sunday morning"
-    ],
-    "year": 1977,
-    "cover": "/covers/fleetwood-mac-rumours.jpg"
+    "vibes": [],
+    "year": 2018,
+    "cover": "/covers/beach-boys-with-the-royal-philharmonic-orchestra.jpg"
   },
   {
-    "id": "kendrick-lamar-to-pimp-a-butterfly",
-    "artist": "Kendrick Lamar",
-    "title": "To Pimp a Butterfly",
-    "collection": "main",
-    "genres": [
-      "Hip-Hop"
-    ],
-    "vibes": [
-      "high energy"
-    ],
-    "year": 2015,
-    "cover": "/covers/kendrick-lamar-to-pimp-a-butterfly.jpg"
-  },
-  {
-    "id": "miles-davis-kind-of-blue",
-    "artist": "Miles Davis",
-    "title": "Kind of Blue",
+    "id": "berlioz-open-this-wall",
+    "artist": "Berlioz",
+    "title": "Open This Wall",
     "collection": "main",
     "genres": [
       "Jazz"
     ],
-    "vibes": [
-      "late night",
-      "dinner party"
-    ],
-    "year": 1959,
-    "cover": "/covers/miles-davis-kind-of-blue.jpg"
+    "vibes": [],
+    "year": 2024,
+    "cover": "/covers/berlioz-open-this-wall.jpg"
   },
   {
-    "id": "tame-impala-currents",
-    "artist": "Tame Impala",
-    "title": "Currents",
+    "id": "california-honeydrops-a-river-s-invitation",
+    "artist": "California Honeydrops",
+    "title": "A River's Invitation",
     "collection": "main",
     "genres": [
-      "Psychedelic",
-      "Electronic"
+      "Soul"
     ],
-    "vibes": [
-      "high energy"
-    ],
+    "vibes": [],
     "year": 2015,
-    "cover": "/covers/tame-impala-currents.jpg"
+    "cover": "/covers/california-honeydrops-a-river-s-invitation.jpg"
   },
   {
-    "id": "norah-jones-come-away-with-me",
-    "artist": "Norah Jones",
-    "title": "Come Away with Me",
+    "id": "chaka-khan-rufus-street-player",
+    "artist": "Chaka Khan & Rufus",
+    "title": "Street Player",
     "collection": "main",
     "genres": [
-      "Jazz",
+      "Funk"
+    ],
+    "vibes": [],
+    "year": 1978,
+    "cover": "/covers/chaka-khan-rufus-street-player.jpg"
+  },
+  {
+    "id": "childish-gambino-awaken-my-love",
+    "artist": "Childish Gambino",
+    "title": "\"Awaken, My Love!\"",
+    "collection": "main",
+    "genres": [
+      "Funk"
+    ],
+    "vibes": [],
+    "year": 2016,
+    "cover": "/covers/childish-gambino-awaken-my-love.jpg"
+  },
+  {
+    "id": "childish-gambino-kauai",
+    "artist": "Childish Gambino",
+    "title": "Kauai",
+    "collection": "main",
+    "genres": [
+      "Soul"
+    ],
+    "vibes": [],
+    "year": 2014,
+    "cover": "/covers/childish-gambino-kauai.jpg"
+  },
+  {
+    "id": "david-sanborn-taking-off",
+    "artist": "David Sanborn",
+    "title": "Taking Off",
+    "collection": "main",
+    "genres": [
+      "Jazz"
+    ],
+    "vibes": [],
+    "year": 1975,
+    "cover": "/covers/david-sanborn-taking-off.jpg"
+  },
+  {
+    "id": "david-sanborn-voyeur",
+    "artist": "David Sanborn",
+    "title": "Voyeur",
+    "collection": "main",
+    "genres": [
+      "Jazz"
+    ],
+    "vibes": [],
+    "year": 1981,
+    "cover": "/covers/david-sanborn-voyeur.jpg"
+  },
+  {
+    "id": "deodato-knights-of-fantasy",
+    "artist": "Deodato",
+    "title": "Knights of Fantasy",
+    "collection": "main",
+    "genres": [
+      "Jazz"
+    ],
+    "vibes": [],
+    "year": 1979,
+    "cover": "/covers/deodato-knights-of-fantasy.jpg"
+  },
+  {
+    "id": "earth-wind-fire-electric-universe",
+    "artist": "Earth, Wind & Fire",
+    "title": "Electric Universe",
+    "collection": "main",
+    "genres": [
+      "Funk"
+    ],
+    "vibes": [],
+    "year": 1983,
+    "cover": "/covers/earth-wind-fire-electric-universe.jpg"
+  },
+  {
+    "id": "engelbert-humperdinck-after-the-lovin",
+    "artist": "Engelbert Humperdinck",
+    "title": "After the Lovin'",
+    "collection": "main",
+    "genres": [
       "Pop"
     ],
-    "vibes": [
-      "Sunday morning",
-      "dinner party"
-    ],
-    "year": 2002,
-    "cover": "/covers/norah-jones-come-away-with-me.jpg"
+    "vibes": [],
+    "year": 1976,
+    "cover": "/covers/engelbert-humperdinck-after-the-lovin.jpg"
   },
   {
-    "id": "daft-punk-random-access-memories",
-    "artist": "Daft Punk",
-    "title": "Random Access Memories",
+    "id": "earl-klugh-heartstrings",
+    "artist": "Earl Klugh",
+    "title": "Heartstrings",
     "collection": "main",
     "genres": [
-      "Electronic",
-      "Disco"
+      "Jazz"
     ],
-    "vibes": [
-      "party"
-    ],
-    "year": 2013,
-    "cover": "/covers/daft-punk-random-access-memories.jpg"
+    "vibes": [],
+    "year": 1979,
+    "cover": "/covers/earl-klugh-heartstrings.jpg"
   },
   {
-    "id": "bon-iver-for-emma-forever-ago",
-    "artist": "Bon Iver",
-    "title": "For Emma, Forever Ago",
+    "id": "father-john-misty-fear-fun",
+    "artist": "Father John Misty",
+    "title": "Fear Fun",
     "collection": "main",
     "genres": [
-      "Folk",
-      "Indie"
+      "Rock"
     ],
-    "vibes": [
-      "late night"
+    "vibes": [],
+    "year": 2012,
+    "cover": "/covers/father-john-misty-fear-fun.jpg"
+  },
+  {
+    "id": "frankie-goes-to-hollywood-welcome-to-the-pleasuredome",
+    "artist": "Frankie Goes to Hollywood",
+    "title": "Welcome to the Pleasuredome",
+    "collection": "main",
+    "genres": [
+      "Pop"
     ],
-    "year": 2007,
+    "vibes": [],
+    "year": 1984,
+    "cover": "/covers/frankie-goes-to-hollywood-welcome-to-the-pleasuredome.jpg"
+  },
+  {
+    "id": "house-of-waters-rising",
+    "artist": "House of Waters",
+    "title": "Rising",
+    "collection": "special",
+    "genres": [
+      "Jazz"
+    ],
+    "vibes": [],
+    "year": 2019,
+    "cover": "/covers/house-of-waters-rising.jpg"
+  },
+  {
+    "id": "idris-muhammad-make-it-count",
+    "artist": "Idris Muhammad",
+    "title": "Make it Count",
+    "collection": "main",
+    "genres": [
+      "Funk"
+    ],
+    "vibes": [],
+    "year": 1980,
     "cover": "/placeholder.svg"
   },
   {
-    "id": "pink-floyd-the-dark-side-of-the-moon",
-    "artist": "Pink Floyd",
-    "title": "The Dark Side of the Moon",
-    "collection": "special",
+    "id": "idris-muhammad-turn-this-mutha-out",
+    "artist": "Idris Muhammad",
+    "title": "Turn This Mutha Out",
+    "collection": "main",
     "genres": [
-      "Rock",
-      "Progressive"
+      "Funk"
     ],
-    "vibes": [
-      "late night"
-    ],
-    "year": 1973,
-    "cover": "/covers/pink-floyd-the-dark-side-of-the-moon.jpg"
+    "vibes": [],
+    "year": 1977,
+    "cover": "/covers/idris-muhammad-turn-this-mutha-out.jpg"
   },
   {
-    "id": "radiohead-ok-computer",
-    "artist": "Radiohead",
-    "title": "OK Computer",
-    "collection": "special",
+    "id": "jean-luc-ponty-a-taste-for-passion",
+    "artist": "Jean-Luc Ponty",
+    "title": "A Taste for Passion",
+    "collection": "main",
     "genres": [
-      "Rock",
-      "Alternative"
+      "Jazz"
     ],
-    "vibes": [
-      "late night"
-    ],
-    "year": 1997,
-    "cover": "/covers/radiohead-ok-computer.jpg"
+    "vibes": [],
+    "year": 1979,
+    "cover": "/covers/jean-luc-ponty-a-taste-for-passion.jpg"
   },
   {
-    "id": "the-beatles-abbey-road",
-    "artist": "The Beatles",
-    "title": "Abbey Road",
+    "id": "jean-luc-ponty-aurora",
+    "artist": "Jean-Luc Ponty",
+    "title": "Aurora",
+    "collection": "main",
+    "genres": [
+      "Jazz"
+    ],
+    "vibes": [],
+    "year": 1976,
+    "cover": "/covers/jean-luc-ponty-aurora.jpg"
+  },
+  {
+    "id": "jean-luc-ponty-cosmic-messenger",
+    "artist": "Jean-Luc Ponty",
+    "title": "Cosmic Messenger",
+    "collection": "main",
+    "genres": [
+      "Jazz"
+    ],
+    "vibes": [],
+    "year": 1978,
+    "cover": "/covers/jean-luc-ponty-cosmic-messenger.jpg"
+  },
+  {
+    "id": "jean-luc-ponty-fables",
+    "artist": "Jean-Luc Ponty",
+    "title": "Fables",
+    "collection": "main",
+    "genres": [
+      "Jazz"
+    ],
+    "vibes": [],
+    "year": 1985,
+    "cover": "/covers/jean-luc-ponty-fables.jpg"
+  },
+  {
+    "id": "jean-luc-ponty-imaginary-voyage",
+    "artist": "Jean-Luc Ponty",
+    "title": "Imaginary Voyage",
+    "collection": "main",
+    "genres": [
+      "Jazz"
+    ],
+    "vibes": [],
+    "year": 1976,
+    "cover": "/covers/jean-luc-ponty-imaginary-voyage.jpg"
+  },
+  {
+    "id": "jean-luc-ponty-inner-city",
+    "artist": "Jean-Luc Ponty",
+    "title": "Inner City",
+    "collection": "main",
+    "genres": [
+      "Jazz"
+    ],
+    "vibes": [],
+    "year": 1976,
+    "cover": "/placeholder.svg"
+  },
+  {
+    "id": "jean-luc-ponty-mystical-adventures",
+    "artist": "Jean-Luc Ponty",
+    "title": "Mystical Adventures",
+    "collection": "main",
+    "genres": [
+      "Jazz"
+    ],
+    "vibes": [],
+    "year": 1982,
+    "cover": "/covers/jean-luc-ponty-mystical-adventures.jpg"
+  },
+  {
+    "id": "jean-luc-ponty-upon-the-wings-of-music",
+    "artist": "Jean-Luc Ponty",
+    "title": "Upon the Wings of Music",
+    "collection": "main",
+    "genres": [
+      "Jazz"
+    ],
+    "vibes": [],
+    "year": 1975,
+    "cover": "/covers/jean-luc-ponty-upon-the-wings-of-music.jpg"
+  },
+  {
+    "id": "jeff-goldblum-still-bloomin",
+    "artist": "Jeff Goldblum",
+    "title": "Still Bloomin",
     "collection": "special",
     "genres": [
-      "Rock",
+      "Jazz"
+    ],
+    "vibes": [],
+    "year": 2025,
+    "cover": "/covers/jeff-goldblum-still-bloomin.jpg"
+  },
+  {
+    "id": "journey-escape",
+    "artist": "Journey",
+    "title": "Escape",
+    "collection": "main",
+    "genres": [
+      "Rock"
+    ],
+    "vibes": [],
+    "year": 1981,
+    "cover": "/covers/journey-escape.jpg"
+  },
+  {
+    "id": "klique-try-it-out",
+    "artist": "Klique",
+    "title": "Try It Out",
+    "collection": "main",
+    "genres": [
+      "Soul"
+    ],
+    "vibes": [],
+    "year": 1983,
+    "cover": "/covers/klique-try-it-out.jpg"
+  },
+  {
+    "id": "leon-bridges-leon",
+    "artist": "Leon Bridges",
+    "title": "Leon",
+    "collection": "special",
+    "genres": [
+      "Soul"
+    ],
+    "vibes": [],
+    "year": 2024,
+    "cover": "/covers/leon-bridges-leon.jpg"
+  },
+  {
+    "id": "little-bird-proxima",
+    "artist": "Little Bird",
+    "title": "Proxima",
+    "collection": "main",
+    "genres": [
+      "Rock"
+    ],
+    "vibes": [],
+    "year": 2021,
+    "cover": "/covers/little-bird-proxima.jpg"
+  },
+  {
+    "id": "little-river-band-time-exposure",
+    "artist": "Little River Band",
+    "title": "Time Exposure",
+    "collection": "main",
+    "genres": [
+      "Rock"
+    ],
+    "vibes": [],
+    "year": 1981,
+    "cover": "/covers/little-river-band-time-exposure.jpg"
+  },
+  {
+    "id": "marty-robbins-gunfighter-ballads-and-trail-songs",
+    "artist": "Marty Robbins",
+    "title": "Gunfighter Ballads and Trail Songs",
+    "collection": "main",
+    "genres": [
+      "Country"
+    ],
+    "vibes": [],
+    "year": 1959,
+    "cover": "/covers/marty-robbins-gunfighter-ballads-and-trail-songs.jpg"
+  },
+  {
+    "id": "neil-frances-took-a-while",
+    "artist": "Neil Frances",
+    "title": "Took a While",
+    "collection": "special",
+    "genres": [
+      "Funk"
+    ],
+    "vibes": [],
+    "year": 2018,
+    "cover": "/covers/neil-frances-took-a-while.jpg"
+  },
+  {
+    "id": "pablo-cruise-reflector",
+    "artist": "Pablo Cruise",
+    "title": "Reflector",
+    "collection": "main",
+    "genres": [
+      "Rock"
+    ],
+    "vibes": [],
+    "year": 1981,
+    "cover": "/placeholder.svg"
+  },
+  {
+    "id": "pacific-gas-and-electric-are-you-ready",
+    "artist": "Pacific Gas and Electric",
+    "title": "Are You Ready?",
+    "collection": "main",
+    "genres": [
+      "Rock"
+    ],
+    "vibes": [],
+    "year": 1970,
+    "cover": "/covers/pacific-gas-and-electric-are-you-ready.jpg"
+  },
+  {
+    "id": "phoenix-bankrupt",
+    "artist": "Phoenix",
+    "title": "Bankrupt",
+    "collection": "main",
+    "genres": [
       "Pop"
     ],
-    "vibes": [
-      "Sunday morning"
-    ],
-    "year": 1969,
-    "cover": "/covers/the-beatles-abbey-road.jpg"
+    "vibes": [],
+    "year": 2013,
+    "cover": "/covers/phoenix-bankrupt.jpg"
   },
   {
-    "id": "bob-marley-the-wailers-legend",
-    "artist": "Bob Marley & The Wailers",
-    "title": "Legend",
-    "collection": "compilation",
+    "id": "pink-floyd-dark-side-of-the-moon",
+    "artist": "Pink Floyd",
+    "title": "Dark Side of the Moon",
+    "collection": "main",
     "genres": [
-      "Reggae"
+      "Rock"
     ],
-    "vibes": [
-      "Sunday morning",
-      "dinner party"
+    "vibes": [],
+    "year": 1973,
+    "cover": "/covers/pink-floyd-dark-side-of-the-moon.jpg"
+  },
+  {
+    "id": "pink-floyd-the-wall",
+    "artist": "Pink Floyd",
+    "title": "The Wall",
+    "collection": "main",
+    "genres": [
+      "Rock"
     ],
-    "year": 1984,
-    "cover": "/covers/bob-marley-the-wailers-legend.jpg"
+    "vibes": [],
+    "year": 1979,
+    "cover": "/covers/pink-floyd-the-wall.jpg"
+  },
+  {
+    "id": "robert-palmer-sneaking-sally-through-the-alley",
+    "artist": "Robert Palmer",
+    "title": "Sneaking Sally Through the Alley",
+    "collection": "main",
+    "genres": [
+      "Funk"
+    ],
+    "vibes": [],
+    "year": 1974,
+    "cover": "/covers/robert-palmer-sneaking-sally-through-the-alley.jpg"
+  },
+  {
+    "id": "santana-abraxas",
+    "artist": "Santana",
+    "title": "Abraxas",
+    "collection": "main",
+    "genres": [
+      "Latin"
+    ],
+    "vibes": [],
+    "year": 1970,
+    "cover": "/covers/santana-abraxas.jpg"
+  },
+  {
+    "id": "santana-amigos",
+    "artist": "Santana",
+    "title": "Amigos",
+    "collection": "main",
+    "genres": [
+      "Latin"
+    ],
+    "vibes": [],
+    "year": 1976,
+    "cover": "/covers/santana-amigos.jpg"
+  },
+  {
+    "id": "santana-shango",
+    "artist": "Santana",
+    "title": "Shango",
+    "collection": "main",
+    "genres": [
+      "Latin"
+    ],
+    "vibes": [],
+    "year": 1982,
+    "cover": "/covers/santana-shango.jpg"
+  },
+  {
+    "id": "santana-zebop",
+    "artist": "Santana",
+    "title": "Zebop",
+    "collection": "main",
+    "genres": [
+      "Latin"
+    ],
+    "vibes": [],
+    "year": 1981,
+    "cover": "/covers/santana-zebop.jpg"
+  },
+  {
+    "id": "sergio-mendes-brasil-66-herb-alpert-presents",
+    "artist": "Sergio Mendes & Brasil '66",
+    "title": "Herb Alpert Presents",
+    "collection": "main",
+    "genres": [
+      "Latin"
+    ],
+    "vibes": [],
+    "year": 1966,
+    "cover": "/covers/sergio-mendes-brasil-66-herb-alpert-presents.jpg"
+  },
+  {
+    "id": "silk-sonic-an-evening-with-silk-sonic",
+    "artist": "Silk Sonic",
+    "title": "An Evening with Silk Sonic",
+    "collection": "main",
+    "genres": [
+      "Soul"
+    ],
+    "vibes": [],
+    "year": 2021,
+    "cover": "/covers/silk-sonic-an-evening-with-silk-sonic.jpg"
+  },
+  {
+    "id": "sister-sledge-we-are-family",
+    "artist": "Sister Sledge",
+    "title": "We Are Family",
+    "collection": "main",
+    "genres": [
+      "Disco"
+    ],
+    "vibes": [],
+    "year": 1979,
+    "cover": "/covers/sister-sledge-we-are-family.jpg"
+  },
+  {
+    "id": "snarky-puppy-family-dinner",
+    "artist": "Snarky Puppy",
+    "title": "Family Dinner",
+    "collection": "special",
+    "genres": [
+      "Jazz"
+    ],
+    "vibes": [],
+    "year": 2013,
+    "cover": "/covers/snarky-puppy-family-dinner.jpg"
+  },
+  {
+    "id": "spyro-gyra-freetime",
+    "artist": "Spyro Gyra",
+    "title": "Freetime",
+    "collection": "main",
+    "genres": [
+      "Jazz"
+    ],
+    "vibes": [],
+    "year": 1981,
+    "cover": "/covers/spyro-gyra-freetime.jpg"
+  },
+  {
+    "id": "spyro-gyra-morning-dance",
+    "artist": "Spyro Gyra",
+    "title": "Morning Dance",
+    "collection": "main",
+    "genres": [
+      "Jazz"
+    ],
+    "vibes": [],
+    "year": 1979,
+    "cover": "/covers/spyro-gyra-morning-dance.jpg"
+  },
+  {
+    "id": "stray-cats-built-for-speed",
+    "artist": "Stray Cats",
+    "title": "Built for Speed",
+    "collection": "main",
+    "genres": [
+      "Rock"
+    ],
+    "vibes": [],
+    "year": 1982,
+    "cover": "/covers/stray-cats-built-for-speed.jpg"
+  },
+  {
+    "id": "sylvester-too-hot-to-sleep",
+    "artist": "Sylvester",
+    "title": "Too Hot to Sleep",
+    "collection": "main",
+    "genres": [
+      "Soul"
+    ],
+    "vibes": [],
+    "year": 1981,
+    "cover": "/covers/sylvester-too-hot-to-sleep.jpg"
+  },
+  {
+    "id": "thee-sacred-souls-got-a-story-to-tell",
+    "artist": "Thee Sacred Souls",
+    "title": "Got a Story to Tell",
+    "collection": "main",
+    "genres": [
+      "Soul"
+    ],
+    "vibes": [],
+    "year": 2024,
+    "cover": "/covers/thee-sacred-souls-got-a-story-to-tell.jpg"
+  },
+  {
+    "id": "tom-misch-geography",
+    "artist": "Tom Misch",
+    "title": "Geography",
+    "collection": "main",
+    "genres": [
+      "Soul"
+    ],
+    "vibes": [],
+    "year": 2018,
+    "cover": "/covers/tom-misch-geography.jpg"
+  },
+  {
+    "id": "tomita-snowflakes-are-dancing",
+    "artist": "Tomita",
+    "title": "Snowflakes Are Dancing",
+    "collection": "main",
+    "genres": [
+      "Experimental"
+    ],
+    "vibes": [],
+    "year": 1974,
+    "cover": "/covers/tomita-snowflakes-are-dancing.jpg"
+  },
+  {
+    "id": "vampire-weekend-vampire-weekend",
+    "artist": "Vampire Weekend",
+    "title": "Vampire Weekend",
+    "collection": "main",
+    "genres": [
+      "Rock"
+    ],
+    "vibes": [],
+    "year": 2008,
+    "cover": "/covers/vampire-weekend-vampire-weekend.jpg"
   },
   {
     "id": "various-artists-saturday-night-fever",
@@ -186,29 +809,34 @@
     "title": "Saturday Night Fever",
     "collection": "compilation",
     "genres": [
-      "Disco",
-      "Soundtrack"
+      "Disco"
     ],
-    "vibes": [
-      "party"
-    ],
+    "vibes": [],
     "year": 1977,
     "cover": "/covers/various-artists-saturday-night-fever.jpg"
   },
   {
-    "id": "various-artists-guardians-of-the-galaxy-awesome-mix-vol-1",
+    "id": "various-artists-more-than-muzak",
     "artist": "Various Artists",
-    "title": "Guardians of the Galaxy Awesome Mix Vol. 1",
+    "title": "More than Muzak",
     "collection": "compilation",
     "genres": [
-      "Rock",
-      "Pop"
+      "Lounge"
     ],
-    "vibes": [
-      "high energy",
-      "party"
+    "vibes": [],
+    "year": 1981,
+    "cover": "/covers/various-artists-more-than-muzak.jpg"
+  },
+  {
+    "id": "various-artists-the-world-of-private-music-vol-ii",
+    "artist": "Various Artists",
+    "title": "The World of Private Music Vol II",
+    "collection": "compilation",
+    "genres": [
+      "Lounge"
     ],
-    "year": 2014,
-    "cover": "/covers/various-artists-guardians-of-the-galaxy-awesome-mix-vol-1.jpg"
+    "vibes": [],
+    "year": 1987,
+    "cover": "/covers/various-artists-the-world-of-private-music-vol-ii.jpg"
   }
 ]

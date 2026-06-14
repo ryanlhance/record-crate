@@ -18,7 +18,19 @@ export default function Home() {
         <SearchBar />
       </div>
 
-      <section className="mt-10">
+      <section className="mt-8">
+        <Link
+          href="/all"
+          className="flex items-center justify-between rounded-2xl bg-accent px-5 py-5 text-black transition active:scale-[0.98]"
+        >
+          <span className="text-lg font-semibold">
+            Flip through the whole shelf
+          </span>
+          <span className="text-sm font-medium">{total} →</span>
+        </Link>
+      </section>
+
+      <section className="mt-8">
         <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-muted">
           Browse by collection
         </h2>

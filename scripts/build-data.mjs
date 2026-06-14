@@ -94,17 +94,30 @@ function normalizeCollection(value) {
   return "main";
 }
 
-async function lookupItunes(artist, title) {
+async function lookupItunes(artist, title, retries = 4) {
   const term = encodeURIComponent(`${artist} ${title}`);
-  const url = `https://itunes.apple.com/search?term=${term}&entity=album&limit=1`;
-  try {
-    const res = await fetch(url);
-    if (!res.ok) return null;
-    const data = await res.json();
-    return data.results?.[0] ?? null;
-  } catch {
-    return null;
+  const url = `https://itunes.apple.com/search?term=${term}&entity=album&limit=1&country=US`;
+  for (let attempt = 0; attempt < retries; attempt++) {
+    try {
+      const res = await fetch(url);
+      // iTunes throttles bursts with 403/429 — back off and retry.
+      if (res.status === 403 || res.status === 429) {
+        await sleep(2500 * (attempt + 1));
+        continue;
+      }
+      if (!res.ok) return null;
+      const data = await res.json();
+      // An empty body can also mean a transient throttle; retry a couple times.
+      if (!data.results) {
+        await sleep(2000 * (attempt + 1));
+        continue;
+      }
+      return data.results[0] ?? null;
+    } catch {
+      await sleep(1500 * (attempt + 1));
+    }
   }
+  return null;
 }
 
 async function downloadCover(url, dest) {
@@ -132,34 +145,48 @@ async function main() {
 
   const albums = [];
   const misses = [];
+  const usedIds = new Set();
 
   for (const row of rows) {
     const artist = row.artist || "";
     const title = row.title || "";
     if (!artist || !title) continue;
 
-    const id = slugify(`${artist}-${title}`);
-    const hit = await lookupItunes(artist, title);
+    // Unique id even when the same album appears in two collections.
+    let id = slugify(`${artist}-${title}`);
+    const base = id;
+    let n = 2;
+    while (usedIds.has(id)) id = `${base}-${n++}`;
+    usedIds.add(id);
 
-    let cover = PLACEHOLDER;
-    if (hit?.artworkUrl100) {
-      const hiRes = hit.artworkUrl100.replace("100x100bb", "1000x1000bb");
-      const dest = path.join(COVERS_DIR, `${id}.jpg`);
-      const ok = await downloadCover(hiRes, dest);
-      cover = ok ? `/covers/${id}.jpg` : PLACEHOLDER;
-    }
-    if (cover === PLACEHOLDER) misses.push(`${artist} — ${title}`);
-
+    const dest = path.join(COVERS_DIR, `${id}.jpg`);
     const genres = splitMulti(row.genre);
-    if (genres.length === 0 && hit?.primaryGenreName) {
-      genres.push(hit.primaryGenreName);
+    let year = row.year ? Number(row.year) : null;
+    let cover = PLACEHOLDER;
+    let status = "·"; // · = reused existing cover, ✓ = fetched, ✗ = miss
+
+    if (fs.existsSync(dest)) {
+      // Already have this cover from a previous run — skip the API call.
+      cover = `/covers/${id}.jpg`;
+    } else {
+      const hit = await lookupItunes(artist, title);
+      if (hit?.artworkUrl100) {
+        const hiRes = hit.artworkUrl100.replace("100x100bb", "1000x1000bb");
+        const ok = await downloadCover(hiRes, dest);
+        cover = ok ? `/covers/${id}.jpg` : PLACEHOLDER;
+      }
+      if (genres.length === 0 && hit?.primaryGenreName) {
+        genres.push(hit.primaryGenreName);
+      }
+      if (!year && hit?.releaseDate) {
+        const parsed = Number(hit.releaseDate.slice(0, 4));
+        year = Number.isFinite(parsed) ? parsed : null;
+      }
+      status = cover === PLACEHOLDER ? "✗" : "✓";
+      await sleep(1200); // stay under the iTunes rate limit
     }
 
-    let year = row.year ? Number(row.year) : null;
-    if (!year && hit?.releaseDate) {
-      const parsed = Number(hit.releaseDate.slice(0, 4));
-      year = Number.isFinite(parsed) ? parsed : null;
-    }
+    if (cover === PLACEHOLDER) misses.push(`${artist} — ${title}`);
 
     albums.push({
       id,
@@ -172,8 +199,7 @@ async function main() {
       cover,
     });
 
-    console.log(`${cover === PLACEHOLDER ? "✗" : "✓"} ${artist} — ${title}`);
-    await sleep(300); // be polite to the iTunes API
+    console.log(`${status} ${artist} — ${title}`);
   }
 
   fs.writeFileSync(OUT_PATH, JSON.stringify(albums, null, 2) + "\n");
