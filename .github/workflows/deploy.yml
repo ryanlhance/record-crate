@@ -5,6 +5,11 @@ on:
     branches: [main]
   workflow_dispatch:
 
+# Opt every action onto the Node.js 24 runtime ahead of GitHub's June 16, 2026
+# forced migration (covers actions/upload-artifact nested in upload-pages-artifact).
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 # Permissions needed for the Pages deployment.
 permissions:
   contents: read
