@@ -408,16 +408,16 @@
     "cover": "/covers/jean-luc-ponty-imaginary-voyage.jpg"
   },
   {
-    "id": "jean-luc-ponty-inner-city",
+    "id": "jean-luc-ponty-live-at-montreux-72",
     "artist": "Jean-Luc Ponty",
-    "title": "Inner City",
+    "title": "Live at Montreux '72",
     "collection": "main",
     "genres": [
       "Jazz"
     ],
     "vibes": [],
-    "year": 1976,
-    "cover": "/placeholder.svg"
+    "year": 1972,
+    "cover": "/covers/jean-luc-ponty-live-at-montreux-72.jpg"
   },
   {
     "id": "jean-luc-ponty-mystical-adventures",
