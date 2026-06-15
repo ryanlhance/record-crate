@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
-import { Bungee, Space_Grotesk } from "next/font/google";
+import { Fraunces, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 
-const display = Bungee({
-  weight: "400",
+// Fraunces: a warm, characterful display serif — feels like a record-shop sign,
+// not a generic app. Space Grotesk for clean, readable body text.
+const display = Fraunces({
   variable: "--font-display",
   subsets: ["latin"],
+  style: ["normal", "italic"],
 });
 
 const sans = Space_Grotesk({

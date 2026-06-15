@@ -149,7 +149,8 @@
     "title": "with the Royal Philharmonic Orchestra",
     "collection": "special",
     "genres": [
-      "Pop"
+      "Soul",
+      "Lounge"
     ],
     "vibes": [],
     "year": 2018,
@@ -269,7 +270,7 @@
     "title": "After the Lovin'",
     "collection": "main",
     "genres": [
-      "Pop"
+      "Lounge"
     ],
     "vibes": [],
     "year": 1976,
@@ -305,7 +306,8 @@
     "title": "Welcome to the Pleasuredome",
     "collection": "main",
     "genres": [
-      "Pop"
+      "Experimental",
+      "Rock"
     ],
     "vibes": [],
     "year": 1984,
@@ -569,7 +571,7 @@
     "title": "Bankrupt",
     "collection": "main",
     "genres": [
-      "Pop"
+      "Rock"
     ],
     "vibes": [],
     "year": 2013,
@@ -617,7 +619,7 @@
     "title": "Abraxas",
     "collection": "main",
     "genres": [
-      "Latin"
+      "Rock"
     ],
     "vibes": [],
     "year": 1970,
@@ -629,7 +631,7 @@
     "title": "Amigos",
     "collection": "main",
     "genres": [
-      "Latin"
+      "Rock"
     ],
     "vibes": [],
     "year": 1976,
@@ -641,7 +643,8 @@
     "title": "Shango",
     "collection": "main",
     "genres": [
-      "Latin"
+      "Funk",
+      "Rock"
     ],
     "vibes": [],
     "year": 1982,
@@ -653,7 +656,7 @@
     "title": "Zebop",
     "collection": "main",
     "genres": [
-      "Latin"
+      "Rock"
     ],
     "vibes": [],
     "year": 1981,
@@ -665,7 +668,9 @@
     "title": "Herb Alpert Presents",
     "collection": "main",
     "genres": [
-      "Latin"
+      "Lounge",
+      "Soul",
+      "Jazz"
     ],
     "vibes": [],
     "year": 1966,

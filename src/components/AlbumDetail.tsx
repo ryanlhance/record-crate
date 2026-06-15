@@ -89,7 +89,9 @@ export default function AlbumDetail({
         />
 
         <div className="mt-5 text-center">
-          <h2 className="text-2xl font-bold leading-tight">{album.title}</h2>
+          <h2 className="font-display text-2xl font-semibold leading-tight">
+            {album.title}
+          </h2>
           {artistMultiple ? (
             <Link
               href={`/artist/${slugifyArtist(album.artist)}`}
@@ -101,6 +103,12 @@ export default function AlbumDetail({
             <p className="mt-1 text-lg text-accent">{album.artist}</p>
           )}
         </div>
+
+        {album.edition && (
+          <p className="mx-auto mt-3 max-w-xs text-center text-sm italic leading-relaxed text-muted">
+            {album.edition}
+          </p>
+        )}
 
         {/* Tappable facets: collection · year · genres */}
         <div className="mt-4 flex flex-wrap justify-center gap-2">

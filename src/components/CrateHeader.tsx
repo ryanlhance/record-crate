@@ -12,7 +12,7 @@ export default function CrateHeader({
       <div className="absolute left-4 top-5">
         <BackButton />
       </div>
-      <h1 className="text-lg font-bold uppercase leading-tight tracking-wide">
+      <h1 className="font-display text-xl font-semibold leading-tight">
         {title}
       </h1>
       {subtitle && <p className="mt-0.5 text-sm text-muted">{subtitle}</p>}

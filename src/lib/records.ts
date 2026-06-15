@@ -11,6 +11,8 @@ export interface Album {
   vibes: string[];
   year?: number | null;
   cover: string;
+  /** For Special Editions: a short note on what makes this pressing special. */
+  edition?: string;
 }
 
 /** Fixed display order for the three collections. */
