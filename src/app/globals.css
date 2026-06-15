@@ -1,11 +1,11 @@
 @import "tailwindcss";
 
 :root {
-  --background: #241c15; /* warm espresso, not stark black */
-  --foreground: #f1e7d6; /* cream */
-  --accent: #e0a24a; /* warm gold — vintage, not pumpkin orange */
-  --muted: #b3a591;
-  --card: #322820; /* warm panel */
+  --background: #121110; /* near-black */
+  --foreground: #f4f1ea; /* cream */
+  --accent: #e8392b; /* the single punchy accent: tomato red */
+  --muted: #8f8a82;
+  --card: #1c1b19;
 }
 
 @theme inline {
@@ -15,7 +15,6 @@
   --color-muted: var(--muted);
   --color-card: var(--card);
   --font-sans: var(--font-sans);
-  --font-display: var(--font-display);
 }
 
 body {
@@ -24,8 +23,20 @@ body {
   font-family: var(--font-sans), system-ui, sans-serif;
 }
 
+/* Big, tight, bold headlines — the graphic voice of the app. */
 .font-display {
-  font-family: var(--font-display), Georgia, serif;
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* Small Swiss-style section labels. */
+.eyebrow {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
 }
 
 /* Let Swiper coverflow slides keep their natural (set) width. */

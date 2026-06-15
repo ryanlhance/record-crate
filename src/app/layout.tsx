@@ -1,15 +1,8 @@
 import type { Metadata } from "next";
-import { Fraunces, Space_Grotesk } from "next/font/google";
+import { Space_Grotesk } from "next/font/google";
 import "./globals.css";
 
-// Fraunces: a warm, characterful display serif — feels like a record-shop sign,
-// not a generic app. Space Grotesk for clean, readable body text.
-const display = Fraunces({
-  variable: "--font-display",
-  subsets: ["latin"],
-  style: ["normal", "italic"],
-});
-
+// One clean grotesque, used at heavy weights for graphic impact.
 const sans = Space_Grotesk({
   variable: "--font-sans",
   subsets: ["latin"],
@@ -28,7 +21,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${display.variable} ${sans.variable} h-full antialiased`}
+      className={`${sans.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
