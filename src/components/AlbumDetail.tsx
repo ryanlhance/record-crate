@@ -89,7 +89,7 @@ export default function AlbumDetail({
         />
 
         <div className="mt-5 text-center">
-          <h2 className="font-display text-2xl leading-tight">{album.title}</h2>
+          <h2 className="text-2xl font-bold leading-tight">{album.title}</h2>
           {artistMultiple ? (
             <Link
               href={`/artist/${slugifyArtist(album.artist)}`}
@@ -134,14 +134,14 @@ export default function AlbumDetail({
           <div className="mt-6 border-t border-white/10 pt-4">
             <button
               onClick={() => setShowReactions((v) => !v)}
-              className="flex w-full items-center justify-between text-left"
+              className="flex w-full items-center justify-between gap-3 text-left"
               aria-expanded={showReactions}
             >
-              <span className="font-display text-sm">
-                Reddit reactions ({quotes.length})
+              <span className="text-base font-bold leading-tight">
+                How People Feel About This Album
               </span>
               <span
-                className="text-muted transition-transform"
+                className="shrink-0 text-2xl leading-none text-accent transition-transform"
                 style={{
                   transform: showReactions ? "rotate(180deg)" : "none",
                 }}

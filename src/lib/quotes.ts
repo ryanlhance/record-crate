@@ -2,7 +2,7 @@ import quotesData from "@/data/reddit.json";
 
 export interface Quote {
   text: string;
-  subreddit: string;
+  subreddit?: string;
 }
 
 // Curated, frozen-in-time Reddit comments per album id (see scripts/fetch-reddit.mjs

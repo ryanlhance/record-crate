@@ -67,9 +67,11 @@ export default function CoverFlow({ albums }: { albums: Album[] }) {
       </Swiper>
 
       {/* Caption for the centered record */}
-      <div className="px-6 pb-8 text-center">
-        <p className="font-display text-lg leading-tight">{active.title}</p>
-        <p className="text-accent">{active.artist}</p>
+      <div className="mt-4 px-6 pb-12 text-center">
+        <p className="text-base font-bold uppercase leading-snug tracking-wide">
+          {active.title}
+        </p>
+        <p className="mt-1 text-accent">{active.artist}</p>
       </div>
 
       {selected && (

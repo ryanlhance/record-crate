@@ -1,31 +1,34 @@
 import Link from "next/link";
 import { COLLECTIONS, getGenres } from "@/lib/records";
 
-// Funky record-store palette, cycled across the genre cards.
-const FUNKY = [
-  "#ff7a3d", "#e84a7f", "#2bb3a3", "#e8b53d",
-  "#8b6cf0", "#e2543b", "#7bb53a", "#3a9bc8",
+// Cohesive warm 70s record-store palette (no clashing rainbow).
+const PALETTE = [
+  "#E2833B", // orange
+  "#C9543C", // rust
+  "#D7A33C", // gold
+  "#3E8E86", // teal
+  "#9A8A3E", // olive
+  "#B0623E", // clay
 ];
-const ink = "#17100f";
+const ink = "#2a1a12";
 
 export default function Home() {
   const genres = getGenres();
 
   return (
     <main className="mx-auto w-full max-w-xl flex-1 px-4 py-6">
-      {/* Hero: Explore the whole shelf */}
+      {/* Hero */}
       <Link
         href="/all"
-        className="group relative block overflow-hidden rounded-3xl px-6 py-8 transition active:scale-[0.98]"
+        className="group relative block overflow-hidden rounded-3xl px-6 py-9 transition active:scale-[0.98]"
         style={{
-          background: "linear-gradient(135deg, #ff7a3d 0%, #e84a7f 60%, #8b6cf0 100%)",
-          color: ink,
+          background: "linear-gradient(135deg,#E2833B 0%,#C9543C 55%,#9A5A2E 100%)",
+          color: "#fff4e6",
         }}
       >
-        {/* spinning-record motif */}
-        <div className="pointer-events-none absolute -right-10 -top-10 h-48 w-48 rounded-full border-[14px] border-black/15">
-          <div className="absolute inset-8 rounded-full border-4 border-black/15" />
-          <div className="absolute inset-[44%] rounded-full bg-black/25" />
+        <div className="pointer-events-none absolute -right-12 -top-12 h-52 w-52 rounded-full border-[16px] border-black/10">
+          <div className="absolute inset-9 rounded-full border-4 border-black/10" />
+          <div className="absolute inset-[45%] rounded-full bg-black/20" />
         </div>
         <p className="font-display text-3xl leading-none">Explore</p>
         <p className="font-display text-3xl leading-tight">Ryan&apos;s Shelf</p>
@@ -40,10 +43,10 @@ export default function Home() {
           <Link
             key={c.type}
             href={`/collection/${c.type}`}
-            className="flex aspect-square flex-col justify-end rounded-2xl p-3 transition active:scale-[0.97]"
-            style={{ background: FUNKY[(i + 3) % FUNKY.length], color: ink }}
+            className="flex aspect-square items-end rounded-2xl p-3 transition active:scale-[0.97]"
+            style={{ background: PALETTE[i % PALETTE.length], color: ink }}
           >
-            <span className="font-display text-sm leading-[1.05] [overflow-wrap:anywhere]">
+            <span className="text-sm font-bold uppercase leading-tight tracking-wide">
               {c.label}
             </span>
           </Link>
@@ -51,15 +54,15 @@ export default function Home() {
       </div>
 
       {/* Genres */}
-      <div className="mt-4 grid grid-cols-3 gap-3">
+      <div className="mt-3 grid grid-cols-3 gap-3">
         {genres.map((g, i) => (
           <Link
             key={g}
             href={`/browse/${encodeURIComponent(g.toLowerCase())}`}
-            className="flex min-h-[64px] items-center justify-center rounded-2xl p-2 text-center transition active:scale-[0.97]"
-            style={{ background: FUNKY[i % FUNKY.length], color: ink }}
+            className="flex min-h-[60px] items-center justify-center rounded-2xl p-2 text-center transition active:scale-[0.97]"
+            style={{ background: PALETTE[(i + 2) % PALETTE.length], color: ink }}
           >
-            <span className="font-display text-xs leading-[1.05] [overflow-wrap:anywhere]">
+            <span className="text-xs font-bold uppercase tracking-wide">
               {g}
             </span>
           </Link>

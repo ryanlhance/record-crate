@@ -1,4 +1,4 @@
-import Link from "next/link";
+import BackButton from "./BackButton";
 
 export default function CrateHeader({
   title,
@@ -8,18 +8,14 @@ export default function CrateHeader({
   subtitle?: string;
 }) {
   return (
-    <header className="flex items-center gap-3 px-5 pt-5">
-      <Link
-        href="/"
-        aria-label="Back to home"
-        className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-card text-lg transition active:scale-90"
-      >
-        ←
-      </Link>
-      <div className="min-w-0">
-        <h1 className="truncate font-display text-xl leading-tight">{title}</h1>
-        {subtitle && <p className="text-sm text-muted">{subtitle}</p>}
+    <header className="relative px-16 pb-2 pt-5 text-center">
+      <div className="absolute left-4 top-5">
+        <BackButton />
       </div>
+      <h1 className="text-lg font-bold uppercase leading-tight tracking-wide">
+        {title}
+      </h1>
+      {subtitle && <p className="mt-0.5 text-sm text-muted">{subtitle}</p>}
     </header>
   );
 }
