@@ -8,8 +8,8 @@ export default function AllPage() {
   return (
     <main className="flex flex-1 flex-col">
       <CrateHeader
-        title="The whole shelf"
-        subtitle={`${albums.length} records · by artist`}
+        title="Ryan's Shelf"
+        subtitle="Tap an album cover to see more"
       />
       <CoverFlow albums={albums} />
     </main>

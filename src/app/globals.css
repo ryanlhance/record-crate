@@ -1,11 +1,11 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0c0a09; /* warm near-black, like a dim listening room */
-  --foreground: #f5f0e8; /* warm paper */
-  --accent: #e8a33d; /* amber, like a vintage record label */
-  --muted: #a8a29e;
-  --card: #1c1917;
+  --background: #17100f; /* deep warm plum-black */
+  --foreground: #f7ecd9; /* cream */
+  --accent: #ff7a3d; /* hot orange, like a record-store sign */
+  --muted: #b6a193;
+  --card: #241a1e;
 }
 
 @theme inline {
@@ -14,14 +14,24 @@
   --color-accent: var(--accent);
   --color-muted: var(--muted);
   --color-card: var(--card);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-sans);
+  --font-display: var(--font-display);
 }
 
 body {
-  background: var(--background);
+  background:
+    radial-gradient(
+      120% 80% at 50% -10%,
+      rgba(255, 122, 61, 0.14),
+      transparent 60%
+    ),
+    var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+.font-display {
+  font-family: var(--font-display), var(--font-sans), sans-serif;
 }
 
 /* Let Swiper coverflow slides keep their natural (set) width. */

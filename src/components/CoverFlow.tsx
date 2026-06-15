@@ -18,9 +18,7 @@ export default function CoverFlow({ albums }: { albums: Album[] }) {
 
   if (albums.length === 0) {
     return (
-      <p className="px-6 py-20 text-center text-muted">
-        Nothing here yet.
-      </p>
+      <p className="px-6 py-20 text-center text-muted">Nothing here yet.</p>
     );
   }
 
@@ -34,21 +32,23 @@ export default function CoverFlow({ albums }: { albums: Album[] }) {
         grabCursor
         centeredSlides
         slidesPerView="auto"
+        speed={350}
         coverflowEffect={{
-          rotate: 45,
+          rotate: 34,
           stretch: 0,
-          depth: 140,
-          modifier: 1,
+          depth: 110,
+          modifier: 1.1,
+          scale: 0.95,
           slideShadows: true,
         }}
         onSwiper={setSwiper}
-        onSlideChange={(s) => setActiveIndex(s.activeIndex)}
+        onActiveIndexChange={(s) => setActiveIndex(s.activeIndex)}
         className="w-full py-10"
       >
         {albums.map((album, index) => (
           <SwiperSlide
             key={album.id}
-            style={{ width: "min(70vw, 17rem)" }}
+            style={{ width: "min(68vw, 16rem)" }}
             onClick={() => {
               if (index === activeIndex) setSelected(album);
               else swiper?.slideTo(index);
@@ -60,23 +60,17 @@ export default function CoverFlow({ albums }: { albums: Album[] }) {
               alt={`${album.title} by ${album.artist}`}
               loading="lazy"
               draggable={false}
-              className="aspect-square w-full rounded-lg object-cover shadow-2xl select-none"
+              className="aspect-square w-full select-none rounded-xl object-cover shadow-2xl"
             />
           </SwiperSlide>
         ))}
       </Swiper>
 
       {/* Caption for the centered record */}
-      <div className="px-6 pb-2 text-center">
-        <p className="text-xl font-semibold leading-tight">{active.title}</p>
+      <div className="px-6 pb-8 text-center">
+        <p className="font-display text-lg leading-tight">{active.title}</p>
         <p className="text-accent">{active.artist}</p>
       </div>
-      <button
-        onClick={() => setSelected(active)}
-        className="mt-2 rounded-full border border-white/20 px-5 py-2 text-sm text-muted transition active:scale-95"
-      >
-        Tap for details
-      </button>
 
       {selected && (
         <AlbumDetail album={selected} onClose={() => setSelected(null)} />

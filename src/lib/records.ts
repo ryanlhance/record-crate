@@ -68,15 +68,42 @@ export function getByGenre(genre: string): Album[] {
   );
 }
 
-export function search(query: string): Album[] {
-  const q = query.trim().toLowerCase();
-  if (!q) return [];
+export function slugifyArtist(name: string): string {
+  return name
+    .toLowerCase()
+    .normalize("NFKD")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+/** Artists with how many records each has, sorted by name. */
+export function getArtists(): { name: string; slug: string; count: number }[] {
+  const counts = new Map<string, number>();
+  albums.forEach((a) => counts.set(a.artist, (counts.get(a.artist) ?? 0) + 1));
+  return [...counts.entries()]
+    .map(([name, count]) => ({ name, slug: slugifyArtist(name), count }))
+    .sort((a, b) => a.name.localeCompare(b.name));
+}
+
+export function getByArtistSlug(slug: string): Album[] {
   return sortByArtistFirstName(
-    albums.filter(
-      (a) =>
-        a.artist.toLowerCase().includes(q) ||
-        a.title.toLowerCase().includes(q) ||
-        a.genres.some((g) => g.toLowerCase().includes(q))
-    )
+    albums.filter((a) => slugifyArtist(a.artist) === slug)
   );
+}
+
+/** True when this artist has more than one record in the collection. */
+export function artistHasMultiple(name: string): boolean {
+  return albums.filter((a) => a.artist === name).length > 1;
+}
+
+export function getYears(): number[] {
+  const set = new Set<number>();
+  albums.forEach((a) => {
+    if (a.year) set.add(a.year);
+  });
+  return [...set].sort((a, b) => b - a);
+}
+
+export function getByYear(year: number): Album[] {
+  return sortByArtistFirstName(albums.filter((a) => a.year === year));
 }

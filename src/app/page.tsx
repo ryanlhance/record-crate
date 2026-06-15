@@ -1,68 +1,70 @@
 import Link from "next/link";
-import SearchBar from "@/components/SearchBar";
-import { COLLECTIONS, getByCollection, getAllAlbums } from "@/lib/records";
+import { COLLECTIONS, getGenres } from "@/lib/records";
+
+// Funky record-store palette, cycled across the genre cards.
+const FUNKY = [
+  "#ff7a3d", "#e84a7f", "#2bb3a3", "#e8b53d",
+  "#8b6cf0", "#e2543b", "#7bb53a", "#3a9bc8",
+];
+const ink = "#17100f";
 
 export default function Home() {
-  const total = getAllAlbums().length;
+  const genres = getGenres();
 
   return (
-    <main className="mx-auto w-full max-w-xl flex-1 px-6 py-12">
-      <header className="text-center">
-        <h1 className="text-4xl font-bold tracking-tight">The Crate</h1>
-        <p className="mt-2 text-muted">
-          {total} records. Flip through and pick something to play.
+    <main className="mx-auto w-full max-w-xl flex-1 px-4 py-6">
+      {/* Hero: Explore the whole shelf */}
+      <Link
+        href="/all"
+        className="group relative block overflow-hidden rounded-3xl px-6 py-8 transition active:scale-[0.98]"
+        style={{
+          background: "linear-gradient(135deg, #ff7a3d 0%, #e84a7f 60%, #8b6cf0 100%)",
+          color: ink,
+        }}
+      >
+        {/* spinning-record motif */}
+        <div className="pointer-events-none absolute -right-10 -top-10 h-48 w-48 rounded-full border-[14px] border-black/15">
+          <div className="absolute inset-8 rounded-full border-4 border-black/15" />
+          <div className="absolute inset-[44%] rounded-full bg-black/25" />
+        </div>
+        <p className="font-display text-3xl leading-none">Explore</p>
+        <p className="font-display text-3xl leading-tight">Ryan&apos;s Shelf</p>
+        <p className="mt-3 inline-block rounded-full bg-black/15 px-3 py-1 text-sm font-semibold">
+          Tap to flip through everything →
         </p>
-      </header>
+      </Link>
 
-      <div className="mt-8">
-        <SearchBar />
+      {/* Collections */}
+      <div className="mt-4 grid grid-cols-3 gap-3">
+        {COLLECTIONS.map((c, i) => (
+          <Link
+            key={c.type}
+            href={`/collection/${c.type}`}
+            className="flex aspect-square flex-col justify-end rounded-2xl p-3 transition active:scale-[0.97]"
+            style={{ background: FUNKY[(i + 3) % FUNKY.length], color: ink }}
+          >
+            <span className="font-display text-sm leading-[1.05] [overflow-wrap:anywhere]">
+              {c.label}
+            </span>
+          </Link>
+        ))}
       </div>
 
-      <section className="mt-8">
-        <Link
-          href="/all"
-          className="flex items-center justify-between rounded-2xl bg-accent px-5 py-5 text-black transition active:scale-[0.98]"
-        >
-          <span className="text-lg font-semibold">
-            Flip through the whole shelf
-          </span>
-          <span className="text-sm font-medium">{total} →</span>
-        </Link>
-      </section>
-
-      <section className="mt-8">
-        <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-muted">
-          Browse by collection
-        </h2>
-        <div className="grid gap-3">
-          {COLLECTIONS.map((c) => {
-            const count = getByCollection(c.type).length;
-            return (
-              <Link
-                key={c.type}
-                href={`/collection/${c.type}`}
-                className="flex items-center justify-between rounded-2xl bg-card px-5 py-4 transition active:scale-[0.98]"
-              >
-                <span className="text-lg font-medium">{c.label}</span>
-                <span className="text-sm text-muted">{count} →</span>
-              </Link>
-            );
-          })}
-        </div>
-      </section>
-
-      <section className="mt-8">
-        <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-muted">
-          Browse by genre
-        </h2>
-        <Link
-          href="/browse"
-          className="flex items-center justify-between rounded-2xl border border-accent/40 px-5 py-4 transition active:scale-[0.98]"
-        >
-          <span className="text-lg font-medium text-accent">Pick a genre</span>
-          <span className="text-sm text-muted">→</span>
-        </Link>
-      </section>
+      {/* Genres */}
+      <div className="mt-4 grid grid-cols-3 gap-3">
+        {genres.map((g, i) => (
+          <Link
+            key={g}
+            href={`/browse/${encodeURIComponent(g.toLowerCase())}`}
+            className="flex min-h-[64px] items-center justify-center rounded-2xl p-2 text-center transition active:scale-[0.97]"
+            style={{ background: FUNKY[i % FUNKY.length], color: ink }}
+          >
+            <span className="font-display text-xs leading-[1.05] [overflow-wrap:anywhere]">
+              {g}
+            </span>
+          </Link>
+        ))}
+      </div>
     </main>
   );
 }

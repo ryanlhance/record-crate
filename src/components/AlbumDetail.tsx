@@ -1,7 +1,13 @@
 "use client";
 
-import { useEffect } from "react";
-import { type Album, COLLECTION_LABELS } from "@/lib/records";
+import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
+import {
+  type Album,
+  COLLECTION_LABELS,
+  artistHasMultiple,
+  slugifyArtist,
+} from "@/lib/records";
 import { getQuotes } from "@/lib/quotes";
 import { assetPath } from "@/lib/asset";
 
@@ -13,6 +19,10 @@ export default function AlbumDetail({
   onClose: () => void;
 }) {
   const quotes = getQuotes(album.id);
+  const [showReactions, setShowReactions] = useState(false);
+  const [dragY, setDragY] = useState(0);
+  const [dragging, setDragging] = useState(false);
+  const startY = useRef<number | null>(null);
 
   // Close on Escape, and lock background scroll while open.
   useEffect(() => {
@@ -27,6 +37,25 @@ export default function AlbumDetail({
     };
   }, [onClose]);
 
+  // Swipe-the-card-down to dismiss (the grab handle is the affordance).
+  const onPointerDown = (e: React.PointerEvent) => {
+    startY.current = e.clientY;
+    setDragging(true);
+    e.currentTarget.setPointerCapture(e.pointerId);
+  };
+  const onPointerMove = (e: React.PointerEvent) => {
+    if (startY.current === null) return;
+    setDragY(Math.max(0, e.clientY - startY.current));
+  };
+  const onPointerUp = () => {
+    if (dragY > 110) onClose();
+    else setDragY(0);
+    startY.current = null;
+    setDragging(false);
+  };
+
+  const artistMultiple = artistHasMultiple(album.artist);
+
   return (
     <div
       className="fixed inset-0 z-50 flex items-end justify-center bg-black/70 p-0 backdrop-blur-sm sm:items-center sm:p-6"
@@ -35,65 +64,105 @@ export default function AlbumDetail({
       aria-modal="true"
     >
       <div
-        className="max-h-[90vh] w-full max-w-md overflow-y-auto rounded-t-3xl bg-card p-6 shadow-2xl sm:max-h-[88vh] sm:rounded-3xl"
+        className="max-h-[90vh] w-full max-w-md overflow-y-auto rounded-t-3xl bg-card p-6 pt-2 shadow-2xl sm:max-h-[88vh] sm:rounded-3xl"
+        style={{
+          transform: `translateY(${dragY}px)`,
+          transition: dragging ? "none" : "transform 0.25s ease",
+        }}
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="mx-auto mb-5 h-1.5 w-12 rounded-full bg-white/15 sm:hidden" />
+        {/* Grab handle — drag down to dismiss */}
+        <div
+          className="-mx-6 mb-3 flex cursor-grab touch-none justify-center py-3 active:cursor-grabbing"
+          onPointerDown={onPointerDown}
+          onPointerMove={onPointerMove}
+          onPointerUp={onPointerUp}
+        >
+          <div className="h-1.5 w-12 rounded-full bg-white/25" />
+        </div>
+
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={assetPath(album.cover)}
           alt={`${album.title} by ${album.artist}`}
           className="mx-auto aspect-square w-56 rounded-xl object-cover shadow-xl"
         />
+
         <div className="mt-5 text-center">
-          <h2 className="text-2xl font-semibold leading-tight">
-            {album.title}
-          </h2>
-          <p className="mt-1 text-lg text-accent">{album.artist}</p>
-          <p className="mt-1 text-sm text-muted">
-            {COLLECTION_LABELS[album.collection]}
-            {album.year ? ` · ${album.year}` : ""}
-          </p>
+          <h2 className="font-display text-2xl leading-tight">{album.title}</h2>
+          {artistMultiple ? (
+            <Link
+              href={`/artist/${slugifyArtist(album.artist)}`}
+              className="mt-1 inline-block text-lg text-accent underline decoration-accent/40 underline-offset-4"
+            >
+              {album.artist}
+            </Link>
+          ) : (
+            <p className="mt-1 text-lg text-accent">{album.artist}</p>
+          )}
         </div>
 
-        {album.genres.length > 0 && (
-          <div className="mt-5 flex flex-wrap justify-center gap-2">
-            {album.genres.map((g) => (
-              <span
-                key={`g-${g}`}
-                className="rounded-full bg-white/10 px-3 py-1 text-sm"
-              >
-                {g}
-              </span>
-            ))}
-          </div>
-        )}
+        {/* Tappable facets: collection · year · genres */}
+        <div className="mt-4 flex flex-wrap justify-center gap-2">
+          <Link
+            href={`/collection/${album.collection}`}
+            className="rounded-full bg-white/10 px-3 py-1 text-sm transition active:scale-95"
+          >
+            {COLLECTION_LABELS[album.collection]}
+          </Link>
+          {album.year && (
+            <Link
+              href={`/year/${album.year}`}
+              className="rounded-full bg-white/10 px-3 py-1 text-sm transition active:scale-95"
+            >
+              {album.year}
+            </Link>
+          )}
+          {album.genres.map((g) => (
+            <Link
+              key={g}
+              href={`/browse/${encodeURIComponent(g.toLowerCase())}`}
+              className="rounded-full border border-accent/50 px-3 py-1 text-sm text-accent transition active:scale-95"
+            >
+              {g}
+            </Link>
+          ))}
+        </div>
 
+        {/* Reddit reactions — collapsed by default */}
         {quotes.length > 0 && (
-          <div className="mt-6 border-t border-white/10 pt-5">
-            <h3 className="mb-3 text-sm font-semibold uppercase tracking-wide text-muted">
-              What Reddit says
-            </h3>
-            <ul className="space-y-3 text-left">
-              {quotes.map((q, i) => (
-                <li
-                  key={i}
-                  className="rounded-xl bg-white/5 px-4 py-3 text-[15px] leading-relaxed"
-                >
-                  <p>“{q.text}”</p>
-                  <p className="mt-1.5 text-xs text-muted">r/{q.subreddit}</p>
-                </li>
-              ))}
-            </ul>
+          <div className="mt-6 border-t border-white/10 pt-4">
+            <button
+              onClick={() => setShowReactions((v) => !v)}
+              className="flex w-full items-center justify-between text-left"
+              aria-expanded={showReactions}
+            >
+              <span className="font-display text-sm">
+                Reddit reactions ({quotes.length})
+              </span>
+              <span
+                className="text-muted transition-transform"
+                style={{
+                  transform: showReactions ? "rotate(180deg)" : "none",
+                }}
+              >
+                ▾
+              </span>
+            </button>
+            {showReactions && (
+              <ul className="mt-3 space-y-3 text-left">
+                {quotes.map((q, i) => (
+                  <li
+                    key={i}
+                    className="rounded-xl bg-white/5 px-4 py-3 text-[15px] leading-relaxed"
+                  >
+                    “{q.text}”
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
         )}
-
-        <button
-          onClick={onClose}
-          className="mt-6 w-full rounded-full bg-accent py-3 font-medium text-black transition active:scale-95"
-        >
-          Back to the crate
-        </button>
       </div>
     </div>
   );

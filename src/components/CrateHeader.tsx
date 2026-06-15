@@ -8,18 +8,16 @@ export default function CrateHeader({
   subtitle?: string;
 }) {
   return (
-    <header className="flex items-center gap-4 px-6 pt-6">
+    <header className="flex items-center gap-3 px-5 pt-5">
       <Link
         href="/"
         aria-label="Back to home"
-        className="rounded-full border border-white/15 px-3 py-1 text-sm text-muted transition active:scale-95"
+        className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-card text-lg transition active:scale-90"
       >
-        ← Home
+        ←
       </Link>
       <div className="min-w-0">
-        <h1 className="truncate text-xl font-semibold leading-tight">
-          {title}
-        </h1>
+        <h1 className="truncate font-display text-xl leading-tight">{title}</h1>
         {subtitle && <p className="text-sm text-muted">{subtitle}</p>}
       </div>
     </header>

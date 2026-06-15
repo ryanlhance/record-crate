@@ -93,7 +93,7 @@
     ],
     "vibes": [],
     "year": 2016,
-    "cover": "/covers/anderson-paak-tiny-desk-concert.jpg"
+    "cover": "/placeholder.svg"
   },
   {
     "id": "anderson-paak-venice",
@@ -133,8 +133,8 @@
   },
   {
     "id": "barbarella-soundtrack",
-    "artist": "Barbarella",
-    "title": "Soundtrack",
+    "artist": "Bob Crewe and Charles Fox",
+    "title": "Barbarella",
     "collection": "special",
     "genres": [
       "Lounge"
@@ -477,7 +477,7 @@
     ],
     "vibes": [],
     "year": 1983,
-    "cover": "/covers/klique-try-it-out.jpg"
+    "cover": "/placeholder.svg"
   },
   {
     "id": "leon-bridges-leon",
@@ -825,7 +825,7 @@
     ],
     "vibes": [],
     "year": 1981,
-    "cover": "/covers/various-artists-more-than-muzak.jpg"
+    "cover": "/placeholder.svg"
   },
   {
     "id": "various-artists-the-world-of-private-music-vol-ii",
