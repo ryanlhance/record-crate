@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import { Space_Grotesk } from "next/font/google";
+import { Bricolage_Grotesque } from "next/font/google";
 import "./globals.css";
 
-// One clean grotesque, used at heavy weights for graphic impact.
-const sans = Space_Grotesk({
+// Bricolage Grotesque: characterful, editorial — has personality at heavy
+// weights without the generic geometric-sans look.
+const sans = Bricolage_Grotesque({
   variable: "--font-sans",
   subsets: ["latin"],
 });

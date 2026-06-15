@@ -66,14 +66,15 @@ export default function CoverFlow({ albums }: { albums: Album[] }) {
         ))}
       </Swiper>
 
-      {/* Caption for the centered record */}
-      <div className="mt-4 px-6 pb-12 text-center">
-        <p className="font-display text-xl font-semibold leading-snug">
+      {/* Caption — fixed height so the cover never shifts as you scroll,
+          whether or not an album has an edition note. */}
+      <div className="mt-5 flex h-32 flex-col items-center px-6 text-center">
+        <p className="line-clamp-2 font-display text-xl leading-snug">
           {active.title}
         </p>
         <p className="mt-1 text-accent">{active.artist}</p>
         {active.edition && (
-          <p className="mx-auto mt-2 max-w-xs text-sm italic text-muted">
+          <p className="mx-auto mt-2 max-w-xs text-sm italic leading-snug text-muted">
             {active.edition}
           </p>
         )}

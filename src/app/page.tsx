@@ -16,21 +16,33 @@ export default function Home() {
           <br />
           Ryan&apos;s Shelf
         </p>
-        <p className="mt-4 text-sm font-semibold">
-          Tap to flip through everything →
-        </p>
+        <svg
+          width="52"
+          height="26"
+          viewBox="0 0 52 26"
+          fill="none"
+          className="mt-5"
+          aria-hidden="true"
+        >
+          <path
+            d="M2 13 H47 M36 3 L48 13 L36 23"
+            stroke="currentColor"
+            strokeWidth="4"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
       </Link>
 
       {/* Collections */}
-      <p className="eyebrow mb-3 mt-9">Collections</p>
-      <div className="grid grid-cols-3 gap-3">
+      <div className="mt-6 grid grid-cols-3 gap-3">
         {COLLECTIONS.map((c) => (
           <Link
             key={c.type}
             href={`/collection/${c.type}`}
             className="flex aspect-square items-center justify-center rounded-2xl bg-foreground p-2 text-center text-[#121110] transition active:scale-[0.97]"
           >
-            <span className="font-display text-sm leading-[1.1] hyphens-auto [overflow-wrap:break-word]">
+            <span className="font-display text-xs leading-[1.15]">
               {c.label}
             </span>
           </Link>
@@ -38,8 +50,7 @@ export default function Home() {
       </div>
 
       {/* Genres */}
-      <p className="eyebrow mb-3 mt-9">Genres</p>
-      <div className="grid grid-cols-2 gap-3">
+      <div className="mt-3 grid grid-cols-2 gap-3">
         {genres.map((g) => (
           <Link
             key={g}
