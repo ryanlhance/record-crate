@@ -1,8 +1,10 @@
 import Link from "next/link";
 import { COLLECTIONS, getGenres } from "@/lib/records";
 
-// A small, coordinated vintage trio (terracotta, gold, teal) for the collections.
-const COLLECTION_COLORS = ["#bf5a3c", "#c8902f", "#357f72"];
+// Warm, coordinated trio for the collections (distinct from the teal hero),
+// all readable with dark ink text.
+const COLLECTION_COLORS = ["#cf7a4a", "#e0b15a", "#7f9a6a"];
+const ink = "#2a1c14";
 
 export default function Home() {
   const genres = getGenres();
@@ -36,23 +38,24 @@ export default function Home() {
           <Link
             key={c.type}
             href={`/collection/${c.type}`}
-            className="flex aspect-square items-end rounded-2xl p-3 transition active:scale-[0.97]"
-            style={{ background: COLLECTION_COLORS[i % 3], color: "#fdf6ea" }}
+            className="flex aspect-square items-center justify-center rounded-2xl p-2 text-center transition active:scale-[0.97]"
+            style={{ background: COLLECTION_COLORS[i % 3], color: ink }}
           >
-            <span className="font-display text-base font-semibold leading-tight">
+            <span className="font-display text-[15px] font-semibold leading-[1.1] hyphens-auto [overflow-wrap:break-word]">
               {c.label}
             </span>
           </Link>
         ))}
       </div>
 
-      {/* Genres — two columns */}
+      {/* Genres — two columns, warm paper tags */}
       <div className="mt-3 grid grid-cols-2 gap-3">
         {genres.map((g) => (
           <Link
             key={g}
             href={`/browse/${encodeURIComponent(g.toLowerCase())}`}
-            className="flex min-h-[52px] items-center justify-center rounded-2xl border border-white/10 bg-card text-center transition active:scale-[0.98]"
+            className="flex min-h-[52px] items-center justify-center rounded-2xl text-center transition active:scale-[0.98]"
+            style={{ background: "#ece0c8", color: ink }}
           >
             <span className="font-display text-base">{g}</span>
           </Link>
