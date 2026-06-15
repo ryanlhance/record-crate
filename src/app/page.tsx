@@ -35,7 +35,7 @@ export default function Home() {
       </Link>
 
       {/* Collections */}
-      <div className="mt-6 grid grid-cols-3 gap-3">
+      <div className="mt-5 grid grid-cols-3 gap-3">
         {COLLECTIONS.map((c) => (
           <Link
             key={c.type}
@@ -48,7 +48,7 @@ export default function Home() {
       </div>
 
       {/* Genres */}
-      <div className="mt-3 grid grid-cols-2 gap-3">
+      <div className="mt-5 grid grid-cols-2 gap-3">
         {genres.map((g) => (
           <Link
             key={g}
