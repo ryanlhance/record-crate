@@ -33,7 +33,8 @@
     ],
     "vibes": [],
     "year": 2015,
-    "cover": "/covers/alabama-shakes-sound-and-color.jpg"
+    "cover": "/covers/alabama-shakes-sound-and-color.jpg",
+    "edition": "Newbury Comics Limited Edition"
   },
   {
     "id": "alan-parsons-project-i-robot",
@@ -81,7 +82,8 @@
     ],
     "vibes": [],
     "year": 2016,
-    "cover": "/covers/anderson-paak-malibu-2.jpg"
+    "cover": "/covers/anderson-paak-malibu-2.jpg",
+    "edition": "Hollywood Bowl Picture Disc Edition"
   },
   {
     "id": "anderson-paak-tiny-desk-concert",
@@ -93,7 +95,8 @@
     ],
     "vibes": [],
     "year": 2016,
-    "cover": "/covers/anderson-paak-tiny-desk-concert.jpg"
+    "cover": "/covers/anderson-paak-tiny-desk-concert.jpg",
+    "edition": "Signed"
   },
   {
     "id": "anderson-paak-venice",
@@ -105,7 +108,8 @@
     ],
     "vibes": [],
     "year": 2014,
-    "cover": "/covers/anderson-paak-venice.jpg"
+    "cover": "/covers/anderson-paak-venice.jpg",
+    "edition": "Newbury Comics Limited Edition"
   },
   {
     "id": "andreas-vollenweider-caverna-magica",
@@ -141,7 +145,8 @@
     ],
     "vibes": [],
     "year": 1968,
-    "cover": "/covers/barbarella-soundtrack.jpg"
+    "cover": "/covers/barbarella-soundtrack.jpg",
+    "edition": "Record Store Day Picture Disc"
   },
   {
     "id": "beach-boys-with-the-royal-philharmonic-orchestra",
@@ -154,7 +159,8 @@
     ],
     "vibes": [],
     "year": 2018,
-    "cover": "/covers/beach-boys-with-the-royal-philharmonic-orchestra.jpg"
+    "cover": "/covers/beach-boys-with-the-royal-philharmonic-orchestra.jpg",
+    "edition": "Orange Starburst Pressing"
   },
   {
     "id": "berlioz-open-this-wall",
@@ -323,7 +329,8 @@
     ],
     "vibes": [],
     "year": 2019,
-    "cover": "/covers/house-of-waters-rising.jpg"
+    "cover": "/covers/house-of-waters-rising.jpg",
+    "edition": "Signed"
   },
   {
     "id": "idris-muhammad-make-it-count",
@@ -455,7 +462,8 @@
     ],
     "vibes": [],
     "year": 2025,
-    "cover": "/covers/jeff-goldblum-still-bloomin.jpg"
+    "cover": "/covers/jeff-goldblum-still-bloomin.jpg",
+    "edition": "First Pressing · Emerald Green · Signed"
   },
   {
     "id": "journey-escape",
@@ -491,7 +499,8 @@
     ],
     "vibes": [],
     "year": 2024,
-    "cover": "/covers/leon-bridges-leon.jpg"
+    "cover": "/covers/leon-bridges-leon.jpg",
+    "edition": "Signed"
   },
   {
     "id": "little-bird-proxima",
@@ -539,7 +548,8 @@
     ],
     "vibes": [],
     "year": 2018,
-    "cover": "/covers/neil-frances-took-a-while.jpg"
+    "cover": "/covers/neil-frances-took-a-while.jpg",
+    "edition": "Record Store Day Black Friday — Blue & Pink Vinyl"
   },
   {
     "id": "pablo-cruise-reflector",
@@ -581,37 +591,40 @@
     "id": "pink-floyd-dark-side-of-the-moon",
     "artist": "Pink Floyd",
     "title": "Dark Side of the Moon",
-    "collection": "main",
+    "collection": "special",
     "genres": [
       "Rock"
     ],
     "vibes": [],
     "year": 1973,
-    "cover": "/covers/pink-floyd-dark-side-of-the-moon.jpg"
+    "cover": "/covers/pink-floyd-dark-side-of-the-moon.jpg",
+    "edition": "Original Pressing · Family Heirloom"
   },
   {
     "id": "pink-floyd-the-wall",
     "artist": "Pink Floyd",
     "title": "The Wall",
-    "collection": "main",
+    "collection": "special",
     "genres": [
       "Rock"
     ],
     "vibes": [],
     "year": 1979,
-    "cover": "/covers/pink-floyd-the-wall.jpg"
+    "cover": "/covers/pink-floyd-the-wall.jpg",
+    "edition": "Original Pressing · Family Heirloom"
   },
   {
     "id": "robert-palmer-sneaking-sally-through-the-alley",
     "artist": "Robert Palmer",
     "title": "Sneaking Sally Through the Alley",
-    "collection": "main",
+    "collection": "special",
     "genres": [
       "Funk"
     ],
     "vibes": [],
     "year": 1974,
-    "cover": "/covers/robert-palmer-sneaking-sally-through-the-alley.jpg"
+    "cover": "/covers/robert-palmer-sneaking-sally-through-the-alley.jpg",
+    "edition": "Record Store Day Emerald Green Pressing"
   },
   {
     "id": "santana-abraxas",
@@ -710,7 +723,8 @@
     ],
     "vibes": [],
     "year": 2013,
-    "cover": "/covers/snarky-puppy-family-dinner.jpg"
+    "cover": "/covers/snarky-puppy-family-dinner.jpg",
+    "edition": "Signed"
   },
   {
     "id": "spyro-gyra-freetime",
