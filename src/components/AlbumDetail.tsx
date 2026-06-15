@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import { type Album, COLLECTION_LABELS } from "@/lib/records";
+import { getQuotes } from "@/lib/quotes";
 import { assetPath } from "@/lib/asset";
 
 export default function AlbumDetail({
@@ -11,6 +12,8 @@ export default function AlbumDetail({
   album: Album;
   onClose: () => void;
 }) {
+  const quotes = getQuotes(album.id);
+
   // Close on Escape, and lock background scroll while open.
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -32,7 +35,7 @@ export default function AlbumDetail({
       aria-modal="true"
     >
       <div
-        className="w-full max-w-md rounded-t-3xl bg-card p-6 shadow-2xl sm:rounded-3xl"
+        className="max-h-[90vh] w-full max-w-md overflow-y-auto rounded-t-3xl bg-card p-6 shadow-2xl sm:max-h-[88vh] sm:rounded-3xl"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="mx-auto mb-5 h-1.5 w-12 rounded-full bg-white/15 sm:hidden" />
@@ -63,6 +66,25 @@ export default function AlbumDetail({
                 {g}
               </span>
             ))}
+          </div>
+        )}
+
+        {quotes.length > 0 && (
+          <div className="mt-6 border-t border-white/10 pt-5">
+            <h3 className="mb-3 text-sm font-semibold uppercase tracking-wide text-muted">
+              What Reddit says
+            </h3>
+            <ul className="space-y-3 text-left">
+              {quotes.map((q, i) => (
+                <li
+                  key={i}
+                  className="rounded-xl bg-white/5 px-4 py-3 text-[15px] leading-relaxed"
+                >
+                  <p>“{q.text}”</p>
+                  <p className="mt-1.5 text-xs text-muted">r/{q.subreddit}</p>
+                </li>
+              ))}
+            </ul>
           </div>
         )}
 
