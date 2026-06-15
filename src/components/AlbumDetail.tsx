@@ -71,9 +71,9 @@ export default function AlbumDetail({
         }}
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Grab handle — drag down to dismiss */}
+        {/* Grab handle — stays pinned at the top so you can always drag down to dismiss */}
         <div
-          className="-mx-6 mb-3 flex cursor-grab touch-none justify-center py-3 active:cursor-grabbing"
+          className="sticky top-0 z-10 -mx-6 -mt-2 mb-3 flex cursor-grab touch-none justify-center bg-card py-3 active:cursor-grabbing"
           onPointerDown={onPointerDown}
           onPointerMove={onPointerMove}
           onPointerUp={onPointerUp}

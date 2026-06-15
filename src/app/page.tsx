@@ -1,15 +1,9 @@
 import Link from "next/link";
 import { COLLECTIONS, getGenres } from "@/lib/records";
 
-// Cohesive warm 70s record-store palette (no clashing rainbow).
-const PALETTE = [
-  "#E2833B", // orange
-  "#C9543C", // rust
-  "#D7A33C", // gold
-  "#3E8E86", // teal
-  "#9A8A3E", // olive
-  "#B0623E", // clay
-];
+// Coordinated warm scheme: three tints of the orange accent for collections,
+// dark chips with orange type for genres. One color family, not a rainbow.
+const COLLECTION_COLORS = ["#ff7a3d", "#e2542f", "#f2a73c"];
 const ink = "#2a1a12";
 
 export default function Home() {
@@ -22,7 +16,7 @@ export default function Home() {
         href="/all"
         className="group relative block overflow-hidden rounded-3xl px-6 py-9 transition active:scale-[0.98]"
         style={{
-          background: "linear-gradient(135deg,#E2833B 0%,#C9543C 55%,#9A5A2E 100%)",
+          background: "linear-gradient(135deg,#ff7a3d 0%,#e2542f 55%,#8a3f22 100%)",
           color: "#fff4e6",
         }}
       >
@@ -44,7 +38,7 @@ export default function Home() {
             key={c.type}
             href={`/collection/${c.type}`}
             className="flex aspect-square items-end rounded-2xl p-3 transition active:scale-[0.97]"
-            style={{ background: PALETTE[i % PALETTE.length], color: ink }}
+            style={{ background: COLLECTION_COLORS[i % 3], color: ink }}
           >
             <span className="text-sm font-bold uppercase leading-tight tracking-wide">
               {c.label}
@@ -53,18 +47,15 @@ export default function Home() {
         ))}
       </div>
 
-      {/* Genres */}
-      <div className="mt-3 grid grid-cols-3 gap-3">
-        {genres.map((g, i) => (
+      {/* Genres — two columns of five */}
+      <div className="mt-3 grid grid-cols-2 gap-3">
+        {genres.map((g) => (
           <Link
             key={g}
             href={`/browse/${encodeURIComponent(g.toLowerCase())}`}
-            className="flex min-h-[60px] items-center justify-center rounded-2xl p-2 text-center transition active:scale-[0.97]"
-            style={{ background: PALETTE[(i + 2) % PALETTE.length], color: ink }}
+            className="flex min-h-[56px] items-center justify-center rounded-2xl border border-white/10 bg-card text-center text-accent transition active:scale-[0.98]"
           >
-            <span className="text-xs font-bold uppercase tracking-wide">
-              {g}
-            </span>
+            <span className="text-sm font-bold uppercase tracking-wide">{g}</span>
           </Link>
         ))}
       </div>
