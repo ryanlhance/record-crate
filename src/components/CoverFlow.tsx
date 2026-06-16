@@ -46,22 +46,28 @@ export default function CoverFlow({ albums }: { albums: Album[] }) {
         className="w-full py-10"
       >
         {albums.map((album, index) => (
-          <SwiperSlide
-            key={album.id}
-            style={{ width: "min(68vw, 16rem)" }}
-            onClick={() => {
-              if (index === activeIndex) setSelected(album);
-              else swiper?.slideTo(index);
-            }}
-          >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={assetPath(album.cover)}
-              alt={`${album.title} by ${album.artist}`}
-              loading="lazy"
-              draggable={false}
-              className="aspect-square w-full select-none rounded-xl object-cover shadow-2xl"
-            />
+          <SwiperSlide key={album.id} style={{ width: "min(68vw, 16rem)" }}>
+            {/* Real button: tap the active slide to open, tap a side slide to
+                center it. aria-label carries the name so the cover img is
+                decorative. */}
+            <button
+              type="button"
+              aria-label={`${album.title} by ${album.artist}`}
+              onClick={() => {
+                if (index === activeIndex) setSelected(album);
+                else swiper?.slideTo(index);
+              }}
+              className="block w-full rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={assetPath(album.cover)}
+                alt=""
+                loading="lazy"
+                draggable={false}
+                className="aspect-square w-full select-none rounded-xl object-cover shadow-2xl"
+              />
+            </button>
           </SwiperSlide>
         ))}
       </Swiper>

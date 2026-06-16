@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import CoverFlow from "@/components/CoverFlow";
+import RecordGrid from "@/components/RecordGrid";
 import CrateHeader from "@/components/CrateHeader";
 import { getByGenre, getGenres } from "@/lib/records";
 
@@ -23,13 +24,18 @@ export default async function GenrePage({
     getGenres().find((g) => g.toLowerCase() === decoded.toLowerCase()) ??
     decoded;
 
+  // Cover-flow = savor one, grid = scan many. Genre bins are for scanning, so
+  // the big ones become a grid; a small genre stays a delightful hinge.
+  const useGrid = albums.length > 12;
+
   return (
     <main className="flex flex-1 flex-col">
       <CrateHeader
         title={display}
-        subtitle={`${albums.length} records · by artist`}
+        subtitle={`${albums.length} records`}
+        sticky={useGrid}
       />
-      <CoverFlow albums={albums} />
+      {useGrid ? <RecordGrid albums={albums} /> : <CoverFlow albums={albums} />}
     </main>
   );
 }

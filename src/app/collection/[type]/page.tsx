@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import CoverFlow from "@/components/CoverFlow";
+import RecordGrid from "@/components/RecordGrid";
 import CrateHeader from "@/components/CrateHeader";
 import {
   COLLECTION_LABELS,
@@ -22,13 +23,20 @@ export default async function CollectionPage({
 
   const albums = getByCollection(type);
 
+  // Special + Compilations are curated show-pieces — each pressing earns a hinge
+  // moment and its `edition` note (which only the cover-flow caption shows), so
+  // they keep CoverFlow regardless of count. Only the big "main" shelf scans as
+  // a grid (the >12 heuristic from 01).
+  const useGrid = type === "main" && albums.length > 12;
+
   return (
     <main className="flex flex-1 flex-col">
       <CrateHeader
         title={COLLECTION_LABELS[type]}
-        subtitle={`${albums.length} records · by artist`}
+        subtitle={`${albums.length} records`}
+        sticky={useGrid}
       />
-      <CoverFlow albums={albums} />
+      {useGrid ? <RecordGrid albums={albums} /> : <CoverFlow albums={albums} />}
     </main>
   );
 }
