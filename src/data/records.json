@@ -880,7 +880,7 @@
     "id": "asap-rocky-dont-be-dumb",
     "artist": "A$AP Rocky",
     "title": "Don't Be Dumb",
-    "collection": "main",
+    "collection": "special",
     "genres": [
       "R&B",
       "Experimental"
@@ -991,7 +991,7 @@
     "id": "andre-3000-new-blue-sun",
     "artist": "Andre 3000",
     "title": "New Blue Sun",
-    "collection": "main",
+    "collection": "special",
     "genres": [
       "Experimental",
       "Jazz"
