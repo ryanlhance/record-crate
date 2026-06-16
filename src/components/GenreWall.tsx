@@ -16,6 +16,7 @@ const ART = new Set([
   "funk",
   "jazz",
   "lounge",
+  "rnb",
   "rock",
   "soul",
 ]);
