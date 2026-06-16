@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { ArrowBack } from "./icons";
 
 export default function BackButton() {
   const router = useRouter();
@@ -15,9 +16,9 @@ export default function BackButton() {
           router.push("/");
         }
       }}
-      className="flex h-10 w-10 items-center justify-center rounded-full bg-card text-lg transition active:scale-90"
+      className="flex h-10 w-10 items-center justify-center rounded-full bg-card transition active:scale-90"
     >
-      ←
+      <ArrowBack className="h-5 w-5" />
     </button>
   );
 }

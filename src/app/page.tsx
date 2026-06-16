@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { COLLECTIONS, getGenres } from "@/lib/records";
+import { ArrowRight } from "@/components/icons";
 
 export default function Home() {
   const genres = getGenres();
@@ -16,22 +17,7 @@ export default function Home() {
           <br />
           Ryan&apos;s Shelf
         </p>
-        <svg
-          width="54"
-          height="28"
-          viewBox="0 0 54 28"
-          fill="none"
-          className="shrink-0"
-          aria-hidden="true"
-        >
-          <path
-            d="M2 14 H49 M38 4 L50 14 L38 24"
-            stroke="currentColor"
-            strokeWidth="4.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
+        <ArrowRight className="shrink-0" />
       </Link>
 
       {/* Collections */}

@@ -6,6 +6,19 @@
   --accent: #e8392b; /* the single punchy accent: tomato red */
   --muted: #8f8a82;
   --card: #1c1b19;
+
+  /* Sharpie ink colors — scoped to the genre labels ONLY (the one place
+     multiple colors are allowed, because "different markers" is the metaphor).
+     Never use these in the core UI. All clear 4.5:1 on the #ece7db chipboard. */
+  --ink-red: #d83a2f;
+  --ink-blue: #2f6bd8;
+  --ink-green: #2f9e57;
+  --ink-orange: #e07b27;
+  --ink-purple: #7a4fc0;
+  --ink-black: #2b2723;
+
+  /* Off-white "chipboard" card the marker labels are written on. */
+  --chipboard: #ece7db;
 }
 
 @theme inline {
@@ -37,6 +50,49 @@ body {
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--accent);
+}
+
+/* Hand-drawn marker — Permanent Marker. Scoped utility so the face can never
+   leak into body/UI; only the genre dividers and the "by vibe" stamps use it. */
+.font-marker {
+  font-family: var(--font-marker), "Comic Sans MS", cursive;
+}
+
+/* A Sharpie bin-divider tab. Rotation comes from an inline `--tilt` var (a
+   stable per-genre hash) so the wall looks pinned by hand; pressing straightens
+   the tab flat against the bin. */
+.sharpie-tab {
+  transform: rotate(var(--tilt, 0deg));
+  transition: transform 120ms ease;
+}
+.sharpie-tab:active {
+  transform: rotate(0deg) scale(0.97);
+}
+
+/* Grid covers fade+rise in a short, capped stagger (per-item delay set inline). */
+@keyframes cover-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.cover-in {
+  animation: cover-in 180ms ease-out both;
+}
+
+/* Every new animation degrades to a plain appearance under reduced motion. */
+@media (prefers-reduced-motion: reduce) {
+  .sharpie-tab,
+  .sharpie-tab:active {
+    transition: none;
+  }
+  .cover-in {
+    animation: none;
+  }
 }
 
 /* Let Swiper coverflow slides keep their natural (set) width. */

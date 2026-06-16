@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Bricolage_Grotesque } from "next/font/google";
+import { Bricolage_Grotesque, Permanent_Marker } from "next/font/google";
 import "./globals.css";
 
 // Bricolage Grotesque: characterful, editorial — has personality at heavy
@@ -7,6 +7,16 @@ import "./globals.css";
 const sans = Bricolage_Grotesque({
   variable: "--font-sans",
   subsets: ["latin"],
+});
+
+// Permanent Marker: hand-drawn marker, single weight. Scoped to `.font-marker`
+// (see globals.css) so it only ever paints the Sharpie genre labels and the
+// "by vibe" stamps — never body or UI.
+const marker = Permanent_Marker({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-marker",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -22,7 +32,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${sans.variable} h-full antialiased`}
+      className={`${sans.variable} ${marker.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
