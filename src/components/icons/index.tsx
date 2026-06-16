@@ -136,7 +136,7 @@ export function Vinyl({ title, ...props }: IconProps) {
       <circle cx="24" cy="24" r="17.5" fill="none" stroke="currentColor" strokeWidth="0.8" opacity="0.45" />
       <circle cx="24" cy="24" r="14" fill="none" stroke="currentColor" strokeWidth="0.8" opacity="0.45" />
       <circle cx="24" cy="24" r="10.5" fill="none" stroke="currentColor" strokeWidth="0.8" opacity="0.45" />
-      <circle cx="24" cy="24" r="7" fill="#e8392b" />
+      <circle cx="24" cy="24" r="7" fill="#cda24a" />
       <circle cx="24" cy="24" r="1.6" fill="#1c1b19" />
     </svg>
   );

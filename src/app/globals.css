@@ -7,7 +7,7 @@
      world rather than on a slab. */
   --background: #15110c; /* warm espresso near-black */
   --foreground: #f3ecdd; /* warm cream (matches the sign lettering) */
-  --accent: #e8392b; /* the single punchy accent: tomato/brick red */
+  --accent: #cda24a; /* brass/gold — echoes the sign's "Collection" lettering */
   --muted: #a0907c; /* warm kraft taupe — secondary text */
   --card: #221a12; /* warm dark brown — raised surfaces */
 }

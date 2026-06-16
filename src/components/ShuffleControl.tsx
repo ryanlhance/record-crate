@@ -173,7 +173,7 @@ export default function ShuffleControl({ albums }: { albums: Album[] }) {
                 className="pointer-events-none absolute inset-0 rounded-full opacity-60 blur-2xl"
                 style={{
                   background:
-                    "radial-gradient(circle, rgba(232,57,43,0.30), transparent 70%)",
+                    "radial-gradient(circle, rgba(205,162,74,0.32), transparent 70%)",
                 }}
                 aria-hidden="true"
               />
