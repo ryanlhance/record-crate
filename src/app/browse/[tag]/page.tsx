@@ -3,10 +3,11 @@ import CoverFlow from "@/components/CoverFlow";
 import RecordGrid from "@/components/RecordGrid";
 import CrateHeader from "@/components/CrateHeader";
 import ShuffleControl from "@/components/ShuffleControl";
-import { getByGenre, getGenres } from "@/lib/records";
+import { getByGenre, getGenres, genreSlug, genreFromSlug } from "@/lib/records";
 
 export function generateStaticParams() {
-  return getGenres().map((g) => ({ tag: encodeURIComponent(g.toLowerCase()) }));
+  // Clean, URL-safe slugs only (no "&" etc. that break static-export folders).
+  return getGenres().map((g) => ({ tag: genreSlug(g) }));
 }
 
 export default async function GenrePage({
@@ -15,15 +16,11 @@ export default async function GenrePage({
   params: Promise<{ tag: string }>;
 }) {
   const { tag } = await params;
-  const decoded = decodeURIComponent(tag);
-  const albums = getByGenre(decoded);
+  const display = genreFromSlug(decodeURIComponent(tag));
+  if (!display) notFound();
 
+  const albums = getByGenre(display);
   if (albums.length === 0) notFound();
-
-  // Show the genre with its original casing.
-  const display =
-    getGenres().find((g) => g.toLowerCase() === decoded.toLowerCase()) ??
-    decoded;
 
   // Cover-flow = savor one, grid = scan many. Genre bins are for scanning, so
   // the big ones become a grid; a small genre stays a delightful hinge.

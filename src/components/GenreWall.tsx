@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { assetPath } from "@/lib/asset";
+import { genreSlug } from "@/lib/records";
 
 // Genre wall: hand-drawn marker-on-cardboard bin dividers, one image per genre
 // (public/genre-labels/<slug>.png). The image is the whole tab; we frame it as a
@@ -9,9 +10,6 @@ import { assetPath } from "@/lib/asset";
 // brand-new one) renders a marker text tab instead — add its slug here once the
 // image is dropped in. (Driven by a set, not <img> onError, because the broken-
 // image event fires before hydration and would never reach React.)
-const SLUG_OVERRIDES: Record<string, string> = { "R&B": "rnb" };
-const slugFor = (g: string) => SLUG_OVERRIDES[g] ?? g.toLowerCase();
-
 const ART = new Set([
   "disco",
   "experimental",
@@ -26,8 +24,8 @@ export default function GenreWall({ genres }: { genres: string[] }) {
   return (
     <div className="grid grid-cols-2 gap-3">
       {genres.map((g) => {
-        const href = `/browse/${encodeURIComponent(g.toLowerCase())}`;
-        const slug = slugFor(g);
+        const slug = genreSlug(g);
+        const href = `/browse/${slug}`;
 
         if (!ART.has(slug)) {
           // Kraft marker tab, sized to match the artwork so the wall stays aligned.

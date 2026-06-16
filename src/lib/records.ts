@@ -77,6 +77,25 @@ export function getGenres(): string[] {
 }
 
 /**
+ * URL- and filename-safe slug for a genre. Must stay free of characters like
+ * "&" that break static-export folder names (e.g. "R&B" -> "rnb"). Used for the
+ * /browse/[tag] route AND the genre-label image filename, so they always agree.
+ */
+const GENRE_SLUG_OVERRIDES: Record<string, string> = { "r&b": "rnb" };
+export function genreSlug(genre: string): string {
+  const lower = genre.toLowerCase();
+  return (
+    GENRE_SLUG_OVERRIDES[lower] ??
+    lower.replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "")
+  );
+}
+
+/** Resolve a route slug back to its genre name (case/lookup safe). */
+export function genreFromSlug(slug: string): string | null {
+  return getGenres().find((g) => genreSlug(g) === slug.toLowerCase()) ?? null;
+}
+
+/**
  * Collapse albums that are the same record (same artist + title) to a single
  * entry, preferring the `main` copy. Used so a record Ryan owns twice (e.g. a
  * standard + a special pressing of Malibu) shows once in a genre bin, while

@@ -7,6 +7,7 @@ import {
   COLLECTION_LABELS,
   artistHasMultiple,
   slugifyArtist,
+  genreSlug,
 } from "@/lib/records";
 import { assetPath } from "@/lib/asset";
 import { Close } from "./icons";
@@ -169,7 +170,7 @@ export default function AlbumDetail({
           {current.genres.map((g) => (
             <Link
               key={g}
-              href={`/browse/${encodeURIComponent(g.toLowerCase())}`}
+              href={`/browse/${genreSlug(g)}`}
               className="rounded-full border border-accent/50 px-3 py-1 text-sm text-accent transition active:scale-95"
             >
               {g}
