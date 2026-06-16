@@ -93,7 +93,7 @@ export default function CoverFlow({
       {/* Caption — fixed height so the cover never shifts as you scroll,
           whether or not an album has an edition note. */}
       {compact ? (
-        <div className="mt-3 flex h-14 flex-col items-center px-6 text-center">
+        <div className="mt-1 flex h-12 flex-col items-center px-6 text-center">
           <p className="line-clamp-1 font-display text-base leading-tight">
             {active.title}
           </p>

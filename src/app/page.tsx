@@ -33,12 +33,12 @@ export default function Home() {
         <ShuffleControl albums={albums} variant="hero" />
       </div>
 
-      {/* Spotlight — a fresh random cover-flow draw every load */}
+      {/* Spotlight — a fresh random cover-flow draw every load. No mt here: the
+          cover-flow's own py-6 supplies the 24px gap so it matches the others. */}
       <Spotlight albums={albums} />
 
       {/* Collections */}
-      <p className="eyebrow mt-7 mb-2">Collections</p>
-      <div className="grid grid-cols-3 gap-3">
+      <div className="mt-6 grid grid-cols-3 gap-3">
         {COLLECTIONS.map((c) => (
           <Link
             key={c.type}
@@ -51,8 +51,9 @@ export default function Home() {
       </div>
 
       {/* Genres — the Sharpie bin-divider wall */}
-      <p className="eyebrow mt-7 mb-2">By genre</p>
-      <GenreWall genres={genres} />
+      <div className="mt-6">
+        <GenreWall genres={genres} />
+      </div>
     </main>
   );
 }

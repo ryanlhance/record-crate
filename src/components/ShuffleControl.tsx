@@ -24,7 +24,11 @@ export default function ShuffleControl({
 
   const [open, setOpen] = useState(false);
   const [chosen, setChosen] = useState<Album | null>(null);
-  const [riffleCover, setRiffleCover] = useState<Album | null>(null);
+  // The riffle "deck": a few covers ending on the final pick. We render them all
+  // (preloaded) stacked in a fixed-size slot and cross-fade between them by
+  // index, so nothing flickers, flips, or changes size.
+  const [frames, setFrames] = useState<Album[]>([]);
+  const [frameIndex, setFrameIndex] = useState(0);
   const [detail, setDetail] = useState<Album | null>(null);
 
   const triggerRef = useRef<HTMLButtonElement | null>(null);
@@ -53,26 +57,31 @@ export default function ShuffleControl({
 
       // Reduced motion, or nothing to riffle through: cut straight to it.
       if (reduced || albums.length < 2) {
-        setRiffleCover(null);
+        setFrames([final]);
+        setFrameIndex(0);
         setChosen(final);
         return;
       }
 
-      // Riffle: flick a few random covers past (~90ms each), then land.
+      // Build the deck: a few random covers that aren't the winner, then the
+      // winner last. Advancing the index cross-fades one cover into the next.
+      const lead = getRandomSet(
+        albums.filter((a) => a.id !== final.id),
+        3
+      );
+      const deck = [...lead, final];
       setChosen(null);
-      const frames = getRandomSet(albums, 4);
+      setFrames(deck);
+      setFrameIndex(0);
       let i = 0;
-      setRiffleCover(frames[0]);
       timer.current = setInterval(() => {
         i += 1;
-        if (i >= frames.length) {
+        setFrameIndex(i);
+        if (i >= deck.length - 1) {
           clearTimer();
-          setRiffleCover(null);
           setChosen(final);
-        } else {
-          setRiffleCover(frames[i]);
         }
-      }, 90);
+      }, 140);
     },
     [albums, reduced]
   );
@@ -87,7 +96,8 @@ export default function ShuffleControl({
     clearTimer();
     setOpen(false);
     setChosen(null);
-    setRiffleCover(null);
+    setFrames([]);
+    setFrameIndex(0);
     setDetail(null);
     // Return focus to whatever opened the reveal.
     triggerRef.current?.focus();
@@ -109,8 +119,6 @@ export default function ShuffleControl({
   }, [open, close]);
 
   useEffect(() => () => clearTimer(), []);
-
-  const display = riffleCover ?? chosen;
 
   return (
     <>
@@ -170,67 +178,80 @@ export default function ShuffleControl({
             className="flex w-full max-w-sm flex-col items-center outline-none"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Cover: the spotlit landing spot. Vinyl peeks behind + a soft glow. */}
-            <div className="relative flex aspect-square w-64 max-w-[72vw] items-center justify-center">
+            {/* Cover: the spotlit landing spot. A soft glow + vinyl peek behind
+                a fixed-size slot; the deck cross-fades in place so the cover
+                never flickers or changes size. */}
+            <div
+              className={`relative aspect-square w-64 max-w-[72vw] ${
+                chosen && !reduced ? "shuffle-land" : ""
+              }`}
+            >
               <div
-                className="pointer-events-none absolute inset-0 -z-10 rounded-full opacity-60 blur-2xl"
+                className="pointer-events-none absolute inset-0 rounded-full opacity-60 blur-2xl"
                 style={{
                   background:
-                    "radial-gradient(circle, rgba(232,57,43,0.35), transparent 70%)",
+                    "radial-gradient(circle, rgba(232,57,43,0.30), transparent 70%)",
                 }}
                 aria-hidden="true"
               />
               <Vinyl
-                className="pointer-events-none absolute -z-10 h-[115%] w-[115%] text-foreground/20"
+                className="pointer-events-none absolute left-1/2 top-1/2 h-[118%] w-[118%] -translate-x-1/2 -translate-y-1/2 text-foreground/15"
                 aria-hidden="true"
               />
-              {display && (
+              {frames.map((album, idx) => (
                 /* eslint-disable-next-line @next/next/no-img-element */
                 <img
-                  key={display.id}
-                  src={assetPath(display.cover)}
-                  alt={chosen ? `${chosen.title} by ${chosen.artist}` : ""}
+                  key={`${album.id}-${idx}`}
+                  src={assetPath(album.cover)}
+                  alt={
+                    chosen && idx === frames.length - 1
+                      ? `${chosen.title} by ${chosen.artist}`
+                      : ""
+                  }
                   draggable={false}
-                  className={`aspect-square w-full select-none rounded-xl object-cover shadow-2xl ${
-                    chosen && !reduced ? "shuffle-land" : ""
-                  }`}
+                  className="absolute inset-0 h-full w-full select-none rounded-xl object-cover shadow-2xl transition-opacity duration-200 ease-out"
+                  style={{ opacity: idx === frameIndex ? 1 : 0 }}
                 />
-              )}
+              ))}
             </div>
 
-            {/* Title/artist + actions, shown once we've landed. */}
-            {chosen && (
-              <div
-                className={`mt-6 flex w-full flex-col items-center ${
-                  reduced ? "" : "fade-in-up"
-                }`}
-              >
-                <p className="text-center font-display text-2xl leading-tight">
-                  {chosen.title}
-                </p>
-                <p className="mt-1 text-accent">{chosen.artist}</p>
+            {/* Title/artist + actions. The block always reserves its height so
+                the cover above stays put while riffling (it doesn't drop when
+                the text appears); the content just fades in once we've landed. */}
+            <div className="mt-6 flex min-h-[180px] w-full flex-col items-center">
+              {chosen && (
+                <div
+                  className={`flex w-full flex-col items-center ${
+                    reduced ? "" : "fade-in-up"
+                  }`}
+                >
+                  <p className="text-center font-display text-2xl leading-tight">
+                    {chosen.title}
+                  </p>
+                  <p className="mt-1 text-accent">{chosen.artist}</p>
 
-                <div className="mt-7 flex items-center gap-3">
-                  <button
-                    type="button"
-                    onClick={() => setDetail(chosen)}
-                    className="rounded-full bg-foreground px-6 py-3 font-display text-sm text-background transition active:scale-95"
-                  >
-                    View details
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => roll(chosen.id)}
-                    disabled={albums.length < 2}
-                    aria-label="Shuffle again"
-                    className="flex items-center gap-2 rounded-full border border-foreground/15 bg-card px-5 py-3 font-display text-sm transition active:scale-95 disabled:opacity-40"
-                  >
-                    <ShuffleIcon className="h-5 w-5" />
-                    Shuffle again
-                  </button>
+                  <div className="mt-7 flex items-center gap-3">
+                    <button
+                      type="button"
+                      onClick={() => setDetail(chosen)}
+                      className="rounded-full bg-foreground px-6 py-3 font-display text-sm text-background transition active:scale-95"
+                    >
+                      View details
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => roll(chosen.id)}
+                      disabled={albums.length < 2}
+                      aria-label="Shuffle again"
+                      className="flex items-center gap-2 rounded-full border border-foreground/15 bg-card px-5 py-3 font-display text-sm transition active:scale-95 disabled:opacity-40"
+                    >
+                      <ShuffleIcon className="h-5 w-5" />
+                      Shuffle again
+                    </button>
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
+            </div>
           </div>
         </div>
       )}

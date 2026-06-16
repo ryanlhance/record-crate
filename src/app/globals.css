@@ -69,23 +69,19 @@ body {
   transform: rotate(0deg) scale(0.97);
 }
 
-/* Shuffle reveal: the chosen cover lands with a tiny overshoot, then the
-   title/artist fade up just after. */
+/* Shuffle reveal: the chosen cover settles in with a gentle scale (no bounce,
+   no flip — opacity is handled by the cross-fading deck), then the title/artist
+   fade up just after. */
 @keyframes shuffle-land {
-  0% {
-    opacity: 0;
-    transform: scale(0.82);
+  from {
+    transform: scale(0.94);
   }
-  60% {
-    transform: scale(1.06);
-  }
-  100% {
-    opacity: 1;
+  to {
     transform: scale(1);
   }
 }
 .shuffle-land {
-  animation: shuffle-land 180ms ease-out both;
+  animation: shuffle-land 240ms ease-out both;
 }
 @keyframes fade-in-up {
   from {

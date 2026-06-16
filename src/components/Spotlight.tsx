@@ -26,7 +26,6 @@ export default function Spotlight({ albums }: { albums: Album[] }) {
 
   return (
     <section aria-label="Spotlight">
-      <p className="eyebrow mt-7 mb-2">Spotlight</p>
       {picks ? (
         <CoverFlow albums={picks} variant="compact" />
       ) : (
