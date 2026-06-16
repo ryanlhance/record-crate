@@ -35,18 +35,22 @@ export default function Home() {
         <GenreWall genres={genres} />
       </div>
 
-      {/* Collections — below the genres */}
-      <div className="mt-6 grid grid-cols-3 gap-3">
-        {COLLECTIONS.map((c) => (
-          <Link
-            key={c.type}
-            href={`/collection/${c.type}`}
-            className="flex aspect-square items-center justify-center rounded-2xl bg-foreground p-1.5 text-center text-[#121110] transition active:scale-[0.97]"
-          >
-            <span className="font-display text-sm leading-tight">{c.label}</span>
-          </Link>
-        ))}
-      </div>
+      {/* Collections — a quiet, stacked text footer under a hairline divider.
+          They no longer compete with the spotlight + genre artwork. */}
+      <nav className="mt-8 border-t border-foreground/10 pt-4">
+        <ul className="flex flex-col">
+          {COLLECTIONS.map((c) => (
+            <li key={c.type}>
+              <Link
+                href={`/collection/${c.type}`}
+                className="block py-2 text-sm text-muted transition active:text-foreground"
+              >
+                {c.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
     </main>
   );
 }
