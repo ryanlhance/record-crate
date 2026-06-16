@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { COLLECTIONS, getAllAlbums, getGenres } from "@/lib/records";
-import { ArrowRight } from "@/components/icons";
+import { assetPath } from "@/lib/asset";
 import GenreWall from "@/components/GenreWall";
 import Spotlight from "@/components/Spotlight";
 
@@ -10,19 +10,19 @@ export default function Home() {
 
   return (
     <main className="mx-auto w-full max-w-xl flex-1 px-5 py-8">
-      {/* Hero — the one red "Explore" block. Full width: the point of the home
-          screen is exploring the shelf, so Shuffle lives on the browsing pages
-          rather than competing here. */}
+      {/* Hero — the hand-painted "Ryan's Collection" shop sign; the whole block
+          is the link into the shelf. */}
       <Link
         href="/all"
-        className="flex items-center justify-between gap-4 rounded-2xl bg-accent px-6 py-9 text-[#121110] transition active:scale-[0.98]"
+        aria-label="Explore Ryan's Collection"
+        className="block overflow-hidden rounded-2xl transition active:scale-[0.98]"
       >
-        <p className="font-display text-[2.6rem] leading-[0.95]">
-          Explore
-          <br />
-          Ryan&apos;s Shelf
-        </p>
-        <ArrowRight className="shrink-0" />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={assetPath("/ui/hero.png")}
+          alt=""
+          className="aspect-[2/1] w-full select-none object-cover"
+        />
       </Link>
 
       {/* Spotlight — a fresh random cover-flow draw every load */}

@@ -7,19 +7,12 @@ import { assetPath } from "@/lib/asset";
 import AlbumDetail from "./AlbumDetail";
 import { Shuffle as ShuffleIcon, Vinyl, Close } from "./icons";
 
-// Shuffle — the serendipity engine. Two surfaces, one action:
-//  - `hero`: a square tile beside the home hero.
-//  - `pill`: a persistent fixed pill, always one tap away while browsing.
-// Tapping picks a uniformly-random album from the CURRENT context (the `albums`
-// passed in), riffles briefly, then lands on one cover with "View details" and
-// "Shuffle again". Label is "Shuffle" / the icon only — never cute phrasing.
-export default function ShuffleControl({
-  albums,
-  variant = "pill",
-}: {
-  albums: Album[];
-  variant?: "pill" | "hero";
-}) {
+// Shuffle — the serendipity engine. A persistent fixed cardboard "chip" button
+// (always one tap away while browsing). Tapping picks a uniformly-random album
+// from the CURRENT context (the `albums` passed in), riffles briefly, then lands
+// on one cover with "View details" and "Shuffle again". Label is "Shuffle" /
+// the icon only — never cute phrasing.
+export default function ShuffleControl({ albums }: { albums: Album[] }) {
   const reduced = useReducedMotion();
 
   const [open, setOpen] = useState(false);
@@ -122,30 +115,25 @@ export default function ShuffleControl({
 
   return (
     <>
-      {variant === "hero" ? (
+      {!open && (
         <button
           ref={triggerRef}
           type="button"
           onClick={openShuffle}
           aria-label="Shuffle"
-          className="flex w-24 shrink-0 flex-col items-center justify-center gap-2 rounded-2xl bg-card transition active:scale-[0.97] sm:w-28"
+          className="fixed bottom-0 left-1/2 z-40 mb-[calc(env(safe-area-inset-bottom)+1rem)] h-16 w-16 -translate-x-1/2 overflow-hidden rounded-full shadow-2xl transition active:scale-95"
         >
-          <Vinyl className="h-9 w-9 text-foreground" />
-          <span className="font-display text-sm">Shuffle</span>
+          {/* The art is a flat (non-transparent) square; the round chip is
+              centered, so a circular crop + slight zoom hides the baked-in
+              corners and leaves a clean floating coin. */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={assetPath("/ui/shuffle.png")}
+            alt=""
+            draggable={false}
+            className="h-full w-full scale-[1.18] select-none object-cover"
+          />
         </button>
-      ) : (
-        !open && (
-          <button
-            ref={triggerRef}
-            type="button"
-            onClick={openShuffle}
-            aria-label="Shuffle"
-            className="fixed bottom-0 left-1/2 z-40 mb-[calc(env(safe-area-inset-bottom)+1rem)] flex -translate-x-1/2 items-center gap-2 rounded-full border border-foreground/15 bg-card/90 py-2.5 pl-3 pr-4 shadow-2xl backdrop-blur transition active:scale-95"
-          >
-            <Vinyl className="h-6 w-6 text-foreground" />
-            <span className="font-display text-sm">Shuffle</span>
-          </button>
-        )
       )}
 
       {open && (
