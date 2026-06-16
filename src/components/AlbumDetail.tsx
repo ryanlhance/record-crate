@@ -8,8 +8,8 @@ import {
   artistHasMultiple,
   slugifyArtist,
 } from "@/lib/records";
-import { getQuotes } from "@/lib/quotes";
 import { assetPath } from "@/lib/asset";
+import { Close } from "./icons";
 
 export default function AlbumDetail({
   album,
@@ -18,8 +18,6 @@ export default function AlbumDetail({
   album: Album;
   onClose: () => void;
 }) {
-  const quotes = getQuotes(album.id);
-  const [showReactions, setShowReactions] = useState(false);
   const [dragY, setDragY] = useState(0);
   const [dragging, setDragging] = useState(false);
   const startY = useRef<number | null>(null);
@@ -71,7 +69,9 @@ export default function AlbumDetail({
         }}
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Grab handle — stays pinned at the top so you can always drag down to dismiss */}
+        {/* Grab handle — stays pinned at the top so you can always drag down to
+            dismiss. A close button sits alongside for anyone who won't discover
+            the drag. */}
         <div
           className="sticky top-0 z-10 -mx-6 -mt-2 mb-3 flex cursor-grab touch-none justify-center bg-card py-3 active:cursor-grabbing"
           onPointerDown={onPointerDown}
@@ -79,6 +79,15 @@ export default function AlbumDetail({
           onPointerUp={onPointerUp}
         >
           <div className="h-1.5 w-12 rounded-full bg-white/25" />
+          <button
+            type="button"
+            aria-label="Close"
+            onClick={onClose}
+            onPointerDown={(e) => e.stopPropagation()}
+            className="absolute right-4 top-2 flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-foreground transition active:scale-90"
+          >
+            <Close className="h-4 w-4" />
+          </button>
         </div>
 
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -136,41 +145,6 @@ export default function AlbumDetail({
             </Link>
           ))}
         </div>
-
-        {/* Reddit reactions — collapsed by default */}
-        {quotes.length > 0 && (
-          <div className="mt-6 border-t border-white/10 pt-4">
-            <button
-              onClick={() => setShowReactions((v) => !v)}
-              className="flex w-full items-center justify-between gap-3 text-left"
-              aria-expanded={showReactions}
-            >
-              <span className="text-base font-bold leading-tight">
-                How People Feel About This Album
-              </span>
-              <span
-                className="shrink-0 text-2xl leading-none text-accent transition-transform"
-                style={{
-                  transform: showReactions ? "rotate(180deg)" : "none",
-                }}
-              >
-                ▾
-              </span>
-            </button>
-            {showReactions && (
-              <ul className="mt-3 space-y-3 text-left">
-                {quotes.map((q, i) => (
-                  <li
-                    key={i}
-                    className="rounded-xl bg-white/5 px-4 py-3 text-[15px] leading-relaxed"
-                  >
-                    “{q.text}”
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-        )}
       </div>
     </div>
   );
