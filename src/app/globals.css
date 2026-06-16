@@ -1,24 +1,15 @@
 @import "tailwindcss";
 
 :root {
-  --background: #121110; /* near-black */
-  --foreground: #f4f1ea; /* cream */
-  --accent: #e8392b; /* the single punchy accent: tomato red */
-  --muted: #8f8a82;
-  --card: #1c1b19;
-
-  /* Sharpie ink colors — scoped to the genre labels ONLY (the one place
-     multiple colors are allowed, because "different markers" is the metaphor).
-     Never use these in the core UI. All clear 4.5:1 on the #ece7db chipboard. */
-  --ink-red: #d83a2f;
-  --ink-blue: #2f6bd8;
-  --ink-green: #2f9e57;
-  --ink-orange: #e07b27;
-  --ink-purple: #7a4fc0;
-  --ink-black: #2b2723;
-
-  /* Off-white "chipboard" card the marker labels are written on. */
-  --chipboard: #ece7db;
+  /* Warm, record-shop palette tuned to the artwork (kraft cardboard dividers,
+     the espresso-dark painted "Ryan's Collection" sign, cream lettering, brick
+     red). Neutrals lean warm rather than neutral-black so the imagery sits in a
+     world rather than on a slab. */
+  --background: #15110c; /* warm espresso near-black */
+  --foreground: #f3ecdd; /* warm cream (matches the sign lettering) */
+  --accent: #e8392b; /* the single punchy accent: tomato/brick red */
+  --muted: #a0907c; /* warm kraft taupe — secondary text */
+  --card: #221a12; /* warm dark brown — raised surfaces */
 }
 
 @theme inline {

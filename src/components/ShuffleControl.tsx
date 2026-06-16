@@ -5,7 +5,7 @@ import { type Album, getRandom, getRandomSet } from "@/lib/records";
 import { useReducedMotion } from "@/lib/useReducedMotion";
 import { assetPath } from "@/lib/asset";
 import AlbumDetail from "./AlbumDetail";
-import { Shuffle as ShuffleIcon, Vinyl, Close } from "./icons";
+import { Vinyl, Close } from "./icons";
 
 // Shuffle — the serendipity engine. A persistent fixed cardboard "chip" button
 // (always one tap away while browsing). Tapping picks a uniformly-random album
@@ -121,17 +121,14 @@ export default function ShuffleControl({ albums }: { albums: Album[] }) {
           type="button"
           onClick={openShuffle}
           aria-label="Shuffle"
-          className="fixed bottom-0 left-1/2 z-40 mb-[calc(env(safe-area-inset-bottom)+1rem)] h-16 w-16 -translate-x-1/2 overflow-hidden rounded-full shadow-2xl transition active:scale-95"
+          className="fixed bottom-0 left-1/2 z-40 mb-[calc(env(safe-area-inset-bottom)+1rem)] h-16 w-16 -translate-x-1/2 transition [filter:drop-shadow(0_3px_6px_rgba(0,0,0,0.55))] active:scale-95"
         >
-          {/* The art is a flat (non-transparent) square; the round chip is
-              centered, so a circular crop + slight zoom hides the baked-in
-              corners and leaves a clean floating coin. */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={assetPath("/ui/shuffle.png")}
             alt=""
             draggable={false}
-            className="h-full w-full scale-[1.18] select-none object-cover"
+            className="h-full w-full select-none object-contain"
           />
         </button>
       )}
@@ -148,8 +145,6 @@ export default function ShuffleControl({ albums }: { albums: Album[] }) {
           <p aria-live="polite" className="sr-only">
             {chosen ? `${chosen.title} by ${chosen.artist}.` : ""}
           </p>
-
-          <p className="eyebrow mb-8">Shuffle</p>
 
           <button
             type="button"
@@ -218,7 +213,7 @@ export default function ShuffleControl({ albums }: { albums: Album[] }) {
                   </p>
                   <p className="mt-1 text-accent">{chosen.artist}</p>
 
-                  <div className="mt-7 flex items-center gap-3">
+                  <div className="mt-7 flex items-center gap-4">
                     <button
                       type="button"
                       onClick={() => setDetail(chosen)}
@@ -231,10 +226,15 @@ export default function ShuffleControl({ albums }: { albums: Album[] }) {
                       onClick={() => roll(chosen.id)}
                       disabled={albums.length < 2}
                       aria-label="Shuffle again"
-                      className="flex items-center gap-2 rounded-full border border-foreground/15 bg-card px-5 py-3 font-display text-sm transition active:scale-95 disabled:opacity-40"
+                      className="h-14 w-14 transition [filter:drop-shadow(0_3px_6px_rgba(0,0,0,0.55))] active:scale-95 disabled:opacity-40"
                     >
-                      <ShuffleIcon className="h-5 w-5" />
-                      Shuffle again
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={assetPath("/ui/shuffle.png")}
+                        alt=""
+                        draggable={false}
+                        className="h-full w-full select-none object-contain"
+                      />
                     </button>
                   </div>
                 </div>
