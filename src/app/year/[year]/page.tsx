@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import CoverFlow from "@/components/CoverFlow";
 import CrateHeader from "@/components/CrateHeader";
+import ShuffleControl from "@/components/ShuffleControl";
 import { getByYear, getYears } from "@/lib/records";
 
 export function generateStaticParams() {
@@ -23,6 +24,7 @@ export default async function YearPage({
         subtitle={`${albums.length} record${albums.length === 1 ? "" : "s"} from ${year}`}
       />
       <CoverFlow albums={albums} />
+      <ShuffleControl albums={albums} />
     </main>
   );
 }

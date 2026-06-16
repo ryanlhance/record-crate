@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import CoverFlow from "@/components/CoverFlow";
 import RecordGrid from "@/components/RecordGrid";
 import CrateHeader from "@/components/CrateHeader";
+import ShuffleControl from "@/components/ShuffleControl";
 import {
   COLLECTION_LABELS,
   COLLECTIONS,
@@ -37,6 +38,7 @@ export default async function CollectionPage({
         sticky={useGrid}
       />
       {useGrid ? <RecordGrid albums={albums} /> : <CoverFlow albums={albums} />}
+      <ShuffleControl albums={albums} />
     </main>
   );
 }

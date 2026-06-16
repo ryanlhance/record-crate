@@ -15,8 +15,12 @@ export default function Spotlight({ albums }: { albums: Album[] }) {
   const [picks, setPicks] = useState<Album[] | null>(null);
 
   useEffect(() => {
-    // 6–8 covers, redrawn on every mount.
+    // 6–8 covers, redrawn on every mount. The setState-in-effect is intentional
+    // and required here: the random draw must happen AFTER hydration so the
+    // static-export server HTML (skeleton) matches the first client paint, then
+    // shuffles in. Drawing during render would cause a hydration mismatch.
     const n = 6 + Math.floor(Math.random() * 3);
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setPicks(getRandomSet(albums, n));
   }, [albums]);
 

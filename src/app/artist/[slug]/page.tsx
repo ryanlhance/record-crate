@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import CoverFlow from "@/components/CoverFlow";
 import CrateHeader from "@/components/CrateHeader";
+import ShuffleControl from "@/components/ShuffleControl";
 import { getArtists, getByArtistSlug } from "@/lib/records";
 
 export function generateStaticParams() {
@@ -23,6 +24,7 @@ export default async function ArtistPage({
         subtitle={`${albums.length} record${albums.length === 1 ? "" : "s"}`}
       />
       <CoverFlow albums={albums} />
+      <ShuffleControl albums={albums} />
     </main>
   );
 }

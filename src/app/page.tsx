@@ -3,6 +3,7 @@ import { COLLECTIONS, getAllAlbums, getGenres } from "@/lib/records";
 import { ArrowRight } from "@/components/icons";
 import GenreWall from "@/components/GenreWall";
 import Spotlight from "@/components/Spotlight";
+import ShuffleControl from "@/components/ShuffleControl";
 
 export default function Home() {
   const genres = getGenres();
@@ -10,18 +11,21 @@ export default function Home() {
 
   return (
     <main className="mx-auto w-full max-w-xl flex-1 px-5 py-8">
-      {/* Hero — the one red block */}
-      <Link
-        href="/all"
-        className="flex items-center justify-between gap-4 rounded-2xl bg-accent px-6 py-9 text-[#121110] transition active:scale-[0.98]"
-      >
-        <p className="font-display text-[2.6rem] leading-[0.95]">
-          Explore
-          <br />
-          Ryan&apos;s Shelf
-        </p>
-        <ArrowRight className="shrink-0" />
-      </Link>
+      {/* Hero — the red "Explore" block + a square Shuffle tile beside it */}
+      <div className="flex gap-3">
+        <Link
+          href="/all"
+          className="flex flex-1 items-center justify-between gap-4 rounded-2xl bg-accent px-6 py-9 text-[#121110] transition active:scale-[0.98]"
+        >
+          <p className="font-display text-[2.6rem] leading-[0.95]">
+            Explore
+            <br />
+            Ryan&apos;s Shelf
+          </p>
+          <ArrowRight className="shrink-0" />
+        </Link>
+        <ShuffleControl albums={albums} variant="hero" />
+      </div>
 
       {/* Spotlight — a fresh random cover-flow draw every load */}
       <Spotlight albums={albums} />
