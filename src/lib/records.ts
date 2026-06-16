@@ -120,3 +120,34 @@ export function getYears(): number[] {
 export function getByYear(year: number): Album[] {
   return sortByArtistFirstName(albums.filter((a) => a.year === year));
 }
+
+/**
+ * One uniformly-random album from `list`, optionally excluding an id so
+ * "Shuffle again" never lands on the same record twice in a row. Returns null
+ * for an empty list (or a list whose only member is excluded).
+ * NON-deterministic by design — call it client-side (event handler / effect).
+ */
+export function getRandom(list: Album[], excludeId?: string): Album | null {
+  const pool = excludeId ? list.filter((a) => a.id !== excludeId) : list;
+  if (pool.length === 0) {
+    // Excluding the only option — fall back to it rather than returning null.
+    return list.length === 1 ? list[0] : null;
+  }
+  return pool[Math.floor(Math.random() * pool.length)];
+}
+
+/**
+ * `n` distinct uniformly-random albums (the Spotlight draw). Same randomness
+ * caveat as getRandom — pick client-side after mount to avoid hydration
+ * mismatch on the static export.
+ */
+export function getRandomSet(list: Album[], n: number): Album[] {
+  const pool = [...list];
+  // Partial Fisher–Yates: shuffle just the first min(n, len) slots.
+  const count = Math.min(n, pool.length);
+  for (let i = 0; i < count; i++) {
+    const j = i + Math.floor(Math.random() * (pool.length - i));
+    [pool[i], pool[j]] = [pool[j], pool[i]];
+  }
+  return pool.slice(0, count);
+}

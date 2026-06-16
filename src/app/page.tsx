@@ -1,10 +1,12 @@
 import Link from "next/link";
-import { COLLECTIONS, getGenres } from "@/lib/records";
+import { COLLECTIONS, getAllAlbums, getGenres } from "@/lib/records";
 import { ArrowRight } from "@/components/icons";
 import GenreWall from "@/components/GenreWall";
+import Spotlight from "@/components/Spotlight";
 
 export default function Home() {
   const genres = getGenres();
+  const albums = getAllAlbums();
 
   return (
     <main className="mx-auto w-full max-w-xl flex-1 px-5 py-8">
@@ -20,6 +22,9 @@ export default function Home() {
         </p>
         <ArrowRight className="shrink-0" />
       </Link>
+
+      {/* Spotlight — a fresh random cover-flow draw every load */}
+      <Spotlight albums={albums} />
 
       {/* Collections */}
       <p className="eyebrow mt-7 mb-2">Collections</p>
