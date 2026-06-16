@@ -10,6 +10,7 @@ import {
 } from "@/lib/records";
 import { assetPath } from "@/lib/asset";
 import { Close } from "./icons";
+import SimilarVibes from "./SimilarVibes";
 
 export default function AlbumDetail({
   album,
@@ -18,9 +19,19 @@ export default function AlbumDetail({
   album: Album;
   onClose: () => void;
 }) {
+  // A back-stack of albums viewed within this sheet. Tapping a Similar-vibes
+  // neighbor pushes a new album so you can wander album → album → album in
+  // place; close/drag/Escape always exit the whole sheet (back to where you
+  // opened it). `album` is stable per mount in every call site (selection
+  // toggles through null), so we seed the stack once.
+  const [stack, setStack] = useState<Album[]>(() => [album]);
+  const current = stack[stack.length - 1];
+
   const [dragY, setDragY] = useState(0);
   const [dragging, setDragging] = useState(false);
   const startY = useRef<number | null>(null);
+  const scrollRef = useRef<HTMLDivElement | null>(null);
+  const titleRef = useRef<HTMLHeadingElement | null>(null);
 
   // Close on Escape, and lock background scroll while open.
   useEffect(() => {
@@ -34,6 +45,15 @@ export default function AlbumDetail({
       document.body.style.overflow = "";
     };
   }, [onClose]);
+
+  // On open and on every in-place swap: scroll the sheet back to the top and
+  // move focus to the new title (the live region announces it to SRs).
+  useEffect(() => {
+    scrollRef.current?.scrollTo({ top: 0 });
+    titleRef.current?.focus();
+  }, [current.id]);
+
+  const swapTo = (next: Album) => setStack((s) => [...s, next]);
 
   // Swipe-the-card-down to dismiss (the grab handle is the affordance).
   const onPointerDown = (e: React.PointerEvent) => {
@@ -52,7 +72,7 @@ export default function AlbumDetail({
     setDragging(false);
   };
 
-  const artistMultiple = artistHasMultiple(album.artist);
+  const artistMultiple = artistHasMultiple(current.artist);
 
   return (
     <div
@@ -60,8 +80,15 @@ export default function AlbumDetail({
       onClick={onClose}
       role="dialog"
       aria-modal="true"
+      aria-label="Album details"
     >
+      {/* Announces the current album to screen readers on open and on swap. */}
+      <p aria-live="polite" className="sr-only">
+        {`${current.title} by ${current.artist}.`}
+      </p>
+
       <div
+        ref={scrollRef}
         className="max-h-[90vh] w-full max-w-md overflow-y-auto rounded-t-3xl bg-card p-6 pt-2 shadow-2xl sm:max-h-[88vh] sm:rounded-3xl"
         style={{
           transform: `translateY(${dragY}px)`,
@@ -92,50 +119,54 @@ export default function AlbumDetail({
 
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={assetPath(album.cover)}
-          alt={`${album.title} by ${album.artist}`}
+          src={assetPath(current.cover)}
+          alt=""
           className="mx-auto aspect-square w-56 rounded-xl object-cover shadow-xl"
         />
 
         <div className="mt-5 text-center">
-          <h2 className="font-display text-2xl font-semibold leading-tight">
-            {album.title}
+          <h2
+            ref={titleRef}
+            tabIndex={-1}
+            className="font-display text-2xl font-semibold leading-tight outline-none"
+          >
+            {current.title}
           </h2>
           {artistMultiple ? (
             <Link
-              href={`/artist/${slugifyArtist(album.artist)}`}
+              href={`/artist/${slugifyArtist(current.artist)}`}
               className="mt-1 inline-block text-lg text-accent underline decoration-accent/40 underline-offset-4"
             >
-              {album.artist}
+              {current.artist}
             </Link>
           ) : (
-            <p className="mt-1 text-lg text-accent">{album.artist}</p>
+            <p className="mt-1 text-lg text-accent">{current.artist}</p>
           )}
         </div>
 
-        {album.edition && (
+        {current.edition && (
           <p className="mx-auto mt-3 max-w-xs text-center text-sm italic leading-relaxed text-muted">
-            {album.edition}
+            {current.edition}
           </p>
         )}
 
         {/* Tappable facets: collection · year · genres */}
         <div className="mt-4 flex flex-wrap justify-center gap-2">
           <Link
-            href={`/collection/${album.collection}`}
+            href={`/collection/${current.collection}`}
             className="rounded-full bg-white/10 px-3 py-1 text-sm transition active:scale-95"
           >
-            {COLLECTION_LABELS[album.collection]}
+            {COLLECTION_LABELS[current.collection]}
           </Link>
-          {album.year && (
+          {current.year && (
             <Link
-              href={`/year/${album.year}`}
+              href={`/year/${current.year}`}
               className="rounded-full bg-white/10 px-3 py-1 text-sm transition active:scale-95"
             >
-              {album.year}
+              {current.year}
             </Link>
           )}
-          {album.genres.map((g) => (
+          {current.genres.map((g) => (
             <Link
               key={g}
               href={`/browse/${encodeURIComponent(g.toLowerCase())}`}
@@ -145,6 +176,10 @@ export default function AlbumDetail({
             </Link>
           ))}
         </div>
+
+        {/* Similar vibes — the sheet's one discovery moment. Tapping a neighbor
+            swaps the album in place. */}
+        <SimilarVibes album={current} onSelect={swapTo} />
       </div>
     </div>
   );

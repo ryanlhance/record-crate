@@ -13,6 +13,9 @@ export interface Album {
   cover: string;
   /** For Special Editions: a short note on what makes this pressing special. */
   edition?: string;
+  /** Optional hand-picked Similar-vibes pairings (album ids), prepended to the
+   *  computed results. Not currently set in the data. */
+  similarTo?: string[];
 }
 
 /** Fixed display order for the three collections. */
@@ -150,4 +153,72 @@ export function getRandomSet(list: Album[], n: number): Album[] {
     [pool[i], pool[j]] = [pool[j], pool[i]];
   }
   return pool.slice(0, count);
+}
+
+export interface SimilarResult {
+  album: Album;
+  /** Vibe tags this neighbor shares with the target (empty in fallback mode). */
+  sharedVibes: string[];
+}
+
+/**
+ * Albums that *feel* like `target`, by a tiny weighted-overlap score:
+ *   3 × shared vibe tags  +  2 if shares ≥1 genre  +  1 if within 5 years.
+ * Mood first, genre second, era third. Keeps score > 0, sorts desc, tie-breaks
+ * on more shared vibes then a hash seeded by the target id (so the same album
+ * always shows the same neighbors — no jitter between renders).
+ *
+ * TODO(vibe-backfill): every record currently ships `vibes: []`, so today this
+ * runs purely on the genre/era FALLBACK (the score-2/score-1 terms) — a fine
+ * stand-in the user won't notice. It gets materially better once the Notion
+ * `vibe` column is populated and `npm run build:data` is re-run; no code change
+ * needed here, the vibe term just starts contributing. See design partner/05.
+ */
+export function getSimilar(
+  target: Album,
+  limit = 6,
+  list: Album[] = albums
+): SimilarResult[] {
+  const scored = list
+    .filter((a) => a.id !== target.id)
+    .map((a) => {
+      const sharedVibes = a.vibes.filter((v) => target.vibes.includes(v));
+      const sharesGenre = a.genres.some((g) => target.genres.includes(g));
+      const sameEra =
+        target.year != null &&
+        a.year != null &&
+        Math.abs(a.year - target.year) <= 5;
+      const score =
+        3 * sharedVibes.length + (sharesGenre ? 2 : 0) + (sameEra ? 1 : 0);
+      return { album: a, sharedVibes, score, key: hashString(target.id + "|" + a.id) };
+    })
+    .filter((x) => x.score > 0)
+    .sort((x, y) => {
+      if (y.score !== x.score) return y.score - x.score;
+      if (y.sharedVibes.length !== x.sharedVibes.length) {
+        return y.sharedVibes.length - x.sharedVibes.length;
+      }
+      return x.key - y.key; // deterministic, seeded by target id
+    })
+    .map(({ album, sharedVibes }): SimilarResult => ({ album, sharedVibes }));
+
+  // Optional manual override: prepend hand-picked pairings, de-duped.
+  if (target.similarTo?.length) {
+    const picks = target.similarTo
+      .map((id) => list.find((a) => a.id === id))
+      .filter((a): a is Album => !!a && a.id !== target.id)
+      .map(
+        (album): SimilarResult => ({
+          album,
+          sharedVibes: album.vibes.filter((v) => target.vibes.includes(v)),
+        })
+      );
+    const seen = new Set(picks.map((p) => p.album.id));
+    return [...picks, ...scored.filter((r) => !seen.has(r.album.id))].slice(
+      0,
+      limit
+    );
+  }
+
+  return scored.slice(0, limit);
 }
