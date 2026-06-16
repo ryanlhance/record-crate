@@ -26,12 +26,12 @@ export default function ShuffleControl({ albums }: { albums: Album[] }) {
 
   const triggerRef = useRef<HTMLButtonElement | null>(null);
   const revealRef = useRef<HTMLDivElement | null>(null);
-  const timer = useRef<ReturnType<typeof setInterval> | null>(null);
+  const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const lastRoll = useRef(0);
 
   const clearTimer = () => {
     if (timer.current) {
-      clearInterval(timer.current);
+      clearTimeout(timer.current);
       timer.current = null;
     }
   };
@@ -56,25 +56,45 @@ export default function ShuffleControl({ albums }: { albums: Album[] }) {
         return;
       }
 
-      // Build the deck: a few random covers that aren't the winner, then the
-      // winner last. Advancing the index cross-fades one cover into the next.
-      const lead = getRandomSet(
-        albums.filter((a) => a.id !== final.id),
-        3
-      );
-      const deck = [...lead, final];
+      // Build the reel: riffle through the WHOLE context (shuffled), looping
+      // until there are at least 10 frames so small genres still build up, then
+      // land on the winner as the last frame.
+      let reel = getRandomSet(albums, albums.length);
+      while (reel.length < 10) reel = reel.concat(getRandomSet(albums, albums.length));
+      reel = [...reel, final];
+      // Warm the cache so the fast flips don't flash (covers are mostly cached
+      // from the grid already).
+      reel.forEach((a) => {
+        const img = new Image();
+        img.src = assetPath(a.cover);
+      });
+
       setChosen(null);
-      setFrames(deck);
+      setFrames(reel);
       setFrameIndex(0);
+
+      // Flip fast through the reel, then decelerate (ease-out) into the landing
+      // for the build-up. ~42ms per flip in the bulk; the last frames slow down.
+      const total = reel.length;
+      const TAIL = 9;
       let i = 0;
-      timer.current = setInterval(() => {
+      const step = () => {
         i += 1;
         setFrameIndex(i);
-        if (i >= deck.length - 1) {
+        if (i >= total - 1) {
           clearTimer();
           setChosen(final);
+          return;
         }
-      }, 140);
+        const left = total - 1 - i;
+        let delay = 42;
+        if (left <= TAIL) {
+          const t = (TAIL - left) / TAIL; // 0→1 as it nears the end
+          delay = 42 + Math.round(380 * t * t); // quadratic ramp to ~420ms
+        }
+        timer.current = setTimeout(step, delay);
+      };
+      timer.current = setTimeout(step, 42);
     },
     [albums, reduced]
   );
@@ -162,8 +182,8 @@ export default function ShuffleControl({ albums }: { albums: Album[] }) {
             onClick={(e) => e.stopPropagation()}
           >
             {/* Cover: the spotlit landing spot. A soft glow + vinyl peek behind
-                a fixed-size slot; the deck cross-fades in place so the cover
-                never flickers or changes size. */}
+                a fixed-size slot. One image whose src flips crisply through the
+                reel (slot-machine feel), then settles on the winner. */}
             <div
               className={`relative aspect-square w-64 max-w-[72vw] ${
                 chosen && !reduced ? "shuffle-land" : ""
@@ -181,21 +201,17 @@ export default function ShuffleControl({ albums }: { albums: Album[] }) {
                 className="pointer-events-none absolute left-1/2 top-1/2 h-[118%] w-[118%] -translate-x-1/2 -translate-y-1/2 text-foreground/15"
                 aria-hidden="true"
               />
-              {frames.map((album, idx) => (
+              {frames.length > 0 && (
                 /* eslint-disable-next-line @next/next/no-img-element */
                 <img
-                  key={`${album.id}-${idx}`}
-                  src={assetPath(album.cover)}
-                  alt={
-                    chosen && idx === frames.length - 1
-                      ? `${chosen.title} by ${chosen.artist}`
-                      : ""
-                  }
+                  src={assetPath(
+                    (frames[frameIndex] ?? frames[frames.length - 1]).cover
+                  )}
+                  alt={chosen ? `${chosen.title} by ${chosen.artist}` : ""}
                   draggable={false}
-                  className="absolute inset-0 h-full w-full select-none rounded-xl object-cover shadow-2xl transition-opacity duration-200 ease-out"
-                  style={{ opacity: idx === frameIndex ? 1 : 0 }}
+                  className="absolute inset-0 h-full w-full select-none rounded-xl object-cover shadow-2xl"
                 />
-              ))}
+              )}
             </div>
 
             {/* Title/artist + actions. The block always reserves its height so

@@ -17,7 +17,8 @@
     "title": "The Neon Machine",
     "collection": "main",
     "genres": [
-      "Rock"
+      "Funk",
+      "Soul"
     ],
     "vibes": [],
     "year": 2019,
@@ -29,7 +30,7 @@
     "title": "Sound and Color",
     "collection": "special",
     "genres": [
-      "Rock"
+      "Soul"
     ],
     "vibes": [],
     "year": 2015,
@@ -66,7 +67,8 @@
     "title": "Malibu",
     "collection": "main",
     "genres": [
-      "Soul"
+      "Soul",
+      "R&B"
     ],
     "vibes": [],
     "year": 2016,
@@ -78,7 +80,8 @@
     "title": "Malibu",
     "collection": "special",
     "genres": [
-      "Soul"
+      "Soul",
+      "R&B"
     ],
     "vibes": [],
     "year": 2016,
@@ -91,7 +94,8 @@
     "title": "Tiny Desk Concert",
     "collection": "special",
     "genres": [
-      "Soul"
+      "Soul",
+      "Funk"
     ],
     "vibes": [],
     "year": 2016,
@@ -104,7 +108,7 @@
     "title": "Venice",
     "collection": "special",
     "genres": [
-      "Soul"
+      "R&B"
     ],
     "vibes": [],
     "year": 2014,
@@ -154,8 +158,8 @@
     "title": "with the Royal Philharmonic Orchestra",
     "collection": "special",
     "genres": [
-      "Soul",
-      "Lounge"
+      "Rock",
+      "Soul"
     ],
     "vibes": [],
     "year": 2018,
@@ -204,7 +208,8 @@
     "title": "\"Awaken, My Love!\"",
     "collection": "main",
     "genres": [
-      "Funk"
+      "Funk",
+      "Experimental"
     ],
     "vibes": [],
     "year": 2016,
@@ -216,6 +221,7 @@
     "title": "Kauai",
     "collection": "main",
     "genres": [
+      "R&B",
       "Soul"
     ],
     "vibes": [],
@@ -228,7 +234,7 @@
     "title": "Taking Off",
     "collection": "main",
     "genres": [
-      "Jazz"
+      "Lounge"
     ],
     "vibes": [],
     "year": 1975,
@@ -240,7 +246,8 @@
     "title": "Voyeur",
     "collection": "main",
     "genres": [
-      "Jazz"
+      "Lounge",
+      "Funk"
     ],
     "vibes": [],
     "year": 1981,
@@ -252,7 +259,7 @@
     "title": "Knights of Fantasy",
     "collection": "main",
     "genres": [
-      "Jazz"
+      "Rock"
     ],
     "vibes": [],
     "year": 1979,
@@ -264,7 +271,8 @@
     "title": "Electric Universe",
     "collection": "main",
     "genres": [
-      "Funk"
+      "Funk",
+      "Disco"
     ],
     "vibes": [],
     "year": 1983,
@@ -288,7 +296,7 @@
     "title": "Heartstrings",
     "collection": "main",
     "genres": [
-      "Jazz"
+      "Lounge"
     ],
     "vibes": [],
     "year": 1979,
@@ -300,7 +308,7 @@
     "title": "Fear Fun",
     "collection": "main",
     "genres": [
-      "Rock"
+      "Soul"
     ],
     "vibes": [],
     "year": 2012,
@@ -325,7 +333,7 @@
     "title": "Rising",
     "collection": "special",
     "genres": [
-      "Jazz"
+      "Experimental"
     ],
     "vibes": [],
     "year": 2019,
@@ -386,7 +394,8 @@
     "title": "Cosmic Messenger",
     "collection": "main",
     "genres": [
-      "Jazz"
+      "Jazz",
+      "Rock"
     ],
     "vibes": [],
     "year": 1978,
@@ -434,7 +443,8 @@
     "title": "Mystical Adventures",
     "collection": "main",
     "genres": [
-      "Jazz"
+      "Jazz",
+      "Experimental"
     ],
     "vibes": [],
     "year": 1982,
@@ -458,7 +468,8 @@
     "title": "Still Bloomin",
     "collection": "special",
     "genres": [
-      "Jazz"
+      "Jazz",
+      "Lounge"
     ],
     "vibes": [],
     "year": 2025,
@@ -483,7 +494,7 @@
     "title": "Try It Out",
     "collection": "main",
     "genres": [
-      "Soul"
+      "Disco"
     ],
     "vibes": [],
     "year": 1983,
@@ -532,7 +543,7 @@
     "title": "Gunfighter Ballads and Trail Songs",
     "collection": "main",
     "genres": [
-      "Country"
+      "Lounge"
     ],
     "vibes": [],
     "year": 1959,
@@ -593,7 +604,8 @@
     "title": "Dark Side of the Moon",
     "collection": "special",
     "genres": [
-      "Rock"
+      "Rock",
+      "Experimental"
     ],
     "vibes": [],
     "year": 1973,
@@ -619,7 +631,7 @@
     "title": "Sneaking Sally Through the Alley",
     "collection": "special",
     "genres": [
-      "Funk"
+      "Rock"
     ],
     "vibes": [],
     "year": 1974,
@@ -693,7 +705,9 @@
     "title": "An Evening with Silk Sonic",
     "collection": "main",
     "genres": [
-      "Soul"
+      "Soul",
+      "R&B",
+      "Disco"
     ],
     "vibes": [],
     "year": 2021,
@@ -730,7 +744,8 @@
     "title": "Freetime",
     "collection": "main",
     "genres": [
-      "Jazz"
+      "Jazz",
+      "Lounge"
     ],
     "vibes": [],
     "year": 1981,
@@ -742,7 +757,8 @@
     "title": "Morning Dance",
     "collection": "main",
     "genres": [
-      "Jazz"
+      "Jazz",
+      "Lounge"
     ],
     "vibes": [],
     "year": 1979,
@@ -766,7 +782,8 @@
     "title": "Too Hot to Sleep",
     "collection": "main",
     "genres": [
-      "Soul"
+      "Soul",
+      "Disco"
     ],
     "vibes": [],
     "year": 1981,
@@ -790,7 +807,8 @@
     "title": "Geography",
     "collection": "main",
     "genres": [
-      "Soul"
+      "Soul",
+      "Disco"
     ],
     "vibes": [],
     "year": 2018,
@@ -838,7 +856,8 @@
     "title": "More than Muzak",
     "collection": "compilation",
     "genres": [
-      "Lounge"
+      "Lounge",
+      "Jazz"
     ],
     "vibes": [],
     "year": 1981,
@@ -850,10 +869,136 @@
     "title": "The World of Private Music Vol II",
     "collection": "compilation",
     "genres": [
-      "Lounge"
+      "Lounge",
+      "Jazz"
     ],
     "vibes": [],
     "year": 1987,
     "cover": "/covers/various-artists-the-world-of-private-music-vol-ii.jpg"
+  },
+  {
+    "id": "asap-rocky-dont-be-dumb",
+    "artist": "A$AP Rocky",
+    "title": "Don't Be Dumb",
+    "collection": "main",
+    "genres": [
+      "R&B",
+      "Experimental"
+    ],
+    "vibes": [],
+    "year": null,
+    "cover": "/placeholder.svg",
+    "edition": "BILT Member Exclusive Vinyl"
+  },
+  {
+    "id": "kitaro-tunhuang",
+    "artist": "Kitaro",
+    "title": "Tunhuang",
+    "collection": "main",
+    "genres": [
+      "Experimental",
+      "Jazz"
+    ],
+    "vibes": [],
+    "year": null,
+    "cover": "/placeholder.svg"
+  },
+  {
+    "id": "engelbert-humperdinck-wonderland-by-night",
+    "artist": "Engelbert Humperdinck",
+    "title": "Wonderland by Night",
+    "collection": "main",
+    "genres": [
+      "Lounge"
+    ],
+    "vibes": [],
+    "year": null,
+    "cover": "/placeholder.svg"
+  },
+  {
+    "id": "deodato-love-island",
+    "artist": "Deodato",
+    "title": "Love Island",
+    "collection": "main",
+    "genres": [
+      "Rock"
+    ],
+    "vibes": [],
+    "year": 1978,
+    "cover": "/covers/deodato-love-island.jpg"
+  },
+  {
+    "id": "deodato-very-together",
+    "artist": "Deodato",
+    "title": "Very Together",
+    "collection": "main",
+    "genres": [
+      "Rock"
+    ],
+    "vibes": [],
+    "year": 1976,
+    "cover": "/covers/deodato-very-together.jpg"
+  },
+  {
+    "id": "dave-valentin-mind-time",
+    "artist": "Dave Valentin",
+    "title": "Mind Time",
+    "collection": "main",
+    "genres": [
+      "Jazz"
+    ],
+    "vibes": [],
+    "year": null,
+    "cover": "/placeholder.svg"
+  },
+  {
+    "id": "richard-clayderman-ensuenos",
+    "artist": "Richard Clayderman",
+    "title": "Ensueños",
+    "collection": "main",
+    "genres": [
+      "Lounge"
+    ],
+    "vibes": [],
+    "year": null,
+    "cover": "/placeholder.svg"
+  },
+  {
+    "id": "bluewerks-vol-1-up-down-left-right",
+    "artist": "Bluewerks",
+    "title": "Bluewerks Vol. 1: Up Down Left Right",
+    "collection": "main",
+    "genres": [
+      "Lounge"
+    ],
+    "vibes": [],
+    "year": 2021,
+    "cover": "/covers/bluewerks-vol-1-up-down-left-right.jpg"
+  },
+  {
+    "id": "billy-cobham-alivemutherforya",
+    "artist": "Billy Cobham, Steve Khan, Alphonso Johnson, Tom Scott",
+    "title": "Alivemutherforya",
+    "collection": "main",
+    "genres": [
+      "Jazz"
+    ],
+    "vibes": [],
+    "year": 1978,
+    "cover": "/covers/billy-cobham-alivemutherforya.jpg"
+  },
+  {
+    "id": "andre-3000-new-blue-sun",
+    "artist": "Andre 3000",
+    "title": "New Blue Sun",
+    "collection": "main",
+    "genres": [
+      "Experimental",
+      "Jazz"
+    ],
+    "vibes": [],
+    "year": 2023,
+    "cover": "/covers/andre-3000-new-blue-sun.jpg",
+    "edition": "180G Limited Edition"
   }
 ]

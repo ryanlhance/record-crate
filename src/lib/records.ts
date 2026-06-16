@@ -76,11 +76,34 @@ export function getGenres(): string[] {
   return [...set].sort((a, b) => a.localeCompare(b));
 }
 
-/** Match a genre tag (case-insensitive exact match). */
+/**
+ * Collapse albums that are the same record (same artist + title) to a single
+ * entry, preferring the `main` copy. Used so a record Ryan owns twice (e.g. a
+ * standard + a special pressing of Malibu) shows once in a genre bin, while
+ * both copies still appear in the full shelf and their collections.
+ */
+function dedupeSameRecord(list: Album[]): Album[] {
+  const order: Record<CollectionType, number> = {
+    main: 0,
+    special: 1,
+    compilation: 2,
+  };
+  const best = new Map<string, Album>();
+  for (const a of list) {
+    const key = `${a.artist.toLowerCase()}|||${a.title.toLowerCase()}`;
+    const cur = best.get(key);
+    if (!cur || order[a.collection] < order[cur.collection]) best.set(key, a);
+  }
+  return [...best.values()];
+}
+
+/** Match a genre tag (case-insensitive exact match). One entry per record. */
 export function getByGenre(genre: string): Album[] {
   const lower = genre.toLowerCase();
   return sortByArtistFirstName(
-    albums.filter((a) => a.genres.some((g) => g.toLowerCase() === lower))
+    dedupeSameRecord(
+      albums.filter((a) => a.genres.some((g) => g.toLowerCase() === lower))
+    )
   );
 }
 

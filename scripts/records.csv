@@ -1,71 +1,81 @@
 artist,title,collection,genre,year
 33Hz,Whatever Happened to the Party?,Main,Funk,2005
-Abram Shook,The Neon Machine,Main,Rock,2019
-Alabama Shakes,Sound and Color,Special Edition,Rock,2015
+Abram Shook,The Neon Machine,Main,Funk;Soul,2019
+Alabama Shakes,Sound and Color,Special Editions,Soul,2015
 Alan Parsons Project,I Robot,Main,Rock,1977
 Alan Parsons Project,Tales of Mystery and Imagination,Main,Experimental,1976
-Anderson .Paak,Malibu,Main,Soul,2016
-Anderson .Paak,Malibu,Special Edition,Soul,2016
-Anderson .Paak,Tiny Desk Concert,Special Edition,Soul,2016
-Anderson .Paak,Venice,Special Edition,Soul,2014
+Anderson .Paak,Malibu,Main,Soul;R&B,2016
+Anderson .Paak,Malibu,Special Editions,Soul;R&B,2016
+Anderson .Paak,Tiny Desk Concert,Special Editions,Soul;Funk,2016
+Anderson .Paak,Venice,Special Editions,R&B,2014
 Andreas Vollenweider,Caverna Magica,Main,Experimental,1983
 Andreas Vollenweider,White Winds,Main,Experimental,1984
-Bob Crewe and Charles Fox,Barbarella,Special Edition,Lounge,1968
-Beach Boys,with the Royal Philharmonic Orchestra,Special Edition,Pop,2018
+Bob Crewe and Charles Fox,Barbarella,Special Editions,Lounge,1968
+Beach Boys,with the Royal Philharmonic Orchestra,Special Editions,Rock;Soul,2018
 Berlioz,Open This Wall,Main,Jazz,2024
 California Honeydrops,A River's Invitation,Main,Soul,2015
 Chaka Khan & Rufus,Street Player,Main,Funk,1978
-Childish Gambino,"""Awaken, My Love!""",Main,Funk,2016
-Childish Gambino,Kauai,Main,Soul,2014
-David Sanborn,Taking Off,Main,Jazz,1975
-David Sanborn,Voyeur,Main,Jazz,1981
-Deodato,Knights of Fantasy,Main,Jazz,1979
-"Earth, Wind & Fire",Electric Universe,Main,Funk,1983
-Engelbert Humperdinck,After the Lovin',Main,Pop,1976
-Earl Klugh,Heartstrings,Main,Jazz,1979
-Father John Misty,Fear Fun,Main,Rock,2012
-Frankie Goes to Hollywood,Welcome to the Pleasuredome,Main,Pop,1984
-House of Waters,Rising,Special Edition,Jazz,2019
+Childish Gambino,"""Awaken, My Love!""",Main,Funk;Experimental,2016
+Childish Gambino,Kauai,Main,R&B;Soul,2014
+David Sanborn,Taking Off,Main,Lounge,1975
+David Sanborn,Voyeur,Main,Lounge;Funk,1981
+Deodato,Knights of Fantasy,Main,Rock,1979
+"Earth, Wind & Fire",Electric Universe,Main,Funk;Disco,1983
+Engelbert Humperdinck,After the Lovin',Main,Lounge,1976
+Earl Klugh,Heartstrings,Main,Lounge,1979
+Father John Misty,Fear Fun,Main,Soul,2012
+Frankie Goes to Hollywood,Welcome to the Pleasuredome,Main,Experimental;Rock,1984
+House of Waters,Rising,Special Editions,Experimental,2019
 Idris Muhammad,Make it Count,Main,Funk,1980
 Idris Muhammad,Turn This Mutha Out,Main,Funk,1977
 Jean-Luc Ponty,A Taste for Passion,Main,Jazz,1979
 Jean-Luc Ponty,Aurora,Main,Jazz,1976
-Jean-Luc Ponty,Cosmic Messenger,Main,Jazz,1978
+Jean-Luc Ponty,Cosmic Messenger,Main,Jazz;Rock,1978
 Jean-Luc Ponty,Fables,Main,Jazz,1985
 Jean-Luc Ponty,Imaginary Voyage,Main,Jazz,1976
 Jean-Luc Ponty,Live at Montreux '72,Main,Jazz,1972
-Jean-Luc Ponty,Mystical Adventures,Main,Jazz,1982
+Jean-Luc Ponty,Mystical Adventures,Main,Jazz;Experimental,1982
 Jean-Luc Ponty,Upon the Wings of Music,Main,Jazz,1975
-Jeff Goldblum,Still Bloomin,Special Edition,Jazz,2025
+Jeff Goldblum,Still Bloomin,Special Editions,Jazz;Lounge,2025
 Journey,Escape,Main,Rock,1981
-Klique,Try It Out,Main,Soul,1983
-Leon Bridges,Leon,Special Edition,Soul,2024
+Klique,Try It Out,Main,Disco,1983
+Leon Bridges,Leon,Special Editions,Soul,2024
 Little Bird,Proxima,Main,Rock,2021
 Little River Band,Time Exposure,Main,Rock,1981
-Marty Robbins,Gunfighter Ballads and Trail Songs,Main,Country,1959
-Neil Frances,Took a While,Special Edition,Funk,2018
+Marty Robbins,Gunfighter Ballads and Trail Songs,Main,Lounge,1959
+Neil Frances,Took a While,Special Editions,Funk,2018
 Pablo Cruise,Reflector,Main,Rock,1981
 Pacific Gas and Electric,Are You Ready?,Main,Rock,1970
-Phoenix,Bankrupt,Main,Pop,2013
-Pink Floyd,Dark Side of the Moon,Main,Rock,1973
-Pink Floyd,The Wall,Main,Rock,1979
-Robert Palmer,Sneaking Sally Through the Alley,Main,Funk,1974
-Santana,Abraxas,Main,Latin,1970
-Santana,Amigos,Main,Latin,1976
-Santana,Shango,Main,Latin,1982
-Santana,Zebop,Main,Latin,1981
+Phoenix,Bankrupt,Main,Rock,2013
+Pink Floyd,Dark Side of the Moon,Special Editions,Rock;Experimental,1973
+Pink Floyd,The Wall,Special Editions,Rock,1979
+Robert Palmer,Sneaking Sally Through the Alley,Special Editions,Rock,1974
+Santana,Abraxas,Main,Rock,1970
+Santana,Amigos,Main,Rock,1976
+Santana,Shango,Main,Funk;Rock,1982
+Santana,Zebop,Main,Rock,1981
 Sergio Mendes & Brasil '66,Herb Alpert Presents,Main,Lounge,1966
-Silk Sonic,An Evening with Silk Sonic,Main,Soul,2021
+Silk Sonic,An Evening with Silk Sonic,Main,Soul;R&B;Disco,2021
 Sister Sledge,We Are Family,Main,Disco,1979
-Snarky Puppy,Family Dinner,Special Edition,Jazz,2013
-Spyro Gyra,Freetime,Main,Jazz,1981
-Spyro Gyra,Morning Dance,Main,Jazz,1979
+Snarky Puppy,Family Dinner,Special Editions,Jazz,2013
+Spyro Gyra,Freetime,Main,Jazz;Lounge,1981
+Spyro Gyra,Morning Dance,Main,Jazz;Lounge,1979
 Stray Cats,Built for Speed,Main,Rock,1982
-Sylvester,Too Hot to Sleep,Main,Soul,1981
+Sylvester,Too Hot to Sleep,Main,Soul;Disco,1981
 Thee Sacred Souls,Got a Story to Tell,Main,Soul,2024
-Tom Misch,Geography,Main,Soul,2018
+Tom Misch,Geography,Main,Soul;Disco,2018
 Tomita,Snowflakes Are Dancing,Main,Experimental,1974
 Vampire Weekend,Vampire Weekend,Main,Rock,2008
-Various Artists,Saturday Night Fever,Compilation,Disco,1977
-Various Artists,More than Muzak,Compilation,Lounge,1981
-Various Artists,The World of Private Music Vol II,Compilation,Lounge,1987
+Various Artists,Saturday Night Fever,Compilations,Disco,1977
+Various Artists,More than Muzak,Compilations,Lounge;Jazz,1981
+Various Artists,The World of Private Music Vol II,Compilations,Lounge;Jazz,1987
+A$AP Rocky,Don't Be Dumb,Main,R&B;Experimental,
+Kitaro,Tunhuang,Main,Experimental;Jazz,
+Engelbert Humperdinck,Wonderland by Night,Main,Lounge,
+Deodato,Love Island,Main,Rock,1978
+Deodato,Very Together,Main,Rock,1976
+Dave Valentin,Mind Time,Main,Jazz,
+Richard Clayderman,Ensueños,Main,Lounge,
+Bluewerks,Bluewerks Vol. 1: Up Down Left Right,Main,Lounge,2021
+"Billy Cobham, Steve Khan, Alphonso Johnson, Tom Scott",Alivemutherforya,Main,Jazz,1978
+Andre 3000,New Blue Sun,Main,Experimental;Jazz,2023
