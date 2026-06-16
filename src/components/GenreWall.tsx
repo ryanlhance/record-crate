@@ -1,14 +1,10 @@
 import Link from "next/link";
-import type { CSSProperties } from "react";
-import { MarkerUnderline } from "./icons";
+import { assetPath } from "@/lib/asset";
 
-// Interim genre wall while real hand-drawn label images are produced. Cleaned
-// up per feedback: one consistent black marker ink (no random per-genre colors),
-// all tabs the same flat orientation (no random tilt), and no doodles. The
-// chipboard card + marker font + underline stay so it still reads as a record-
-// shop bin divider. To be replaced by image-based buttons once art lands.
-const INK = "var(--ink-black)";
-
+// Genre wall: hand-drawn marker-on-cardboard bin dividers, one image per genre
+// (public/genre-labels/<genre>.png — real artwork, edge-to-edge). The image is
+// the whole tab; we just frame it as a tappable link. aria-label carries the
+// name since the lettering lives inside the image.
 export default function GenreWall({ genres }: { genres: string[] }) {
   return (
     <div className="grid grid-cols-2 gap-3">
@@ -16,11 +12,16 @@ export default function GenreWall({ genres }: { genres: string[] }) {
         <Link
           key={g}
           href={`/browse/${encodeURIComponent(g.toLowerCase())}`}
-          className="group relative flex min-h-[64px] items-center justify-center overflow-hidden rounded-[10px] border border-black/10 bg-[var(--chipboard)] px-4 py-3 transition active:scale-[0.97]"
-          style={{ color: INK } as CSSProperties}
+          aria-label={g}
+          className="overflow-hidden rounded-[10px] transition active:scale-[0.97]"
         >
-          <span className="font-marker text-2xl leading-none">{g}</span>
-          <MarkerUnderline className="pointer-events-none absolute bottom-2 left-1/2 h-2 w-3/5 -translate-x-1/2 opacity-90" />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={assetPath(`/genre-labels/${g.toLowerCase()}.png`)}
+            alt=""
+            draggable={false}
+            className="aspect-[5/2] w-full select-none object-cover"
+          />
         </Link>
       ))}
     </div>

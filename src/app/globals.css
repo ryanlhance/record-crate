@@ -58,17 +58,6 @@ body {
   font-family: var(--font-marker), "Comic Sans MS", cursive;
 }
 
-/* A Sharpie bin-divider tab. Rotation comes from an inline `--tilt` var (a
-   stable per-genre hash) so the wall looks pinned by hand; pressing straightens
-   the tab flat against the bin. */
-.sharpie-tab {
-  transform: rotate(var(--tilt, 0deg));
-  transition: transform 120ms ease;
-}
-.sharpie-tab:active {
-  transform: rotate(0deg) scale(0.97);
-}
-
 /* Shuffle reveal: the chosen cover settles in with a gentle scale (no bounce,
    no flip — opacity is handled by the cross-fading deck), then the title/artist
    fade up just after. */
@@ -114,10 +103,6 @@ body {
 
 /* Every new animation degrades to a plain appearance under reduced motion. */
 @media (prefers-reduced-motion: reduce) {
-  .sharpie-tab,
-  .sharpie-tab:active {
-    transition: none;
-  }
   .cover-in,
   .shuffle-land,
   .fade-in-up {
