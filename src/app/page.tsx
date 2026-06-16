@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { COLLECTIONS, getGenres } from "@/lib/records";
 import { ArrowRight } from "@/components/icons";
+import GenreWall from "@/components/GenreWall";
 
 export default function Home() {
   const genres = getGenres();
@@ -21,7 +22,8 @@ export default function Home() {
       </Link>
 
       {/* Collections */}
-      <div className="mt-5 grid grid-cols-3 gap-3">
+      <p className="eyebrow mt-7 mb-2">Collections</p>
+      <div className="grid grid-cols-3 gap-3">
         {COLLECTIONS.map((c) => (
           <Link
             key={c.type}
@@ -33,18 +35,9 @@ export default function Home() {
         ))}
       </div>
 
-      {/* Genres */}
-      <div className="mt-5 grid grid-cols-2 gap-3">
-        {genres.map((g) => (
-          <Link
-            key={g}
-            href={`/browse/${encodeURIComponent(g.toLowerCase())}`}
-            className="flex min-h-[56px] items-center justify-center rounded-2xl border border-foreground/25 text-center transition active:scale-[0.98] active:border-accent"
-          >
-            <span className="font-display text-base">{g}</span>
-          </Link>
-        ))}
-      </div>
+      {/* Genres — the Sharpie bin-divider wall */}
+      <p className="eyebrow mt-7 mb-2">By genre</p>
+      <GenreWall genres={genres} />
     </main>
   );
 }

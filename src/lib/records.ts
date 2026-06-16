@@ -35,6 +35,17 @@ export function isCollectionType(value: string): value is CollectionType {
 const albums = recordsData as Album[];
 
 /**
+ * Tiny stable string hash. Used wherever we need a deterministic-but-varied
+ * value from a name/id (Sharpie ink/tilt per genre, Similar-vibes tie-break)
+ * so output is identical across builds and renders.
+ */
+export function hashString(s: string): number {
+  let h = 0;
+  for (const c of s) h = (h * 31 + c.charCodeAt(0)) | 0;
+  return Math.abs(h);
+}
+
+/**
  * Sort by artist first name — i.e. the artist string exactly as written, so
  * "John Coltrane" sorts under J and "Khruangbin" under K. Ties break on title.
  */
