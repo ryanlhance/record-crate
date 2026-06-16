@@ -11,18 +11,24 @@ export default function Home() {
 
   return (
     <main className="mx-auto w-full max-w-xl flex-1 px-5 py-8">
-      {/* Hero — the red "Explore" block + a square Shuffle tile beside it */}
+      {/* Hero — the red "Explore" block + a square Shuffle tile beside it.
+          min-w-0 lets the red block actually shrink to share the row (otherwise
+          the big headline's intrinsic width shoves the tile off-screen); the
+          clamp keeps the headline fitting from small phones up to the max-w-xl
+          desktop width. */}
       <div className="flex gap-3">
         <Link
           href="/all"
-          className="flex flex-1 items-center justify-between gap-4 rounded-2xl bg-accent px-6 py-9 text-[#121110] transition active:scale-[0.98]"
+          className="flex min-w-0 flex-1 items-center justify-between gap-3 rounded-2xl bg-accent px-5 py-8 text-[#121110] transition active:scale-[0.98] sm:gap-4 sm:px-6 sm:py-9"
         >
-          <p className="font-display text-[2.6rem] leading-[0.95]">
+          <p className="min-w-0 font-display text-[clamp(1.6rem,6.2vw,2.6rem)] leading-[1.02] sm:leading-[0.95]">
             Explore
             <br />
             Ryan&apos;s Shelf
           </p>
-          <ArrowRight className="shrink-0" />
+          {/* Hidden on the smallest phones, where the headline needs the full
+              width of the (shrunken) red block; the block itself is the link. */}
+          <ArrowRight className="hidden w-9 shrink-0 min-[375px]:block sm:w-[54px]" />
         </Link>
         <ShuffleControl albums={albums} variant="hero" />
       </div>

@@ -120,7 +120,7 @@ export default function ShuffleControl({
           type="button"
           onClick={openShuffle}
           aria-label="Shuffle"
-          className="flex w-28 shrink-0 flex-col items-center justify-center gap-2 rounded-2xl bg-card transition active:scale-[0.97]"
+          className="flex w-24 shrink-0 flex-col items-center justify-center gap-2 rounded-2xl bg-card transition active:scale-[0.97] sm:w-28"
         >
           <Vinyl className="h-9 w-9 text-foreground" />
           <span className="font-display text-sm">Shuffle</span>
