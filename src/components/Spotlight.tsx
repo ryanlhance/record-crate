@@ -31,7 +31,7 @@ export default function Spotlight({ albums }: { albums: Album[] }) {
       ) : (
         // Skeleton sized to the compact flow so there's no layout shift.
         <div
-          className="flex flex-col items-center py-6"
+          className="flex flex-col items-center py-2"
           aria-hidden="true"
         >
           <div className="aspect-square w-[46vw] max-w-[11rem] animate-pulse rounded-xl bg-card" />

@@ -61,7 +61,7 @@ export default function CoverFlow({
         }}
         onSwiper={setSwiper}
         onActiveIndexChange={(s) => setActiveIndex(s.activeIndex)}
-        className={`w-full ${compact ? "py-6" : "py-10"}`}
+        className={`w-full ${compact ? "py-2" : "py-10"}`}
       >
         {albums.map((album, index) => (
           <SwiperSlide key={album.id} style={{ width: slideWidth }}>

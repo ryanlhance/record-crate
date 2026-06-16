@@ -3,7 +3,6 @@ import { COLLECTIONS, getAllAlbums, getGenres } from "@/lib/records";
 import { ArrowRight } from "@/components/icons";
 import GenreWall from "@/components/GenreWall";
 import Spotlight from "@/components/Spotlight";
-import ShuffleControl from "@/components/ShuffleControl";
 
 export default function Home() {
   const genres = getGenres();
@@ -11,31 +10,25 @@ export default function Home() {
 
   return (
     <main className="mx-auto w-full max-w-xl flex-1 px-5 py-8">
-      {/* Hero — the red "Explore" block + a square Shuffle tile beside it.
-          min-w-0 lets the red block actually shrink to share the row (otherwise
-          the big headline's intrinsic width shoves the tile off-screen); the
-          clamp keeps the headline fitting from small phones up to the max-w-xl
-          desktop width. */}
-      <div className="flex gap-3">
-        <Link
-          href="/all"
-          className="flex min-w-0 flex-1 items-center justify-between gap-3 rounded-2xl bg-accent px-5 py-8 text-[#121110] transition active:scale-[0.98] sm:gap-4 sm:px-6 sm:py-9"
-        >
-          <p className="min-w-0 font-display text-[clamp(1.6rem,6.2vw,2.6rem)] leading-[1.02] sm:leading-[0.95]">
-            Explore
-            <br />
-            Ryan&apos;s Shelf
-          </p>
-          {/* Hidden on the smallest phones, where the headline needs the full
-              width of the (shrunken) red block; the block itself is the link. */}
-          <ArrowRight className="hidden w-9 shrink-0 min-[375px]:block sm:w-[54px]" />
-        </Link>
-        <ShuffleControl albums={albums} variant="hero" />
-      </div>
+      {/* Hero — the one red "Explore" block. Full width: the point of the home
+          screen is exploring the shelf, so Shuffle lives on the browsing pages
+          rather than competing here. */}
+      <Link
+        href="/all"
+        className="flex items-center justify-between gap-4 rounded-2xl bg-accent px-6 py-9 text-[#121110] transition active:scale-[0.98]"
+      >
+        <p className="font-display text-[2.6rem] leading-[0.95]">
+          Explore
+          <br />
+          Ryan&apos;s Shelf
+        </p>
+        <ArrowRight className="shrink-0" />
+      </Link>
 
-      {/* Spotlight — a fresh random cover-flow draw every load. No mt here: the
-          cover-flow's own py-6 supplies the 24px gap so it matches the others. */}
-      <Spotlight albums={albums} />
+      {/* Spotlight — a fresh random cover-flow draw every load */}
+      <div className="mt-6">
+        <Spotlight albums={albums} />
+      </div>
 
       {/* Collections */}
       <div className="mt-6 grid grid-cols-3 gap-3">
