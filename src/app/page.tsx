@@ -30,7 +30,12 @@ export default function Home() {
         <Spotlight albums={albums} />
       </div>
 
-      {/* Collections */}
+      {/* Genres — the hand-drawn cardboard bin-divider wall */}
+      <div className="mt-6">
+        <GenreWall genres={genres} />
+      </div>
+
+      {/* Collections — below the genres */}
       <div className="mt-6 grid grid-cols-3 gap-3">
         {COLLECTIONS.map((c) => (
           <Link
@@ -41,11 +46,6 @@ export default function Home() {
             <span className="font-display text-sm leading-tight">{c.label}</span>
           </Link>
         ))}
-      </div>
-
-      {/* Genres — the Sharpie bin-divider wall */}
-      <div className="mt-6">
-        <GenreWall genres={genres} />
       </div>
     </main>
   );
