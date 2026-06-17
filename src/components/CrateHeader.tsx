@@ -1,4 +1,4 @@
-import BackButton from "./BackButton";
+import HomeButton from "./HomeButton";
 
 export default function CrateHeader({
   title,
@@ -16,8 +16,8 @@ export default function CrateHeader({
         sticky ? "sticky top-0 z-30 bg-background/90 backdrop-blur" : ""
       }`}
     >
-      <div className="absolute left-4 top-5">
-        <BackButton />
+      <div className="absolute left-4 top-4">
+        <HomeButton />
       </div>
       <h1 className="font-display text-xl font-semibold leading-tight">
         {title}
