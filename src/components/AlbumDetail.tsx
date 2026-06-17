@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import {
   type Album,
-  COLLECTION_LABELS,
   artistHasMultiple,
   slugifyArtist,
   genreSlug,
@@ -12,6 +11,7 @@ import {
 import { assetPath } from "@/lib/asset";
 import { Close } from "./icons";
 import SimilarVibes from "./SimilarVibes";
+import PreviewButton from "./PreviewButton";
 
 export default function AlbumDetail({
   album,
@@ -118,12 +118,24 @@ export default function AlbumDetail({
           </button>
         </div>
 
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={assetPath(current.cover)}
-          alt=""
-          className="mx-auto aspect-square w-56 rounded-xl object-cover shadow-xl"
-        />
+        {/* Cover, with the "taste test" preview button overlaid when we have a
+            clip for this record. Keyed by id so each album gets a fresh audio
+            element (and the old one is torn down) on open and on in-place swap. */}
+        <div className="relative mx-auto w-56">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={assetPath(current.cover)}
+            alt=""
+            className="aspect-square w-full rounded-xl object-cover shadow-xl"
+          />
+          {current.preview && (
+            <PreviewButton
+              key={current.id}
+              url={current.preview.url}
+              track={current.preview.track}
+            />
+          )}
+        </div>
 
         <div className="mt-5 text-center">
           <h2
@@ -151,14 +163,10 @@ export default function AlbumDetail({
           </p>
         )}
 
-        {/* Tappable facets: collection · year · genres */}
+        {/* Tappable facets: year · genres. (Collection is intentionally omitted —
+            the detail itself makes the type clear; the collections live on the
+            home screen.) */}
         <div className="mt-4 flex flex-wrap justify-center gap-2">
-          <Link
-            href={`/collection/${current.collection}`}
-            className="rounded-full bg-white/10 px-3 py-1 text-sm transition active:scale-95"
-          >
-            {COLLECTION_LABELS[current.collection]}
-          </Link>
           {current.year && (
             <Link
               href={`/year/${current.year}`}

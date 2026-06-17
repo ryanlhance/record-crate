@@ -127,6 +127,25 @@ export function GridFlow({ title, ...props }: IconProps) {
   );
 }
 
+/* ---- Media transport (filled glyphs — read clearest inside a round button) ---- */
+
+export function Play({ title, ...props }: IconProps) {
+  return (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" {...a11y(title)} {...props}>
+      <path d="M7 4.8 L19 12 L7 19.2 Z" fill="currentColor" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+export function Pause({ title, ...props }: IconProps) {
+  return (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" {...a11y(title)} {...props}>
+      <rect x="6.5" y="5" width="3.6" height="14" rx="1.2" fill="currentColor" />
+      <rect x="13.9" y="5" width="3.6" height="14" rx="1.2" fill="currentColor" />
+    </svg>
+  );
+}
+
 /* ---- Decorative elements (fills allowed) ---- */
 
 export function Vinyl({ title, ...props }: IconProps) {

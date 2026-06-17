@@ -5,6 +5,7 @@ import { type Album, getRandom, getRandomSet } from "@/lib/records";
 import { useReducedMotion } from "@/lib/useReducedMotion";
 import { assetPath } from "@/lib/asset";
 import AlbumDetail from "./AlbumDetail";
+import DetailsButton from "./DetailsButton";
 import { Vinyl, Close } from "./icons";
 
 // Shuffle — the serendipity engine. A persistent fixed cardboard "chip" button
@@ -230,13 +231,7 @@ export default function ShuffleControl({ albums }: { albums: Album[] }) {
                   <p className="mt-1 text-accent">{chosen.artist}</p>
 
                   <div className="mt-7 flex items-center gap-4">
-                    <button
-                      type="button"
-                      onClick={() => setDetail(chosen)}
-                      className="rounded-full bg-foreground px-6 py-3 font-display text-sm text-background transition active:scale-95"
-                    >
-                      View details
-                    </button>
+                    <DetailsButton onClick={() => setDetail(chosen)} />
                     <button
                       type="button"
                       onClick={() => roll(chosen.id)}

@@ -13,6 +13,9 @@ export interface Album {
   cover: string;
   /** For Special Editions: a short note on what makes this pressing special. */
   edition?: string;
+  /** "Taste test" audio: a 30-second Apple preview clip for a signature track.
+   *  Streamed from Apple's CDN at play time; absent when no preview was found. */
+  preview?: { trackId: number; track: string; url: string };
   /** Optional hand-picked Similar-vibes pairings (album ids), prepended to the
    *  computed results. Not currently set in the data. */
   similarTo?: string[];
