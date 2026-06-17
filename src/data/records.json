@@ -15,7 +15,8 @@
     "id": "abram-shook-the-neon-machine",
     "artist": "Abram Shook",
     "title": "The Neon Machine",
-    "collection": "main",
+    "collection": "special",
+    "edition": "Neon Purple Limited Edition Vinyl",
     "genres": [
       "Funk",
       "Soul"
@@ -887,7 +888,7 @@
     ],
     "vibes": [],
     "year": null,
-    "cover": "/placeholder.svg",
+    "cover": "/covers/asap-rocky-dont-be-dumb.jpg",
     "edition": "BILT Member Exclusive Vinyl"
   },
   {
@@ -901,7 +902,7 @@
     ],
     "vibes": [],
     "year": null,
-    "cover": "/placeholder.svg"
+    "cover": "/covers/kitaro-tunhuang.jpg"
   },
   {
     "id": "engelbert-humperdinck-wonderland-by-night",
@@ -913,7 +914,7 @@
     ],
     "vibes": [],
     "year": null,
-    "cover": "/placeholder.svg"
+    "cover": "/covers/engelbert-humperdinck-wonderland-by-night.jpg"
   },
   {
     "id": "deodato-love-island",
@@ -949,7 +950,7 @@
     ],
     "vibes": [],
     "year": null,
-    "cover": "/placeholder.svg"
+    "cover": "/covers/dave-valentin-mind-time.jpg"
   },
   {
     "id": "richard-clayderman-ensuenos",
@@ -961,7 +962,7 @@
     ],
     "vibes": [],
     "year": null,
-    "cover": "/placeholder.svg"
+    "cover": "/covers/richard-clayderman-ensuenos.jpg"
   },
   {
     "id": "bluewerks-vol-1-up-down-left-right",
