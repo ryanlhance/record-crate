@@ -2,12 +2,14 @@
 // hand-made source art.
 //   node scripts/build-icons-og.mjs
 import sharp from "sharp";
+import { copyFileSync } from "node:fs";
 
 // Square app icon with the black corners already baked in (no alpha) — used
 // as-is at every size, including the iOS apple-touch-icon.
 const APP_ICON = "images from Ryan/icon-filled.png";
-// The sign on an expanded black background — the social card art.
-const SHARING = "images from Ryan/sharing.png";
+// The social card, already authored at the exact 1200x630 large-card ratio —
+// copied verbatim (no re-encode) to preserve quality.
+const OG_SRC = "images from Ryan/corrected-og-1200x630.png";
 
 // --- App icons ---
 for (const size of [512, 192, 32]) {
@@ -17,11 +19,7 @@ for (const size of [512, 192, 32]) {
 await sharp(APP_ICON).resize(180, 180, { fit: "cover" }).png()
   .toFile("public/apple-touch-icon.png");
 
-// --- Social card: 1200x630 (the ideal large-card ratio). The source is already
-// the sign on black, so letterbox onto black — seamless, nothing cropped. ---
-await sharp(SHARING)
-  .resize(1200, 630, { fit: "contain", background: "#000000" })
-  .png()
-  .toFile("public/og.png");
+// --- Social card ---
+copyFileSync(OG_SRC, "public/og.png");
 
 console.log("Wrote: public/icon-{512,192,32}.png, apple-touch-icon.png, og.png");
