@@ -1,17 +1,5 @@
 [
   {
-    "id": "33hz-whatever-happened-to-the-party",
-    "artist": "33Hz",
-    "title": "Whatever Happened to the Party?",
-    "collection": "main",
-    "genres": [
-      "Funk"
-    ],
-    "vibes": [],
-    "year": 2005,
-    "cover": "/covers/33hz-whatever-happened-to-the-party.jpg"
-  },
-  {
     "id": "abram-shook-the-neon-machine",
     "artist": "Abram Shook",
     "title": "The Neon Machine",
@@ -144,7 +132,12 @@
     "vibes": [],
     "year": 2014,
     "cover": "/covers/anderson-paak-venice.jpg",
-    "edition": "Newbury Comics Limited Edition"
+    "edition": "Newbury Comics Limited Edition",
+    "preview": {
+      "trackId": 1887659417,
+      "track": "Milk N' Honey",
+      "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/b0/d8/be/b0d8be28-a65c-911e-97d9-39dcb7bd665e/mzaf_5411055211092384593.plus.aac.p.m4a"
+    }
   },
   {
     "id": "andreas-vollenweider-caverna-magica",
@@ -235,40 +228,6 @@
     }
   },
   {
-    "id": "california-honeydrops-a-river-s-invitation",
-    "artist": "California Honeydrops",
-    "title": "A River's Invitation",
-    "collection": "main",
-    "genres": [
-      "Soul"
-    ],
-    "vibes": [],
-    "year": 2015,
-    "cover": "/covers/california-honeydrops-a-river-s-invitation.jpg",
-    "preview": {
-      "trackId": 1025334854,
-      "track": "A River's Invitation",
-      "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/53/24/68/53246813-598b-7a74-e0ba-dcbe558b2423/mzaf_12759179173351981578.plus.aac.p.m4a"
-    }
-  },
-  {
-    "id": "chaka-khan-rufus-street-player",
-    "artist": "Chaka Khan & Rufus",
-    "title": "Street Player",
-    "collection": "main",
-    "genres": [
-      "Funk"
-    ],
-    "vibes": [],
-    "year": 1978,
-    "cover": "/covers/chaka-khan-rufus-street-player.jpg",
-    "preview": {
-      "trackId": 1443998493,
-      "track": "Street Player (feat. Chaka Khan)",
-      "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/cf/41/79/cf417979-2cab-5019-e329-cd370a9e24c5/mzaf_5303535235658798861.plus.aac.p.m4a"
-    }
-  },
-  {
     "id": "childish-gambino-awaken-my-love",
     "artist": "Childish Gambino",
     "title": "\"Awaken, My Love!\"",
@@ -279,7 +238,12 @@
     ],
     "vibes": [],
     "year": 2016,
-    "cover": "/covers/childish-gambino-awaken-my-love.jpg"
+    "cover": "/covers/childish-gambino-awaken-my-love.jpg",
+    "preview": {
+      "trackId": 1771719595,
+      "track": "Redbone",
+      "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/b3/39/e5/b339e55d-492b-e44e-5003-5943ee2a073b/mzaf_18387678162433674061.plus.aac.p.m4a"
+    }
   },
   {
     "id": "childish-gambino-kauai",
@@ -297,41 +261,6 @@
       "trackId": 1771723604,
       "track": "Sober",
       "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/a9/17/f5/a917f578-1dd0-7739-14b2-eae4ab711525/mzaf_12821136224695307616.plus.aac.p.m4a"
-    }
-  },
-  {
-    "id": "david-sanborn-taking-off",
-    "artist": "David Sanborn",
-    "title": "Taking Off",
-    "collection": "main",
-    "genres": [
-      "Lounge"
-    ],
-    "vibes": [],
-    "year": 1975,
-    "cover": "/covers/david-sanborn-taking-off.jpg",
-    "preview": {
-      "trackId": 357934299,
-      "track": "Butterfat",
-      "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/b3/bb/66/b3bb66c2-3d29-443f-cada-65cacb539af6/mzaf_9809072192504525085.plus.aac.p.m4a"
-    }
-  },
-  {
-    "id": "david-sanborn-voyeur",
-    "artist": "David Sanborn",
-    "title": "Voyeur",
-    "collection": "main",
-    "genres": [
-      "Lounge",
-      "Funk"
-    ],
-    "vibes": [],
-    "year": 1981,
-    "cover": "/covers/david-sanborn-voyeur.jpg",
-    "preview": {
-      "trackId": 184614724,
-      "track": "Run for Cover",
-      "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/9f/6a/23/9f6a2369-4c76-194f-4dc5-dc28a50d5e0d/mzaf_5710379915326114858.plus.aac.p.m4a"
     }
   },
   {
@@ -384,23 +313,6 @@
       "trackId": 1331263416,
       "track": "After the Lovin' (Re-Record)",
       "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/79/d9/62/79d962a9-34d5-ddfe-c76a-f084ce10287e/mzaf_14218061413221664644.plus.aac.p.m4a"
-    }
-  },
-  {
-    "id": "earl-klugh-heartstrings",
-    "artist": "Earl Klugh",
-    "title": "Heartstrings",
-    "collection": "main",
-    "genres": [
-      "Lounge"
-    ],
-    "vibes": [],
-    "year": 1979,
-    "cover": "/covers/earl-klugh-heartstrings.jpg",
-    "preview": {
-      "trackId": 738339107,
-      "track": "Heart String",
-      "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/a6/e9/ab/a6e9ab65-8936-2425-f22d-4a4ad2d3ade6/mzaf_1200957929322539841.plus.aac.p.m4a"
     }
   },
   {
@@ -677,7 +589,12 @@
     "vibes": [],
     "year": 2024,
     "cover": "/covers/leon-bridges-leon.jpg",
-    "edition": "Signed"
+    "edition": "Signed",
+    "preview": {
+      "trackId": 1760811410,
+      "track": "Peaceful Place",
+      "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/5b/51/b7/5b51b7de-eb11-86f9-06f5-1d1b7d0cb66c/mzaf_7122627553434504028.plus.aac.p.m4a"
+    }
   },
   {
     "id": "little-bird-proxima",
@@ -694,23 +611,6 @@
       "trackId": 1743815420,
       "track": "Ghost",
       "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/79/d4/7c/79d47cfc-c69b-73f0-58b8-784c149446c0/mzaf_14538531223231732569.plus.aac.p.m4a"
-    }
-  },
-  {
-    "id": "little-river-band-time-exposure",
-    "artist": "Little River Band",
-    "title": "Time Exposure",
-    "collection": "main",
-    "genres": [
-      "Rock"
-    ],
-    "vibes": [],
-    "year": 1981,
-    "cover": "/covers/little-river-band-time-exposure.jpg",
-    "preview": {
-      "trackId": 1647730915,
-      "track": "The Night Owls (Remastered 2022)",
-      "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview122/v4/3e/ee/3c/3eee3cd3-4fcf-08d8-f923-520a1310502f/mzaf_5788570500533292068.plus.aac.p.m4a"
     }
   },
   {
@@ -783,23 +683,6 @@
     }
   },
   {
-    "id": "phoenix-bankrupt",
-    "artist": "Phoenix",
-    "title": "Bankrupt",
-    "collection": "main",
-    "genres": [
-      "Rock"
-    ],
-    "vibes": [],
-    "year": 2013,
-    "cover": "/covers/phoenix-bankrupt.jpg",
-    "preview": {
-      "trackId": 1771702090,
-      "track": "Entertainment",
-      "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/be/1c/42/be1c4281-f620-cf07-10e8-bf72ee840cbe/mzaf_5287026935364935510.plus.aac.p.m4a"
-    }
-  },
-  {
     "id": "pink-floyd-dark-side-of-the-moon",
     "artist": "Pink Floyd",
     "title": "Dark Side of the Moon",
@@ -811,7 +694,12 @@
     "vibes": [],
     "year": 1973,
     "cover": "/covers/pink-floyd-dark-side-of-the-moon.jpg",
-    "edition": "Original Pressing · Family Heirloom"
+    "edition": "Original Pressing · Family Heirloom",
+    "preview": {
+      "trackId": 1065973708,
+      "track": "Money",
+      "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/22/ac/7c/22ac7cc1-e3ab-60cc-4fc7-d56a45f6b064/mzaf_3136569382615525700.plus.aac.p.m4a"
+    }
   },
   {
     "id": "pink-floyd-the-wall",
@@ -882,36 +770,6 @@
       "track": "Europa (Earth's Cry Heaven's Smile)",
       "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/c8/af/3f/c8af3f4d-03eb-19b6-a726-5b3ac2edde53/mzaf_607149201853894619.plus.aac.p.m4a"
     }
-  },
-  {
-    "id": "santana-shango",
-    "artist": "Santana",
-    "title": "Shango",
-    "collection": "main",
-    "genres": [
-      "Funk",
-      "Rock"
-    ],
-    "vibes": [],
-    "year": 1982,
-    "cover": "/covers/santana-shango.jpg",
-    "preview": {
-      "trackId": 192663380,
-      "track": "Hold On",
-      "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/ad/46/46/ad4646c9-8336-3ae0-e506-f35339de99b4/mzaf_13810545163123000042.plus.aac.p.m4a"
-    }
-  },
-  {
-    "id": "santana-zebop",
-    "artist": "Santana",
-    "title": "Zebop",
-    "collection": "main",
-    "genres": [
-      "Rock"
-    ],
-    "vibes": [],
-    "year": 1981,
-    "cover": "/covers/santana-zebop.jpg"
   },
   {
     "id": "sergio-mendes-brasil-66-herb-alpert-presents",
@@ -985,42 +843,6 @@
     }
   },
   {
-    "id": "spyro-gyra-freetime",
-    "artist": "Spyro Gyra",
-    "title": "Freetime",
-    "collection": "main",
-    "genres": [
-      "Jazz",
-      "Lounge"
-    ],
-    "vibes": [],
-    "year": 1981,
-    "cover": "/covers/spyro-gyra-freetime.jpg",
-    "preview": {
-      "trackId": 1604636398,
-      "track": "Freetime",
-      "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview116/v4/78/96/fc/7896fc38-44aa-01cc-bf7e-a50590dc153c/mzaf_11269823862304506560.plus.aac.p.m4a"
-    }
-  },
-  {
-    "id": "spyro-gyra-morning-dance",
-    "artist": "Spyro Gyra",
-    "title": "Morning Dance",
-    "collection": "main",
-    "genres": [
-      "Jazz",
-      "Lounge"
-    ],
-    "vibes": [],
-    "year": 1979,
-    "cover": "/covers/spyro-gyra-morning-dance.jpg",
-    "preview": {
-      "trackId": 1605184223,
-      "track": "Morning Dance",
-      "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview116/v4/3f/f5/48/3ff548a5-3ea0-87b5-a241-2159f8b04e70/mzaf_17752684333803344466.plus.aac.p.m4a"
-    }
-  },
-  {
     "id": "stray-cats-built-for-speed",
     "artist": "Stray Cats",
     "title": "Built for Speed",
@@ -1048,7 +870,12 @@
     ],
     "vibes": [],
     "year": 1981,
-    "cover": "/covers/sylvester-too-hot-to-sleep.jpg"
+    "cover": "/covers/sylvester-too-hot-to-sleep.jpg",
+    "preview": {
+      "trackId": 1444035719,
+      "track": "Give It Up (Don't Make Me Wait)",
+      "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/ca/d0/bf/cad0bf54-6548-5ebf-c17e-55f7fb3bcf06/mzaf_14441700770041520748.plus.aac.p.m4a"
+    }
   },
   {
     "id": "thee-sacred-souls-got-a-story-to-tell",
@@ -1060,7 +887,12 @@
     ],
     "vibes": [],
     "year": 2024,
-    "cover": "/covers/thee-sacred-souls-got-a-story-to-tell.jpg"
+    "cover": "/covers/thee-sacred-souls-got-a-story-to-tell.jpg",
+    "preview": {
+      "trackId": 1749131364,
+      "track": "Lucid Girl",
+      "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/68/fb/c8/68fbc884-e409-2974-3ff6-d50ae48e9cd4/mzaf_450174408075518453.plus.aac.p.m4a"
+    }
   },
   {
     "id": "tom-misch-geography",
@@ -1073,19 +905,12 @@
     ],
     "vibes": [],
     "year": 2018,
-    "cover": "/covers/tom-misch-geography.jpg"
-  },
-  {
-    "id": "tomita-snowflakes-are-dancing",
-    "artist": "Tomita",
-    "title": "Snowflakes Are Dancing",
-    "collection": "main",
-    "genres": [
-      "Experimental"
-    ],
-    "vibes": [],
-    "year": 1974,
-    "cover": "/covers/tomita-snowflakes-are-dancing.jpg"
+    "cover": "/covers/tom-misch-geography.jpg",
+    "preview": {
+      "trackId": 1327772855,
+      "track": "It Runs Through Me (feat. De La Soul)",
+      "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/ad/18/15/ad181554-bfea-3486-cf98-2a61fd136770/mzaf_1586530420564336577.plus.aac.p.m4a"
+    }
   },
   {
     "id": "vampire-weekend-vampire-weekend",
@@ -1097,7 +922,12 @@
     ],
     "vibes": [],
     "year": 2008,
-    "cover": "/covers/vampire-weekend-vampire-weekend.jpg"
+    "cover": "/covers/vampire-weekend-vampire-weekend.jpg",
+    "preview": {
+      "trackId": 270425147,
+      "track": "Oxford Comma",
+      "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/f7/15/fa/f715fae7-bb95-e592-cdbf-3c27fdbc817b/mzaf_13185275150667956810.plus.aac.p.m4a"
+    }
   },
   {
     "id": "various-artists-saturday-night-fever",
@@ -1109,7 +939,12 @@
     ],
     "vibes": [],
     "year": 1977,
-    "cover": "/covers/various-artists-saturday-night-fever.jpg"
+    "cover": "/covers/various-artists-saturday-night-fever.jpg",
+    "preview": {
+      "trackId": 1445668462,
+      "track": "Stayin' Alive (From \"Saturday Night Fever\" Soundtrack)",
+      "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/72/f8/ca/72f8ca41-e760-6fb4-009d-a8b2b6b287bb/mzaf_18123089491337557034.plus.aac.p.m4a"
+    }
   },
   {
     "id": "various-artists-more-than-muzak",
@@ -1122,20 +957,12 @@
     ],
     "vibes": [],
     "year": 1981,
-    "cover": "/covers/various-artists-more-than-muzak.jpg"
-  },
-  {
-    "id": "various-artists-the-world-of-private-music-vol-ii",
-    "artist": "Various Artists",
-    "title": "The World of Private Music Vol II",
-    "collection": "compilation",
-    "genres": [
-      "Lounge",
-      "Jazz"
-    ],
-    "vibes": [],
-    "year": 1987,
-    "cover": "/covers/various-artists-the-world-of-private-music-vol-ii.jpg"
+    "cover": "/covers/various-artists-more-than-muzak.jpg",
+    "preview": {
+      "trackId": 1251032665,
+      "track": "Satin Doll",
+      "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview127/v4/98/7c/c6/987cc623-93a8-6a2c-7c21-ba985c9951f8/mzaf_7141615049312617437.plus.aac.p.m4a"
+    }
   },
   {
     "id": "asap-rocky-dont-be-dumb",
@@ -1149,7 +976,12 @@
     "vibes": [],
     "year": null,
     "cover": "/covers/asap-rocky-dont-be-dumb.jpg",
-    "edition": "BILT Member Exclusive Vinyl"
+    "edition": "BILT Member Exclusive Vinyl",
+    "preview": {
+      "trackId": 1862935174,
+      "track": "DON'T BE DUMB / TRIP BABY",
+      "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/ac/4c/64/ac4c6418-f5ab-04d9-f533-836d74476df9/mzaf_14498770040446788433.plus.aac.p.m4a"
+    }
   },
   {
     "id": "kitaro-tunhuang",
@@ -1162,7 +994,12 @@
     ],
     "vibes": [],
     "year": null,
-    "cover": "/covers/kitaro-tunhuang.jpg"
+    "cover": "/covers/kitaro-tunhuang.jpg",
+    "preview": {
+      "trackId": 1132450951,
+      "track": "Fuujin",
+      "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/6f/6f/84/6f6f849d-eece-50fd-2bc8-15b31b4612f7/mzaf_6460737796056570691.plus.aac.p.m4a"
+    }
   },
   {
     "id": "engelbert-humperdinck-wonderland-by-night",
@@ -1214,54 +1051,6 @@
       "track": "Peter Gunn",
       "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/38/d4/95/38d495c8-cb50-abbc-fc0d-47131f3ecde0/mzaf_14624177648606633123.plus.aac.p.m4a"
     }
-  },
-  {
-    "id": "dave-valentin-mind-time",
-    "artist": "Dave Valentin",
-    "title": "Mind Time",
-    "collection": "main",
-    "genres": [
-      "Jazz"
-    ],
-    "vibes": [],
-    "year": null,
-    "cover": "/covers/dave-valentin-mind-time.jpg"
-  },
-  {
-    "id": "richard-clayderman-ensuenos",
-    "artist": "Richard Clayderman",
-    "title": "Ensueños",
-    "collection": "main",
-    "genres": [
-      "Lounge"
-    ],
-    "vibes": [],
-    "year": null,
-    "cover": "/covers/richard-clayderman-ensuenos.jpg"
-  },
-  {
-    "id": "bluewerks-vol-1-up-down-left-right",
-    "artist": "Bluewerks",
-    "title": "Bluewerks Vol. 1: Up Down Left Right",
-    "collection": "main",
-    "genres": [
-      "Lounge"
-    ],
-    "vibes": [],
-    "year": 2021,
-    "cover": "/covers/bluewerks-vol-1-up-down-left-right.jpg"
-  },
-  {
-    "id": "billy-cobham-alivemutherforya",
-    "artist": "Billy Cobham, Steve Khan, Alphonso Johnson, Tom Scott",
-    "title": "Alivemutherforya",
-    "collection": "main",
-    "genres": [
-      "Jazz"
-    ],
-    "vibes": [],
-    "year": 1978,
-    "cover": "/covers/billy-cobham-alivemutherforya.jpg"
   },
   {
     "id": "andre-3000-new-blue-sun",
