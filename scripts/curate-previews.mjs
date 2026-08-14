@@ -23,7 +23,6 @@ const PICKS = {
   "anderson-paak-malibu-2": 1074099194, // Come Down
   "beach-boys-with-the-royal-philharmonic-orchestra": 1377349262, // Good Vibrations
   "berlioz-open-this-wall": 1741008357, // open this wall (title track)
-  "david-sanborn-voyeur": 184614724, // Run for Cover
   "father-john-misty-fear-fun": 669285168, // Hollywood Forever Cemetery Sings
   "frankie-goes-to-hollywood-welcome-to-the-pleasuredome": 1365569655, // Relax
   "marty-robbins-gunfighter-ballads-and-trail-songs": 158517936, // El Paso
@@ -32,19 +31,18 @@ const PICKS = {
   "robert-palmer-sneaking-sally-through-the-alley": 1440661853, // Sneakin' Sally Through the Alley
   "santana-abraxas": 871146600, // Black Magic Woman / Gypsy Queen
   "santana-amigos": 897788773, // Europa (Earth's Cry Heaven's Smile)
-  "santana-shango": 192663380, // Hold On
   "silk-sonic-an-evening-with-silk-sonic": 1612867242, // Leave the Door Open
   "sister-sledge-we-are-family": 1691509918, // We Are Family (title track)
   "snarky-puppy-family-dinner": 1292525337, // Something (feat. Lalah Hathaway)
   "engelbert-humperdinck-wonderland-by-night": 1443158068, // Wonderland By Night (title cut on the comp)
 
   // — wrong-album matches: suppress rather than play the wrong song —
-  "anderson-paak-tiny-desk-concert": null, // matched a Ferxxo "Tiny Desk" EP
-  "anderson-paak-venice": null, // matched the Silk Sonic "Love's Train" single
-  "klique-try-it-out": null, // matched a Skrillex single
-  "leon-bridges-leon": null, // matched "Beyond" (wrong, earlier era)
-  "pink-floyd-dark-side-of-the-moon": null, // matched a reggae tribute album
-  "asap-rocky-dont-be-dumb": null, // matched a Kelly Rowland single
+  // Only the ones still unresolved live here. Venice, Leon, Dark Side and
+  // Don't Be Dumb were all found later by the artist-catalog pass and are
+  // curated in curate-previews-2.mjs — re-nulling them here would quietly
+  // undo that, whichever order the two scripts happen to run in.
+  "anderson-paak-tiny-desk-concert": null, // matched a Ferxxo "Tiny Desk" EP; the NPR session isn't a commercial release
+  "klique-try-it-out": null, // matched a Skrillex single; the LP isn't on Apple or Deezer
 };
 
 const sheet = JSON.parse(fs.readFileSync(SHEET, "utf8"));

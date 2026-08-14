@@ -23,6 +23,12 @@ const sheet = JSON.parse(fs.readFileSync(SHEET, "utf8"));
 let applied = 0;
 let cleared = 0;
 const missingUrl = [];
+const expiring = [];
+
+// The data is baked into a static export, so a clip URL has to still work
+// weeks from now. Apple's preview assets are stable; Deezer's are signed with
+// an `exp=` that dies in minutes. Refuse to bake anything time-limited.
+const isExpiring = (url) => /[?&](hdnea|exp)=|expires=/i.test(url);
 
 for (const r of records) {
   const entry = sheet[r.id];
@@ -30,6 +36,12 @@ for (const r of records) {
     entry && entry.chosen != null
       ? entry.tracks.find((t) => t.id === entry.chosen)
       : null;
+
+  if (chosen?.preview && isExpiring(chosen.preview)) {
+    expiring.push(`${r.artist} — ${r.title} (${entry.match ?? "?"})`);
+    delete r.preview;
+    continue;
+  }
 
   if (chosen && chosen.preview) {
     r.preview = { trackId: chosen.id, track: chosen.name, url: chosen.preview };
@@ -48,4 +60,11 @@ console.log(`Applied ${applied} previews. Cleared ${cleared}.`);
 if (missingUrl.length) {
   console.log(`\nCheck these — chosen track has no preview url:`);
   missingUrl.forEach((m) => console.log("  - " + m));
+}
+if (expiring.length) {
+  console.log(
+    `\nSKIPPED — clip URL expires, can't be baked into a static build:`
+  );
+  expiring.forEach((m) => console.log("  - " + m));
+  console.log(`  Find the record on Apple instead and use pin-preview-album.mjs.`);
 }
