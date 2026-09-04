@@ -21,41 +21,73 @@ const ART = new Set([
   "soul",
 ]);
 
-export default function GenreWall({ genres }: { genres: string[] }) {
+export default function GenreWall({
+  genres,
+  onSelect,
+  active,
+  className = "grid grid-cols-2 gap-3",
+}: {
+  genres: string[];
+  /** Filter-in-place mode (the iPad rail): render buttons that call back
+   *  instead of links that navigate. Omit it and the wall behaves exactly as
+   *  it always has — one route per genre. */
+  onSelect?: (genre: string) => void;
+  /** Currently-selected genre, highlighted. Only meaningful with `onSelect`. */
+  active?: string | null;
+  /** Lets a caller lay the dividers out differently — a single stacked column
+   *  in the tablet rail, the original two-up on the phone home screen. */
+  className?: string;
+}) {
   return (
-    <div className="grid grid-cols-2 gap-3">
+    <div className={className}>
       {genres.map((g) => {
         const slug = genreSlug(g);
-        const href = `/browse/${slug}`;
+        const isActive = onSelect != null && active === g;
 
-        if (!ART.has(slug)) {
+        // The dividers are art, so "selected" reads as a lit brass frame around
+        // the tab rather than a tint over the artwork.
+        const frame = isActive
+          ? "ring-2 ring-accent ring-offset-2 ring-offset-background"
+          : onSelect
+            ? "opacity-75 hover:opacity-100"
+            : "";
+
+        const inner = !ART.has(slug) ? (
           // Kraft marker tab, sized to match the artwork so the wall stays aligned.
-          return (
-            <Link
-              key={g}
-              href={href}
-              aria-label={g}
-              className="flex aspect-[5/2] items-center justify-center rounded-[10px] bg-[#c9a980] text-[#2b2723] transition active:scale-[0.97]"
-            >
-              <span className="font-marker text-2xl leading-none">{g}</span>
-            </Link>
-          );
-        }
+          <span className="flex aspect-[5/2] items-center justify-center rounded-[10px] bg-[#c9a980] text-[#2b2723]">
+            <span className="font-marker text-2xl leading-none">{g}</span>
+          </span>
+        ) : (
+          /* eslint-disable-next-line @next/next/no-img-element */
+          <img
+            src={assetPath(`/genre-labels/${slug}.png`)}
+            alt=""
+            draggable={false}
+            className="aspect-[5/2] w-full select-none rounded-[10px] object-cover"
+          />
+        );
 
-        return (
+        const shared = `block overflow-hidden rounded-[10px] transition active:scale-[0.97] ${frame}`;
+
+        return onSelect ? (
+          <button
+            key={g}
+            type="button"
+            onClick={() => onSelect(g)}
+            aria-label={g}
+            aria-pressed={isActive}
+            className={`${shared} focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent`}
+          >
+            {inner}
+          </button>
+        ) : (
           <Link
             key={g}
-            href={href}
+            href={`/browse/${slug}`}
             aria-label={g}
-            className="overflow-hidden rounded-[10px] transition active:scale-[0.97]"
+            className={shared}
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={assetPath(`/genre-labels/${slug}.png`)}
-              alt=""
-              draggable={false}
-              className="aspect-[5/2] w-full select-none object-cover"
-            />
+            {inner}
           </Link>
         );
       })}

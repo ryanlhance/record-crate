@@ -13,7 +13,15 @@ import { Vinyl, Close } from "./icons";
 // from the CURRENT context (the `albums` passed in), riffles briefly, then lands
 // on one cover with "View details" and "Shuffle again". Label is "Shuffle" /
 // the icon only — never cute phrasing.
-export default function ShuffleControl({ albums }: { albums: Album[] }) {
+export default function ShuffleControl({
+  albums,
+  wide = false,
+}: {
+  albums: Album[];
+  /** Tablet layout: a larger reveal cover, and the details sheet opens in its
+   *  side-by-side form to match the rest of the iPad shelf. */
+  wide?: boolean;
+}) {
   const reduced = useReducedMotion();
 
   const [open, setOpen] = useState(false);
@@ -187,8 +195,8 @@ export default function ShuffleControl({ albums }: { albums: Album[] }) {
                 reel (slot-machine feel), then settles on the winner. */}
             <div
               className={`relative aspect-square w-64 max-w-[72vw] ${
-                chosen && !reduced ? "shuffle-land" : ""
-              }`}
+                wide ? "lg:w-80" : ""
+              } ${chosen && !reduced ? "shuffle-land" : ""}`}
             >
               <div
                 className="pointer-events-none absolute inset-0 rounded-full opacity-60 blur-2xl"
@@ -256,7 +264,11 @@ export default function ShuffleControl({ albums }: { albums: Album[] }) {
       )}
 
       {detail && (
-        <AlbumDetail album={detail} onClose={() => setDetail(null)} />
+        <AlbumDetail
+          album={detail}
+          wide={wide}
+          onClose={() => setDetail(null)}
+        />
       )}
     </>
   );

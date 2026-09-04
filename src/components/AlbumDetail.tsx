@@ -16,9 +16,14 @@ import PreviewButton from "./PreviewButton";
 export default function AlbumDetail({
   album,
   onClose,
+  wide = false,
 }: {
   album: Album;
   onClose: () => void;
+  /** Landscape/tablet layout: cover and metadata sit side by side instead of
+   *  stacked, so the whole sheet fits a short, wide viewport without scrolling.
+   *  Opt-in — every phone call site keeps the stacked sheet. */
+  wide?: boolean;
 }) {
   // A back-stack of albums viewed within this sheet. Tapping a Similar-vibes
   // neighbor pushes a new album so you can wander album → album → album in
@@ -75,6 +80,8 @@ export default function AlbumDetail({
 
   const artistMultiple = artistHasMultiple(current.artist);
 
+  const similar = <SimilarVibes album={current} onSelect={swapTo} />;
+
   return (
     <div
       className="fixed inset-0 z-50 flex items-end justify-center bg-black/70 p-0 backdrop-blur-sm sm:items-center sm:p-6"
@@ -90,7 +97,9 @@ export default function AlbumDetail({
 
       <div
         ref={scrollRef}
-        className="max-h-[90vh] w-full max-w-md overflow-y-auto rounded-t-3xl bg-card p-6 pt-2 shadow-2xl sm:max-h-[88vh] sm:rounded-3xl"
+        className={`max-h-[90vh] w-full overflow-y-auto rounded-t-3xl bg-card p-6 pt-2 shadow-2xl sm:max-h-[88vh] sm:rounded-3xl ${
+          wide ? "max-w-md lg:max-w-4xl lg:p-8 lg:pt-2" : "max-w-md"
+        }`}
         style={{
           transform: `translateY(${dragY}px)`,
           transition: dragging ? "none" : "transform 0.25s ease",
@@ -118,77 +127,106 @@ export default function AlbumDetail({
           </button>
         </div>
 
-        {/* Cover, with the "taste test" preview button overlaid when we have a
+        {/* Cover + metadata. Stacked by default; in `wide` mode they become two
+            columns on large screens so a landscape tablet shows the whole record
+            at once. Similar vibes stays full-width underneath either way. */}
+        <div
+          className={
+            wide
+              ? "lg:grid lg:grid-cols-[19rem_minmax(0,1fr)] lg:items-start lg:gap-8"
+              : undefined
+          }
+        >
+          {/* Cover, with the "taste test" preview button overlaid when we have a
             clip for this record. Keyed by id so each album gets a fresh audio
             element (and the old one is torn down) on open and on in-place swap. */}
-        <div className="relative mx-auto w-56">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={assetPath(current.cover)}
-            alt=""
-            className="aspect-square w-full rounded-xl object-cover shadow-xl"
-          />
-          {current.preview && (
-            <PreviewButton
-              key={current.id}
-              url={current.preview.url}
-              track={current.preview.track}
-            />
-          )}
-        </div>
-
-        <div className="mt-5 text-center">
-          <h2
-            ref={titleRef}
-            tabIndex={-1}
-            className="font-display text-2xl font-semibold leading-tight outline-none"
+          <div
+            className={`relative mx-auto w-56 ${wide ? "lg:mx-0 lg:w-full" : ""}`}
           >
-            {current.title}
-          </h2>
-          {artistMultiple ? (
-            <Link
-              href={`/artist/${slugifyArtist(current.artist)}`}
-              className="mt-1 inline-block text-lg text-accent underline decoration-accent/40 underline-offset-4"
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={assetPath(current.cover)}
+              alt=""
+              className="aspect-square w-full rounded-xl object-cover shadow-xl"
+            />
+            {current.preview && (
+              <PreviewButton
+                key={current.id}
+                url={current.preview.url}
+                track={current.preview.track}
+              />
+            )}
+          </div>
+
+          <div className={wide ? "lg:mt-0" : undefined}>
+            <div
+              className={`mt-5 text-center ${
+                wide ? "lg:mt-0 lg:text-left" : ""
+              }`}
             >
-              {current.artist}
-            </Link>
-          ) : (
-            <p className="mt-1 text-lg text-accent">{current.artist}</p>
-          )}
-        </div>
+              <h2
+                ref={titleRef}
+                tabIndex={-1}
+                className="font-display text-2xl font-semibold leading-tight outline-none"
+              >
+                {current.title}
+              </h2>
+              {artistMultiple ? (
+                <Link
+                  href={`/artist/${slugifyArtist(current.artist)}`}
+                  className="mt-1 inline-block text-lg text-accent underline decoration-accent/40 underline-offset-4"
+                >
+                  {current.artist}
+                </Link>
+              ) : (
+                <p className="mt-1 text-lg text-accent">{current.artist}</p>
+              )}
+            </div>
 
-        {current.edition && (
-          <p className="mx-auto mt-3 max-w-xs text-center text-sm italic leading-relaxed text-muted">
-            {current.edition}
-          </p>
-        )}
+            {current.edition && (
+              <p
+                className={`mx-auto mt-3 max-w-xs text-center text-sm italic leading-relaxed text-muted ${
+                  wide ? "lg:mx-0 lg:max-w-none lg:text-left" : ""
+                }`}
+              >
+                {current.edition}
+              </p>
+            )}
 
-        {/* Tappable facets: year · genres. (Collection is intentionally omitted —
+            {/* Tappable facets: year · genres. (Collection is intentionally omitted —
             the detail itself makes the type clear; the collections live on the
             home screen.) */}
-        <div className="mt-4 flex flex-wrap justify-center gap-2">
-          {current.year && (
-            <Link
-              href={`/year/${current.year}`}
-              className="rounded-full bg-white/10 px-3 py-1 text-sm transition active:scale-95"
+            <div
+              className={`mt-4 flex flex-wrap justify-center gap-2 ${
+                wide ? "lg:justify-start" : ""
+              }`}
             >
-              {current.year}
-            </Link>
-          )}
-          {current.genres.map((g) => (
-            <Link
-              key={g}
-              href={`/browse/${genreSlug(g)}`}
-              className="rounded-full border border-accent/50 px-3 py-1 text-sm text-accent transition active:scale-95"
-            >
-              {g}
-            </Link>
-          ))}
+              {current.year && (
+                <Link
+                  href={`/year/${current.year}`}
+                  className="rounded-full bg-white/10 px-3 py-1 text-sm transition active:scale-95"
+                >
+                  {current.year}
+                </Link>
+              )}
+              {current.genres.map((g) => (
+                <Link
+                  key={g}
+                  href={`/browse/${genreSlug(g)}`}
+                  className="rounded-full border border-accent/50 px-3 py-1 text-sm text-accent transition active:scale-95"
+                >
+                  {g}
+                </Link>
+              ))}
+            </div>
+            {/* Similar vibes — the sheet's one discovery moment. Tapping a
+                neighbor swaps the album in place. Beside the cover when wide,
+                beneath everything when stacked. */}
+            {wide && similar}
+          </div>
         </div>
 
-        {/* Similar vibes — the sheet's one discovery moment. Tapping a neighbor
-            swaps the album in place. */}
-        <SimilarVibes album={current} onSelect={swapTo} />
+        {!wide && similar}
       </div>
     </div>
   );
