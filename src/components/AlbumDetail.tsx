@@ -12,6 +12,7 @@ import { assetPath } from "@/lib/asset";
 import { Close } from "./icons";
 import SimilarVibes from "./SimilarVibes";
 import PreviewButton from "./PreviewButton";
+import { useTabletShelf } from "./ipad/TabletShelfContext";
 
 export default function AlbumDetail({
   album,
@@ -79,6 +80,11 @@ export default function AlbumDetail({
   };
 
   const artistMultiple = artistHasMultiple(current.artist);
+
+  // Inside the tablet shelf, facets narrow the shelf behind the sheet instead
+  // of navigating away from it. Null on every phone route -> plain links.
+  const narrowShelf = useTabletShelf();
+  const facetClass = "transition active:scale-95";
 
   const similar = <SimilarVibes album={current} onSelect={swapTo} />;
 
@@ -172,12 +178,25 @@ export default function AlbumDetail({
                 {current.title}
               </h2>
               {artistMultiple ? (
-                <Link
-                  href={`/artist/${slugifyArtist(current.artist)}`}
-                  className="mt-1 inline-block text-lg text-accent underline decoration-accent/40 underline-offset-4"
-                >
-                  {current.artist}
-                </Link>
+                narrowShelf ? (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      narrowShelf({ kind: "artist", value: current.artist });
+                      onClose();
+                    }}
+                    className="mt-1 inline-block text-lg text-accent underline decoration-accent/40 underline-offset-4"
+                  >
+                    {current.artist}
+                  </button>
+                ) : (
+                  <Link
+                    href={`/artist/${slugifyArtist(current.artist)}`}
+                    className="mt-1 inline-block text-lg text-accent underline decoration-accent/40 underline-offset-4"
+                  >
+                    {current.artist}
+                  </Link>
+                )
               ) : (
                 <p className="mt-1 text-lg text-accent">{current.artist}</p>
               )}
@@ -201,23 +220,49 @@ export default function AlbumDetail({
                 wide ? "lg:justify-start" : ""
               }`}
             >
-              {current.year && (
-                <Link
-                  href={`/year/${current.year}`}
-                  className="rounded-full bg-white/10 px-3 py-1 text-sm transition active:scale-95"
-                >
-                  {current.year}
-                </Link>
+              {current.year &&
+                (narrowShelf ? (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      narrowShelf({ kind: "year", value: current.year! });
+                      onClose();
+                    }}
+                    className={`rounded-full bg-white/10 px-3 py-1 text-sm ${facetClass}`}
+                  >
+                    {current.year}
+                  </button>
+                ) : (
+                  <Link
+                    href={`/year/${current.year}`}
+                    className={`rounded-full bg-white/10 px-3 py-1 text-sm ${facetClass}`}
+                  >
+                    {current.year}
+                  </Link>
+                ))}
+              {current.genres.map((g) =>
+                narrowShelf ? (
+                  <button
+                    key={g}
+                    type="button"
+                    onClick={() => {
+                      narrowShelf({ kind: "genre", value: g });
+                      onClose();
+                    }}
+                    className={`rounded-full border border-accent/50 px-3 py-1 text-sm text-accent ${facetClass}`}
+                  >
+                    {g}
+                  </button>
+                ) : (
+                  <Link
+                    key={g}
+                    href={`/browse/${genreSlug(g)}`}
+                    className={`rounded-full border border-accent/50 px-3 py-1 text-sm text-accent ${facetClass}`}
+                  >
+                    {g}
+                  </Link>
+                ),
               )}
-              {current.genres.map((g) => (
-                <Link
-                  key={g}
-                  href={`/browse/${genreSlug(g)}`}
-                  className="rounded-full border border-accent/50 px-3 py-1 text-sm text-accent transition active:scale-95"
-                >
-                  {g}
-                </Link>
-              ))}
             </div>
             {/* Similar vibes — the sheet's one discovery moment. Tapping a
                 neighbor swaps the album in place. Beside the cover when wide,

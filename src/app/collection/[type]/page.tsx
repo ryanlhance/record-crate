@@ -8,6 +8,7 @@ import {
   COLLECTIONS,
   getByCollection,
   isCollectionType,
+  shelfView,
 } from "@/lib/records";
 
 export function generateStaticParams() {
@@ -27,8 +28,9 @@ export default async function CollectionPage({
   // Special + Compilations are curated show-pieces — each pressing earns a hinge
   // moment and its `edition` note (which only the cover-flow caption shows), so
   // they keep CoverFlow regardless of count. Only the big "main" shelf scans as
-  // a grid (the >12 heuristic from 01).
-  const useGrid = type === "main" && albums.length > 12;
+  // a grid. The rule itself lives in lib/records so the tablet shelf obeys the
+  // same one.
+  const useGrid = shelfView(albums, { savor: type !== "main" }) === "grid";
 
   return (
     <main className="flex flex-1 flex-col">

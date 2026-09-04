@@ -73,6 +73,33 @@ export function getByCollection(type: CollectionType): Album[] {
   return sortByArtistFirstName(albums.filter((a) => a.collection === type));
 }
 
+export type ShelfView = "flow" | "grid";
+
+/** Above this many records a set stops being savourable and becomes a scan. */
+export const SCAN_THRESHOLD = 12;
+
+/**
+ * Cover-flow = savor one, grid = scan many.
+ *
+ * Curated sets savor no matter how many records they hold: Special Editions and
+ * Compilations are show-pieces, and a pressing's `edition` note only ever
+ * appears in the flow's caption — put them in a grid and the note that makes
+ * them special is invisible while browsing. Artist and year sets savor for the
+ * same reason: you deliberately narrowed to a handful. Everything else savors
+ * while it's small and scans once it's big.
+ *
+ * The rule is about the size of the SET, not the size of the screen, so it
+ * holds identically on a phone and on a tablet. Kept here rather than repeated
+ * per route so the two can't drift apart.
+ */
+export function shelfView(
+  albums: Album[],
+  { savor = false }: { savor?: boolean } = {}
+): ShelfView {
+  if (savor) return "flow";
+  return albums.length > SCAN_THRESHOLD ? "grid" : "flow";
+}
+
 export function getGenres(): string[] {
   const set = new Set<string>();
   albums.forEach((a) => a.genres.forEach((g) => set.add(g)));

@@ -3,7 +3,13 @@ import CoverFlow from "@/components/CoverFlow";
 import RecordGrid from "@/components/RecordGrid";
 import CrateHeader from "@/components/CrateHeader";
 import ShuffleControl from "@/components/ShuffleControl";
-import { getByGenre, getGenres, genreSlug, genreFromSlug } from "@/lib/records";
+import {
+  getByGenre,
+  getGenres,
+  genreSlug,
+  genreFromSlug,
+  shelfView,
+} from "@/lib/records";
 
 export function generateStaticParams() {
   // Clean, URL-safe slugs only (no "&" etc. that break static-export folders).
@@ -24,7 +30,7 @@ export default async function GenrePage({
 
   // Cover-flow = savor one, grid = scan many. Genre bins are for scanning, so
   // the big ones become a grid; a small genre stays a delightful hinge.
-  const useGrid = albums.length > 12;
+  const useGrid = shelfView(albums) === "grid";
 
   return (
     <main className="flex flex-1 flex-col">

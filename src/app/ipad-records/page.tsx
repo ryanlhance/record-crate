@@ -1,12 +1,13 @@
 import type { Metadata, Viewport } from "next";
-import { getAllAlbums, getGenres } from "@/lib/records";
+import { getGenres } from "@/lib/records";
 import IpadShelf from "@/components/ipad/IpadShelf";
 
 // The tablet build of the crate, at /ipad-records. Landscape-first, portrait
 // supported. It reuses the phone app wholesale — same records.json, same cover
-// art and bin-divider artwork, same RecordCard / AlbumDetail / PreviewButton /
-// ShuffleControl — and only changes how much room they get. Nothing about the
-// collection is duplicated here; see IpadShelf for the layout reasoning.
+// and bin-divider artwork, same RecordCard / CoverFlow / AlbumDetail /
+// PreviewButton / ShuffleControl, and the same savor-or-scan rule from
+// lib/records. What changes is navigation, which is the one thing a tablet
+// actually changes. See IpadShelf for the reasoning.
 
 export const metadata: Metadata = {
   title: "Ryan's Records — iPad",
@@ -22,5 +23,5 @@ export const viewport: Viewport = {
 };
 
 export default function IpadRecordsPage() {
-  return <IpadShelf all={getAllAlbums()} genres={getGenres()} />;
+  return <IpadShelf genres={getGenres()} />;
 }

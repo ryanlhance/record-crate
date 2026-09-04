@@ -11,11 +11,13 @@ import AlbumDetail from "./AlbumDetail";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 
-type Variant = "full" | "compact";
+type Variant = "full" | "compact" | "tablet";
 
 // The signature fanned cover-flow. `full` is the screen-filling flow used by the
 // curated collections; `compact` is a shorter strip (smaller slides, trimmer
-// caption) for the home Spotlight. It is no longer the default for big lists —
+// caption) for the home Spotlight; `tablet` is `full` given an iPad's room —
+// the same hinge at roughly twice the cover size, which is the whole reason to
+// build a tablet version at all. It is no longer the default for big lists —
 // being rarer is the point.
 export default function CoverFlow({
   albums,
@@ -35,8 +37,13 @@ export default function CoverFlow({
   }
 
   const compact = variant === "compact";
+  const tablet = variant === "tablet";
   const active = albums[Math.min(activeIndex, albums.length - 1)];
-  const slideWidth = compact ? "min(46vw, 11rem)" : "min(68vw, 16rem)";
+  const slideWidth = compact
+    ? "min(46vw, 11rem)"
+    : tablet
+      ? "min(44vw, 26rem)"
+      : "min(68vw, 16rem)";
 
   return (
     <div
@@ -61,7 +68,7 @@ export default function CoverFlow({
         }}
         onSwiper={setSwiper}
         onActiveIndexChange={(s) => setActiveIndex(s.activeIndex)}
-        className={`w-full ${compact ? "py-2" : "py-10"}`}
+        className={`w-full ${compact ? "py-2" : tablet ? "py-12" : "py-10"}`}
       >
         {albums.map((album, index) => (
           <SwiperSlide key={album.id} style={{ width: slideWidth }}>
@@ -100,13 +107,27 @@ export default function CoverFlow({
           <p className="mt-0.5 text-sm text-accent">{active.artist}</p>
         </div>
       ) : (
-        <div className="mt-5 flex h-32 flex-col items-center px-6 text-center">
-          <p className="line-clamp-2 font-display text-xl leading-snug">
+        <div
+          className={`mt-5 flex flex-col items-center px-6 text-center ${
+            tablet ? "h-40" : "h-32"
+          }`}
+        >
+          <p
+            className={`line-clamp-2 font-display leading-snug ${
+              tablet ? "text-3xl" : "text-xl"
+            }`}
+          >
             {active.title}
           </p>
-          <p className="mt-1 text-accent">{active.artist}</p>
+          <p className={`mt-1 text-accent ${tablet ? "text-lg" : ""}`}>
+            {active.artist}
+          </p>
           {active.edition && (
-            <p className="mx-auto mt-2 max-w-xs text-sm italic leading-snug text-muted">
+            <p
+              className={`mx-auto mt-2 italic leading-snug text-muted ${
+                tablet ? "max-w-md text-base" : "max-w-xs text-sm"
+              }`}
+            >
               {active.edition}
             </p>
           )}
@@ -114,7 +135,11 @@ export default function CoverFlow({
       )}
 
       {selected && (
-        <AlbumDetail album={selected} onClose={() => setSelected(null)} />
+        <AlbumDetail
+          album={selected}
+          wide={tablet}
+          onClose={() => setSelected(null)}
+        />
       )}
     </div>
   );
