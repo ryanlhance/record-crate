@@ -45,11 +45,14 @@ export default function GenreWall({
         const isActive = onSelect != null && active === g;
 
         // The dividers are art, so "selected" reads as a lit brass frame around
-        // the tab rather than a tint over the artwork.
+        // the tab — the divider you pulled forward — rather than a tint over
+        // the artwork. The others fall back only while one IS pulled forward;
+        // with nothing selected the wall sits at full strength.
+        const somethingActive = onSelect != null && active != null;
         const frame = isActive
           ? "ring-2 ring-accent ring-offset-2 ring-offset-background"
-          : onSelect
-            ? "opacity-75 hover:opacity-100"
+          : somethingActive
+            ? "opacity-45 hover:opacity-90"
             : "";
 
         const inner = !ART.has(slug) ? (

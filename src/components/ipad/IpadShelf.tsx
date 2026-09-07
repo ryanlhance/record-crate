@@ -113,7 +113,12 @@ export default function IpadShelf({ genres }: { genres: string[] }) {
               type="button"
               onClick={() => setFilter({ kind: "all" })}
               aria-label="Ryan's Collection — show the whole shelf"
-              className="block w-full overflow-hidden rounded-2xl transition active:scale-[0.98]"
+              aria-pressed={filter.kind === "all"}
+              className={`block w-full overflow-hidden rounded-2xl transition active:scale-[0.98] ${
+                filter.kind === "all"
+                  ? "ring-2 ring-accent ring-offset-2 ring-offset-background"
+                  : ""
+              }`}
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
@@ -150,8 +155,10 @@ export default function IpadShelf({ genres }: { genres: string[] }) {
                           setFilter({ kind: "collection", value: c.type })
                         }
                         aria-pressed={on}
-                        className={`block py-2 text-sm transition active:text-foreground ${
-                          on ? "text-foreground" : "text-muted"
+                        className={`block py-2 text-sm transition ${
+                          on
+                            ? "text-accent"
+                            : "text-muted active:text-foreground"
                         }`}
                       >
                         {COLLECTION_LABELS[c.type]}
@@ -160,9 +167,11 @@ export default function IpadShelf({ genres }: { genres: string[] }) {
                   );
                 })}
               </ul>
+              {/* Set apart from the collections — in the same size and colour
+                  it reads as a fourth one. */}
               <Link
                 href="/"
-                className="mt-2 block py-2 text-sm text-muted transition active:text-foreground"
+                className="mt-5 block text-xs text-muted/70 underline decoration-muted/25 underline-offset-4 transition active:text-foreground"
               >
                 Phone version
               </Link>
