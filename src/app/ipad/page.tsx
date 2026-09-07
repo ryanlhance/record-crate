@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { getGenres } from "@/lib/records";
 import IpadShelf from "@/components/ipad/IpadShelf";
 
-// The tablet build of the crate, at /ipad-records. Landscape-first, portrait
+// The tablet build of the crate, at /ipad. Landscape-first, portrait
 // supported. It reuses the phone app wholesale — same records.json, same cover
 // and bin-divider artwork, same RecordCard / CoverFlow / AlbumDetail /
 // PreviewButton / ShuffleControl, and the same savor-or-scan rule from
