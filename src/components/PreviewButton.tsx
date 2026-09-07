@@ -23,6 +23,15 @@ const BOX: Record<Size, string> = {
   lg: "h-16 w-16", // on the detail sheet / shuffle reveal
 };
 
+// Tucked into the top-right corner rather than sat in the middle of the sleeve.
+// Centred, it hides the part of the artwork you most want to look at, and on a
+// grid it lands exactly where you'd tap to open the record.
+const POS: Record<Size, string> = {
+  sm: "right-1.5 top-1.5",
+  md: "right-2.5 top-2.5",
+  lg: "right-3 top-3",
+};
+
 const ICON: Record<Size, string> = {
   sm: "h-4 w-4",
   md: "h-5 w-5",
@@ -116,7 +125,10 @@ export default function PreviewButton({
       aria-label={
         playing ? `Pause preview of ${track}` : `Play 30-second preview of ${track}`
       }
-      className={`absolute inset-0 m-auto flex items-center justify-center rounded-full bg-black/55 text-accent shadow-lg backdrop-blur-sm transition hover:bg-black/65 active:scale-95 ${BOX[size]}`}
+      // `pointer-events-auto` so this still works inside a pointer-events-none
+      // overlay — the overlay has to stay transparent to taps or it swallows
+      // the whole cover.
+      className={`pointer-events-auto absolute z-10 flex items-center justify-center rounded-full bg-black/55 text-accent shadow-lg backdrop-blur-sm transition hover:bg-black/65 active:scale-95 ${BOX[size]} ${POS[size]}`}
     >
       <svg
         className="absolute inset-0 h-full w-full -rotate-90"

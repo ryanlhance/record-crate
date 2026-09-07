@@ -93,15 +93,16 @@ export default function RecordCard({
       </button>
 
       {canPreview && (
+        // Transparent to taps everywhere except the button itself, so the cover
+        // underneath stays fully tappable — an inset-0 layer that accepts
+        // pointer events swallows the whole sleeve.
         <div className="pointer-events-none absolute inset-x-0 top-0 aspect-square">
-          <div className="pointer-events-auto absolute inset-0">
-            <PreviewButton
-              key={album.id}
-              url={album.preview!.url}
-              track={album.preview!.track}
-              size="sm"
-            />
-          </div>
+          <PreviewButton
+            key={album.id}
+            url={album.preview!.url}
+            track={album.preview!.track}
+            size="sm"
+          />
         </div>
       )}
     </div>
