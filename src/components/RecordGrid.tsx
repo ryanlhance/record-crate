@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { type ReactNode, useState } from "react";
 import { type Album } from "@/lib/records";
 import { useReducedMotion } from "@/lib/useReducedMotion";
 import RecordCard from "./RecordCard";
@@ -31,9 +31,14 @@ const EAGER: Record<Variant, number> = { phone: 6, ipad: 12 };
 export default function RecordGrid({
   albums,
   variant = "phone",
+  leading,
 }: {
   albums: Album[];
   variant?: Variant;
+  /** Rendered as the first tile of the grid, sized like a cover. The tablet
+   *  puts Shuffle here: a wall of artwork swallows a small chip floating at the
+   *  bottom of the page. */
+  leading?: ReactNode;
 }) {
   const [selected, setSelected] = useState<Album | null>(null);
   const reduced = useReducedMotion();
@@ -53,6 +58,7 @@ export default function RecordGrid({
     <div className="flex-1">
       {/* Generous bottom padding so the last row clears the fixed Shuffle pill. */}
       <div className={`grid ${GRID[variant]}`}>
+        {leading}
         {albums.map((album, i) => (
           <div
             key={album.id}

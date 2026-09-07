@@ -7,6 +7,7 @@ import { assetPath } from "@/lib/asset";
 import AlbumDetail from "./AlbumDetail";
 import DetailsButton from "./DetailsButton";
 import { Vinyl, Close } from "./icons";
+import { TabletShelfContext, useTabletShelf } from "./ipad/TabletShelfContext";
 
 // Shuffle — the serendipity engine. A persistent fixed cardboard "chip" button
 // (always one tap away while browsing). Tapping picks a uniformly-random album
@@ -16,13 +17,24 @@ import { Vinyl, Close } from "./icons";
 export default function ShuffleControl({
   albums,
   wide = false,
+  variant = "floating",
 }: {
   albums: Album[];
   /** Tablet layout: a larger reveal cover, and the details sheet opens in its
    *  side-by-side form to match the rest of the iPad shelf. */
   wide?: boolean;
+  /** "floating" is the fixed chip that rides above the page. "cell" renders the
+   *  trigger as a cover-sized square meant to sit as the first tile of a grid —
+   *  among a wall of covers the small chip at the bottom gets lost. */
+  variant?: "floating" | "cell";
 }) {
   const reduced = useReducedMotion();
+  // Inside the tablet shelf a facet tapped in the details sheet narrows the
+  // shelf BEHIND this overlay. Left open, the reveal hides the very thing the
+  // tap asked for — and once `albums` narrows to a single record "Shuffle
+  // again" disables itself. So a facet closes the whole reveal, not just the
+  // sheet. Null on every phone route, where facets navigate instead.
+  const narrowShelf = useTabletShelf();
 
   const [open, setOpen] = useState(false);
   const [chosen, setChosen] = useState<Album | null>(null);
@@ -133,24 +145,49 @@ export default function ShuffleControl({
     };
     document.addEventListener("keydown", onKey);
     document.body.style.overflow = "hidden";
-    revealRef.current?.focus();
+    if (!detail) revealRef.current?.focus();
     return () => {
       document.removeEventListener("keydown", onKey);
       document.body.style.overflow = "";
     };
-  }, [open, close]);
+    // `detail` is a dependency so closing the sheet re-locks the page and hands
+    // focus back to the reveal — AlbumDetail's own cleanup clears the lock on
+    // its way out, and the reveal is still open underneath.
+  }, [open, close, detail]);
 
   useEffect(() => () => clearTimer(), []);
 
   return (
     <>
-      {!open && (
+      {!open && variant === "cell" && (
         <button
           ref={triggerRef}
           type="button"
           onClick={openShuffle}
           aria-label="Shuffle"
-          className="fixed bottom-0 left-1/2 z-40 mb-[calc(env(safe-area-inset-bottom)+1rem)] h-16 w-16 -translate-x-1/2 transition [filter:drop-shadow(0_3px_6px_rgba(0,0,0,0.55))] active:scale-95"
+          className="flex aspect-square w-full items-center justify-center rounded-2xl bg-card shadow-xl transition active:scale-[0.97]"
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={assetPath("/ui/shuffle.png")}
+            alt=""
+            draggable={false}
+            className="h-3/5 w-3/5 select-none object-contain [filter:drop-shadow(0_3px_6px_rgba(0,0,0,0.55))]"
+          />
+        </button>
+      )}
+
+      {!open && variant === "floating" && (
+        <button
+          ref={triggerRef}
+          type="button"
+          onClick={openShuffle}
+          aria-label="Shuffle"
+          className={`fixed bottom-0 left-1/2 z-40 mb-[calc(env(safe-area-inset-bottom)+1rem)] h-16 w-16 -translate-x-1/2 transition [filter:drop-shadow(0_3px_6px_rgba(0,0,0,0.55))] active:scale-95 ${
+            // With a rail down the left the viewport centre isn't the shelf's
+            // centre; nudge over by half the rail so it sits under the covers.
+            wide ? "lg:ml-[8.5rem] xl:ml-[9.5rem]" : ""
+          }`}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
@@ -206,8 +243,10 @@ export default function ShuffleControl({
                 }}
                 aria-hidden="true"
               />
+              {/* The disc is SMALLER than the sleeve — it slides out of the
+                  right edge rather than swallowing the cover. */}
               <Vinyl
-                className="pointer-events-none absolute left-1/2 top-1/2 h-[118%] w-[118%] -translate-x-1/2 -translate-y-1/2 text-foreground/15"
+                className="pointer-events-none absolute left-[60%] top-1/2 h-[92%] w-[92%] -translate-x-1/2 -translate-y-1/2 text-foreground/15"
                 aria-hidden="true"
               />
               {frames.length > 0 && (
@@ -264,11 +303,22 @@ export default function ShuffleControl({
       )}
 
       {detail && (
-        <AlbumDetail
-          album={detail}
-          wide={wide}
-          onClose={() => setDetail(null)}
-        />
+        <TabletShelfContext.Provider
+          value={
+            narrowShelf
+              ? (facet) => {
+                  narrowShelf(facet);
+                  close();
+                }
+              : null
+          }
+        >
+          <AlbumDetail
+            album={detail}
+            wide={wide}
+            onClose={() => setDetail(null)}
+          />
+        </TabletShelfContext.Provider>
       )}
     </>
   );

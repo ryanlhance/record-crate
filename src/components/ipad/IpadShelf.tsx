@@ -187,20 +187,28 @@ export default function IpadShelf({ genres }: { genres: string[] }) {
             </div>
           )}
 
-          {/* Savor or scan — the phone's rule, at tablet size. */}
+          {/* Savor or scan — the phone's rule, at tablet size.
+              Shuffle rides along differently in each: the flow is one cover on
+              an empty field, so the floating chip reads fine; a grid is a wall
+              of artwork that swallows it, so there it takes a tile of its own
+              at the head of the shelf. */}
           {flow ? (
-            <CoverFlow
-              key={`${filter.kind}:${"value" in filter ? filter.value : ""}`}
-              albums={albums}
-              variant="tablet"
-            />
+            <>
+              <CoverFlow
+                key={`${filter.kind}:${"value" in filter ? filter.value : ""}`}
+                albums={albums}
+                variant="tablet"
+              />
+              <ShuffleControl albums={albums} wide />
+            </>
           ) : (
-            <RecordGrid albums={albums} variant="ipad" />
+            <RecordGrid
+              albums={albums}
+              variant="ipad"
+              leading={<ShuffleControl albums={albums} wide variant="cell" />}
+            />
           )}
         </main>
-
-        {/* Shuffle draws from whatever is on the shelf right now. */}
-        <ShuffleControl albums={albums} wide />
       </div>
     </TabletShelfContext.Provider>
   );
