@@ -6,7 +6,7 @@ import { useReducedMotion } from "@/lib/useReducedMotion";
 import { assetPath } from "@/lib/asset";
 import AlbumDetail from "./AlbumDetail";
 import DetailsButton from "./DetailsButton";
-import { Vinyl, Close } from "./icons";
+import { Close } from "./icons";
 import { TabletShelfContext, useTabletShelf } from "./ipad/TabletShelfContext";
 
 // Shuffle — the serendipity engine. A persistent fixed cardboard "chip" button
@@ -227,9 +227,9 @@ export default function ShuffleControl({
             className="flex w-full max-w-sm flex-col items-center outline-none"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Cover: the spotlit landing spot. A soft glow + vinyl peek behind
-                a fixed-size slot. One image whose src flips crisply through the
-                reel (slot-machine feel), then settles on the winner. */}
+            {/* Cover: the spotlit landing spot. A soft glow behind a fixed-size
+                slot. One image whose src flips crisply through the reel
+                (slot-machine feel), then settles on the winner. */}
             <div
               className={`relative aspect-square w-64 max-w-[72vw] ${
                 wide ? "lg:w-80" : ""
@@ -241,12 +241,6 @@ export default function ShuffleControl({
                   background:
                     "radial-gradient(circle, rgba(205,162,74,0.32), transparent 70%)",
                 }}
-                aria-hidden="true"
-              />
-              {/* The disc is SMALLER than the sleeve — it slides out of the
-                  right edge rather than swallowing the cover. */}
-              <Vinyl
-                className="pointer-events-none absolute left-[60%] top-1/2 h-[92%] w-[92%] -translate-x-1/2 -translate-y-1/2 text-foreground/15"
                 aria-hidden="true"
               />
               {frames.length > 0 && (

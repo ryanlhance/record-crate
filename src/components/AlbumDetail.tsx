@@ -86,7 +86,9 @@ export default function AlbumDetail({
   const narrowShelf = useTabletShelf();
   const facetClass = "transition active:scale-95";
 
-  const similar = <SimilarVibes album={current} onSelect={swapTo} />;
+  const similar = (
+    <SimilarVibes album={current} onSelect={swapTo} wide={wide} />
+  );
 
   return (
     <div
@@ -116,12 +118,19 @@ export default function AlbumDetail({
             dismiss. A close button sits alongside for anyone who won't discover
             the drag. */}
         <div
-          className="sticky top-0 z-10 -mx-6 -mt-2 mb-3 flex cursor-grab touch-none justify-center bg-card py-3 active:cursor-grabbing"
-          onPointerDown={onPointerDown}
-          onPointerMove={onPointerMove}
-          onPointerUp={onPointerUp}
+          className={`sticky top-0 z-10 -mx-6 -mt-2 mb-3 flex touch-none justify-center bg-card py-3 ${
+            wide ? "lg:-mx-8 lg:py-2" : "cursor-grab active:cursor-grabbing"
+          }`}
+          onPointerDown={wide ? undefined : onPointerDown}
+          onPointerMove={wide ? undefined : onPointerMove}
+          onPointerUp={wide ? undefined : onPointerUp}
         >
-          <div className="h-1.5 w-12 rounded-full bg-white/25" />
+          {/* Swipe-down-to-dismiss is a bottom-sheet gesture; the wide layout is
+              a centred dialog, so it gets the close button alone rather than a
+              handle with nothing to pull. */}
+          <div
+            className={`h-1.5 w-12 rounded-full bg-white/25 ${wide ? "lg:hidden" : ""}`}
+          />
           <button
             type="button"
             aria-label="Close"

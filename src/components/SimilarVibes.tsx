@@ -12,9 +12,14 @@ import { Sparkle } from "./icons";
 export default function SimilarVibes({
   album,
   onSelect,
+  wide = false,
 }: {
   album: Album;
   onSelect: (album: Album) => void;
+  /** In the tablet sheet this sits in the metadata column beside the cover, so
+   *  it fills that column and aligns left with it instead of staying a narrow
+   *  centred strip adrift in the space. */
+  wide?: boolean;
 }) {
   const reduced = useReducedMotion();
   const results = getSimilar(album, 3);
@@ -29,19 +34,36 @@ export default function SimilarVibes({
       aria-label="Similar vibes"
       className="mt-6 border-t border-white/10 pt-4"
     >
-      <div className="flex items-center justify-center gap-2">
+      <div
+        className={`flex items-center gap-2 ${
+          wide ? "justify-center lg:justify-start" : "justify-center"
+        }`}
+      >
         <Sparkle className="h-4 w-4 text-accent" aria-hidden="true" />
         <p className="eyebrow">Similar vibes</p>
       </div>
 
       {sharedTags.length > 0 && (
-        <p className="font-marker mt-2 text-center text-lg leading-none text-muted">
+        <p
+          className={`font-marker mt-2 text-lg leading-none text-muted ${
+            wide ? "text-center lg:text-left" : "text-center"
+          }`}
+        >
           {sharedTags.join(" · ")}
         </p>
       )}
 
       {/* The three most similar, centered. No scroll — easy to take in at a glance. */}
-      <div className="mx-auto mt-3 grid max-w-xs grid-cols-3 gap-3">
+      <div
+        className={`mt-3 grid grid-cols-3 gap-3 ${
+          wide
+            ? // Left-aligned with the metadata column and a little wider, but
+              // not stretched across it — the mini caption is sized for a small
+              // cover and looks lost under a very large one.
+              "mx-auto max-w-xs lg:mx-0 lg:max-w-md lg:gap-4"
+            : "mx-auto max-w-xs"
+        }`}
+      >
         {results.map((r, i) => (
           <div
             key={r.album.id}
