@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import {
   type Album,
   type CollectionType,
@@ -167,14 +166,6 @@ export default function IpadShelf({ genres }: { genres: string[] }) {
                   );
                 })}
               </ul>
-              {/* Set apart from the collections — in the same size and colour
-                  it reads as a fourth one. */}
-              <Link
-                href="/"
-                className="mt-5 block text-xs text-muted/70 underline decoration-muted/25 underline-offset-4 transition active:text-foreground"
-              >
-                Phone version
-              </Link>
             </nav>
           </div>
         </aside>
