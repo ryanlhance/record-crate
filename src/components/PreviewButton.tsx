@@ -3,19 +3,46 @@
 import { useEffect, useRef, useState } from "react";
 import { Play, Pause } from "./icons";
 
+// Only one clip is ever audible. Now that a play button sits on every cover in
+// a grid, "unmount stops the audio" isn't enough on its own — nothing unmounts
+// when you tap a second cover's button. Whoever starts playing pauses whoever
+// was playing; the loser's own `pause` listener flips its button back, so no
+// cross-component state is needed.
+let nowPlaying: HTMLAudioElement | null = null;
+
+function claimPlayback(audio: HTMLAudioElement) {
+  if (nowPlaying && nowPlaying !== audio) nowPlaying.pause();
+  nowPlaying = audio;
+}
+
+type Size = "sm" | "md" | "lg";
+
+const BOX: Record<Size, string> = {
+  sm: "h-11 w-11", // on a grid cover
+  md: "h-14 w-14", // on a cover-flow slide
+  lg: "h-16 w-16", // on the detail sheet / shuffle reveal
+};
+
+const ICON: Record<Size, string> = {
+  sm: "h-4 w-4",
+  md: "h-5 w-5",
+  lg: "h-6 w-6",
+};
+
 /**
  * The "taste test" — a play/pause button overlaid on the album cover that
  * streams the record's 30-second Apple preview clip. A ring around the button
  * fills as the clip plays. The element is keyed by album id at the call site, so
- * swapping albums (or closing the sheet) unmounts it and the cleanup stops audio
- * — only ever one clip playing.
+ * swapping albums (or closing the sheet) unmounts it and the cleanup stops audio.
  */
 export default function PreviewButton({
   url,
   track,
+  size = "lg",
 }: {
   url: string;
   track: string;
+  size?: Size;
 }) {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [playing, setPlaying] = useState(false);
@@ -51,6 +78,7 @@ export default function PreviewButton({
     audio.addEventListener("playing", onPlaying);
 
     return () => {
+      if (nowPlaying === audio) nowPlaying = null;
       audio.pause();
       audio.removeEventListener("timeupdate", onTime);
       audio.removeEventListener("ended", onEnd);
@@ -62,10 +90,14 @@ export default function PreviewButton({
     };
   }, [url]);
 
-  const toggle = () => {
+  const toggle = (e: React.MouseEvent) => {
+    // The cover behind this button opens the record; playing a clip shouldn't.
+    e.stopPropagation();
+    e.preventDefault();
     const audio = audioRef.current;
     if (!audio) return;
     if (audio.paused) {
+      claimPlayback(audio);
       setLoading(true);
       audio.play().catch(() => setLoading(false));
     } else {
@@ -84,7 +116,7 @@ export default function PreviewButton({
       aria-label={
         playing ? `Pause preview of ${track}` : `Play 30-second preview of ${track}`
       }
-      className="absolute inset-0 m-auto flex h-16 w-16 items-center justify-center rounded-full bg-black/55 text-accent shadow-lg backdrop-blur-sm transition hover:bg-black/65 active:scale-95"
+      className={`absolute inset-0 m-auto flex items-center justify-center rounded-full bg-black/55 text-accent shadow-lg backdrop-blur-sm transition hover:bg-black/65 active:scale-95 ${BOX[size]}`}
     >
       <svg
         className="absolute inset-0 h-full w-full -rotate-90"
@@ -114,9 +146,11 @@ export default function PreviewButton({
         />
       </svg>
       {playing ? (
-        <Pause className="h-6 w-6" />
+        <Pause className={ICON[size]} />
       ) : (
-        <Play className={`h-6 w-6 translate-x-[1px] ${loading ? "opacity-60" : ""}`} />
+        <Play
+          className={`${ICON[size]} translate-x-[1px] ${loading ? "opacity-60" : ""}`}
+        />
       )}
     </button>
   );

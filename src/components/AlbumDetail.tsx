@@ -106,7 +106,7 @@ export default function AlbumDetail({
       <div
         ref={scrollRef}
         className={`max-h-[90vh] w-full overflow-y-auto rounded-t-3xl bg-card p-6 pt-2 shadow-2xl sm:max-h-[88vh] sm:rounded-3xl ${
-          wide ? "max-w-md lg:max-w-4xl lg:p-8 lg:pt-2" : "max-w-md"
+          wide ? "max-w-md lg:max-w-5xl lg:p-8 lg:pt-2" : "max-w-md"
         }`}
         style={{
           transform: `translateY(${dragY}px)`,
@@ -148,7 +148,7 @@ export default function AlbumDetail({
         <div
           className={
             wide
-              ? "lg:grid lg:grid-cols-[19rem_minmax(0,1fr)] lg:items-start lg:gap-8"
+              ? "lg:grid lg:grid-cols-[25rem_minmax(0,1fr)] lg:items-start lg:gap-8"
               : undefined
           }
         >
@@ -210,16 +210,22 @@ export default function AlbumDetail({
                 <p className="mt-1 text-lg text-accent">{current.artist}</p>
               )}
             </div>
-
-            {current.edition && (
-              <p
-                className={`mx-auto mt-3 max-w-xs text-center text-sm italic leading-relaxed text-muted ${
-                  wide ? "lg:mx-0 lg:max-w-none lg:text-left" : ""
-                }`}
-              >
-                {current.edition}
-              </p>
-            )}
+            {/* The edition note only exists on some records, and a sheet whose
+                height depends on that can't have a cover sized to it. Reserve
+                the line in the two-pane layout so every record's metadata
+                column is the same height and the cover can meet it — the same
+                trick the cover-flow caption uses. */}
+            <div className={wide ? "lg:min-h-[2.25rem]" : ""}>
+              {current.edition && (
+                <p
+                  className={`mx-auto mt-3 max-w-xs text-center text-sm italic leading-relaxed text-muted ${
+                    wide ? "lg:mx-0 lg:max-w-none lg:text-left" : ""
+                  }`}
+                >
+                  {current.edition}
+                </p>
+              )}
+            </div>
 
             {/* Tappable facets: year · genres. (Collection is intentionally omitted —
             the detail itself makes the type clear; the collections live on the

@@ -2,12 +2,20 @@
 
 import { type Album } from "@/lib/records";
 import { assetPath } from "@/lib/asset";
+import PreviewButton from "./PreviewButton";
 
 type Size = "grid" | "flow" | "mini" | "ipad";
 
 // One cover+title+artist unit, so the scan grid and the Similar-vibes strip
-// render covers identically (same radius, shadow, clamp, accent artist). Always
-// a real <button> with an album-level aria-label — never a click-handled div.
+// render covers identically (same radius, shadow, clamp, accent artist). The
+// cover is a real <button> with an album-level aria-label — never a click-
+// handled div.
+//
+// When the record has a clip, a play button sits on the cover. It's a SIBLING
+// of that button, not a child: a button inside a button is invalid HTML and
+// browsers do unpredictable things with the inner one. The wrapper is only as
+// tall as the cover, so the play button centres on the artwork rather than on
+// the cover-plus-caption box.
 //
 // "ipad" is the same card sized for arm's-length reading on a tablet: a wider
 // corner radius to match the bigger cover, and type that doesn't shrink to
@@ -47,35 +55,55 @@ export default function RecordCard({
   eager?: boolean;
   className?: string;
 }) {
+  // Everywhere except the Similar-vibes strip, which is a small navigational
+  // teaser inside an already-busy sheet — there a tap should mean "take me
+  // there", and three more play buttons would crowd it.
+  const canPreview = size !== "mini" && !!album.preview;
+
   return (
-    <button
-      type="button"
-      onClick={() => onSelect(album)}
-      aria-label={`${album.title} by ${album.artist}`}
-      className={`group block text-left transition active:scale-[0.97] focus-visible:outline-none ${className}`}
-    >
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src={assetPath(album.cover)}
-        alt=""
-        loading={eager ? "eager" : "lazy"}
-        draggable={false}
-        className={`select-none ${COVER[size]} ring-accent ring-offset-2 ring-offset-background group-focus-visible:ring-2`}
-      />
-      <p
-        className={`mt-2 font-display leading-tight ${
-          size === "ipad" ? "line-clamp-2" : "line-clamp-1"
-        } ${TITLE[size]}`}
+    <div className={`relative ${className}`}>
+      <button
+        type="button"
+        onClick={() => onSelect(album)}
+        aria-label={`${album.title} by ${album.artist}`}
+        className="group block w-full text-left transition active:scale-[0.97] focus-visible:outline-none"
       >
-        {album.title}
-      </p>
-      <p
-        className={`text-accent ${
-          size === "ipad" ? "line-clamp-2" : "line-clamp-1"
-        } ${ARTIST[size]}`}
-      >
-        {album.artist}
-      </p>
-    </button>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={assetPath(album.cover)}
+          alt=""
+          loading={eager ? "eager" : "lazy"}
+          draggable={false}
+          className={`select-none ${COVER[size]} ring-accent ring-offset-2 ring-offset-background group-focus-visible:ring-2`}
+        />
+        <p
+          className={`mt-2 font-display leading-tight ${
+            size === "ipad" ? "line-clamp-2" : "line-clamp-1"
+          } ${TITLE[size]}`}
+        >
+          {album.title}
+        </p>
+        <p
+          className={`text-accent ${
+            size === "ipad" ? "line-clamp-2" : "line-clamp-1"
+          } ${ARTIST[size]}`}
+        >
+          {album.artist}
+        </p>
+      </button>
+
+      {canPreview && (
+        <div className="pointer-events-none absolute inset-x-0 top-0 aspect-square">
+          <div className="pointer-events-auto absolute inset-0">
+            <PreviewButton
+              key={album.id}
+              url={album.preview!.url}
+              track={album.preview!.track}
+              size="sm"
+            />
+          </div>
+        </div>
+      )}
+    </div>
   );
 }
