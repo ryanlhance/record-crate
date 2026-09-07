@@ -7,7 +7,6 @@ import type { Swiper as SwiperClass } from "swiper";
 import { type Album } from "@/lib/records";
 import { assetPath } from "@/lib/asset";
 import AlbumDetail from "./AlbumDetail";
-import PreviewButton from "./PreviewButton";
 
 import "swiper/css";
 import "swiper/css/effect-coverflow";
@@ -73,41 +72,27 @@ export default function CoverFlow({
       >
         {albums.map((album, index) => (
           <SwiperSlide key={album.id} style={{ width: slideWidth }}>
-            <div className="relative">
-              {/* Real button: tap the active slide to open, tap a side slide to
-                  center it. aria-label carries the name so the cover img is
-                  decorative. */}
-              <button
-                type="button"
-                aria-label={`${album.title} by ${album.artist}`}
-                onClick={() => {
-                  if (index === activeIndex) setSelected(album);
-                  else swiper?.slideTo(index);
-                }}
-                className="block w-full rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={assetPath(album.cover)}
-                  alt=""
-                  loading="lazy"
-                  draggable={false}
-                  className="aspect-square w-full select-none rounded-xl object-cover shadow-2xl"
-                />
-              </button>
-
-              {/* Only on the slide you're actually looking at — the fanned
-                  neighbours are rotated and half-occluded, and a play button on
-                  each would clutter the hinge. */}
-              {index === activeIndex && album.preview && (
-                <PreviewButton
-                  key={album.id}
-                  url={album.preview.url}
-                  track={album.preview.track}
-                  size={compact ? "sm" : tablet ? "lg" : "md"}
-                />
-              )}
-            </div>
+            {/* Real button: tap the active slide to open, tap a side slide to
+                center it. aria-label carries the name so the cover img is
+                decorative. */}
+            <button
+              type="button"
+              aria-label={`${album.title} by ${album.artist}`}
+              onClick={() => {
+                if (index === activeIndex) setSelected(album);
+                else swiper?.slideTo(index);
+              }}
+              className="block w-full rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={assetPath(album.cover)}
+                alt=""
+                loading="lazy"
+                draggable={false}
+                className="aspect-square w-full select-none rounded-xl object-cover shadow-2xl"
+              />
+            </button>
           </SwiperSlide>
         ))}
       </Swiper>

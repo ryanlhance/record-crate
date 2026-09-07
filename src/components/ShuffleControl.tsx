@@ -6,7 +6,6 @@ import { useReducedMotion } from "@/lib/useReducedMotion";
 import { assetPath } from "@/lib/asset";
 import AlbumDetail from "./AlbumDetail";
 import DetailsButton from "./DetailsButton";
-import PreviewButton from "./PreviewButton";
 import { Close } from "./icons";
 import { TabletShelfContext, useTabletShelf } from "./ipad/TabletShelfContext";
 
@@ -253,17 +252,6 @@ export default function ShuffleControl({
                   alt={chosen ? `${chosen.title} by ${chosen.artist}` : ""}
                   draggable={false}
                   className="absolute inset-0 h-full w-full select-none rounded-xl object-cover shadow-2xl"
-                />
-              )}
-
-              {/* Only once the reel has landed — a play button flickering over
-                  the riffle would be unusable. */}
-              {chosen?.preview && (
-                <PreviewButton
-                  key={chosen.id}
-                  url={chosen.preview.url}
-                  track={chosen.preview.track}
-                  size="lg"
                 />
               )}
             </div>
