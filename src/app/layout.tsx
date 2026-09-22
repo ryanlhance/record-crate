@@ -29,6 +29,8 @@ const DESCRIPTION =
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
+  // Link-only: this page is shared directly, not meant to be found in search.
+  robots: { index: false, follow: false },
   title: TITLE,
   description: DESCRIPTION,
   openGraph: {
